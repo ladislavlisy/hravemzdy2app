@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32B0A07FE7C8BCE253C4587B /* hravemzdy2appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AB2DCD080B2F2736B8F9 /* hravemzdy2appTests.m */; };
+		32B0A2261C2C80010B2294DC /* PYGMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A013698EC871FC84F318 /* PYGMasterViewController.xib */; };
+		32B0A22DF0B4BA29C55A2442 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A6CF647055E8EE765311 /* Default.png */; };
+		32B0A2C3EFF7713460CB64FB /* PYGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */; };
+		32B0A3B5079CEA073FA1A9B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A8A123614D5E6B51D666 /* InfoPlist.strings */; };
+		32B0A3EE94406435DBCF5F5C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AED9FFB882A78CD850E5 /* Default@2x.png */; };
+		32B0A5C8F016E4BFE845EB3C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0AFA3EFD769B197FB6EDC /* CoreGraphics.framework */; };
+		32B0A6C4C8D0E520DA76CD0D /* PYGMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A985FFE3D77831A3BC49 /* PYGMasterViewController.m */; };
+		32B0A707B61D7B6B13C71C9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A1983D682FDB1B2FB23C /* Foundation.framework */; };
+		32B0A7130EE4EAA4B829B97F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A0E83A0D2E658E7F4B0E /* UIKit.framework */; };
+		32B0A7B0EA0BD957097AEB52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A1983D682FDB1B2FB23C /* Foundation.framework */; };
+		32B0A94AFDF1C40F2A6BA17D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A0F066AB5296B4F95A44 /* main.m */; };
+		32B0A94C999D82631CEC7E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AB19D76353C8CBB4AE07 /* InfoPlist.strings */; };
+		32B0AA0EE69575361E5ACEEF /* PYGDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A3058DF1EDA8C7223E88 /* PYGDetailViewController.xib */; };
+		32B0AAB5D8FE4B69FB7B9C3E /* PYGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A72171D4457D46CD9DB6 /* PYGAppDelegate.m */; };
+		32B0AC21196FFEEA6DA558B6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A1DEAD62B5B838334282 /* SenTestingKit.framework */; };
+		32B0AF2408CB7E77D637516A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A0E83A0D2E658E7F4B0E /* UIKit.framework */; };
+		32B0AF283A646B764166449D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A90D9C7AC07E26DCC32D /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32B0A074277FC53CF09C4918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32B0AC84628CEC906045E6D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32B0A659EE899AD87446155A;
+			remoteInfo = hravemzdy2app;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		32B0A009A4C238E7647CBF6E /* hravemzdy2appTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hravemzdy2appTests.h; sourceTree = "<group>"; };
+		32B0A0E83A0D2E658E7F4B0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32B0A0F066AB5296B4F95A44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32B0A15A08E476943D3E6711 /* hravemzdy2app-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "hravemzdy2app-Info.plist"; sourceTree = "<group>"; };
+		32B0A1983D682FDB1B2FB23C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		32B0A1A186858C41708B8FA7 /* PYGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PYGAppDelegate.h; sourceTree = "<group>"; };
+		32B0A1DEAD62B5B838334282 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		32B0A5365533394289A10110 /* hravemzdy2appTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "hravemzdy2appTests-Info.plist"; sourceTree = "<group>"; };
+		32B0A596E60A452FB87EA9DC /* hravemzdy2app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hravemzdy2app.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32B0A6BDD610109D242D24FB /* PYGDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PYGDetailViewController.h; sourceTree = "<group>"; };
+		32B0A6CF647055E8EE765311 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		32B0A72171D4457D46CD9DB6 /* PYGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PYGAppDelegate.m; sourceTree = "<group>"; };
+		32B0A90D9C7AC07E26DCC32D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PYGDetailViewController.m; sourceTree = "<group>"; };
+		32B0A985FFE3D77831A3BC49 /* PYGMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PYGMasterViewController.m; sourceTree = "<group>"; };
+		32B0AB2DCD080B2F2736B8F9 /* hravemzdy2appTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hravemzdy2appTests.m; sourceTree = "<group>"; };
+		32B0AB4DD7320B412A67636C /* hravemzdy2appTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hravemzdy2appTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32B0AB9C096B092D4A8D8E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32B0ACBD30FE5A4F2A05A172 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGDetailViewController.xib; sourceTree = "<group>"; };
+		32B0AD2ED3BC23F47BB5D48E /* hravemzdy2app-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hravemzdy2app-Prefix.pch"; sourceTree = "<group>"; };
+		32B0AD828CA8C0C8403DD103 /* PYGMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PYGMasterViewController.h; sourceTree = "<group>"; };
+		32B0AE8FD9CE36BFB8E97A51 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGMasterViewController.xib; sourceTree = "<group>"; };
+		32B0AED9FFB882A78CD850E5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		32B0AF21F994A79F9C143FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32B0AFA3EFD769B197FB6EDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32B0A99B94AA29F45DCA431C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B0AC21196FFEEA6DA558B6 /* SenTestingKit.framework in Frameworks */,
+				32B0A7130EE4EAA4B829B97F /* UIKit.framework in Frameworks */,
+				32B0A707B61D7B6B13C71C9F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32B0AB0ACC8563F8EF5421C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B0AF2408CB7E77D637516A /* UIKit.framework in Frameworks */,
+				32B0A7B0EA0BD957097AEB52 /* Foundation.framework in Frameworks */,
+				32B0A5C8F016E4BFE845EB3C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32B0A1C1F1C5C1940448AB34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A5365533394289A10110 /* hravemzdy2appTests-Info.plist */,
+				32B0AB19D76353C8CBB4AE07 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32B0A1CD92CC06DA1A914189 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A0E83A0D2E658E7F4B0E /* UIKit.framework */,
+				32B0A1983D682FDB1B2FB23C /* Foundation.framework */,
+				32B0AFA3EFD769B197FB6EDC /* CoreGraphics.framework */,
+				32B0A1DEAD62B5B838334282 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32B0A58B73CB1FFBB675A0C4 /* hravemzdy2app */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A7408F15EE017E799E05 /* Supporting Files */,
+				32B0A1A186858C41708B8FA7 /* PYGAppDelegate.h */,
+				32B0A72171D4457D46CD9DB6 /* PYGAppDelegate.m */,
+				32B0AD828CA8C0C8403DD103 /* PYGMasterViewController.h */,
+				32B0A985FFE3D77831A3BC49 /* PYGMasterViewController.m */,
+				32B0A6BDD610109D242D24FB /* PYGDetailViewController.h */,
+				32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */,
+				32B0A013698EC871FC84F318 /* PYGMasterViewController.xib */,
+				32B0A3058DF1EDA8C7223E88 /* PYGDetailViewController.xib */,
+			);
+			path = hravemzdy2app;
+			sourceTree = "<group>";
+		};
+		32B0A7408F15EE017E799E05 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A15A08E476943D3E6711 /* hravemzdy2app-Info.plist */,
+				32B0A8A123614D5E6B51D666 /* InfoPlist.strings */,
+				32B0A0F066AB5296B4F95A44 /* main.m */,
+				32B0AD2ED3BC23F47BB5D48E /* hravemzdy2app-Prefix.pch */,
+				32B0A6CF647055E8EE765311 /* Default.png */,
+				32B0AED9FFB882A78CD850E5 /* Default@2x.png */,
+				32B0A90D9C7AC07E26DCC32D /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32B0A75025B507B867D9EB6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A596E60A452FB87EA9DC /* hravemzdy2app.app */,
+				32B0AB4DD7320B412A67636C /* hravemzdy2appTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32B0A9672113D37D9F93776A = {
+			isa = PBXGroup;
+			children = (
+				32B0A75025B507B867D9EB6E /* Products */,
+				32B0A1CD92CC06DA1A914189 /* Frameworks */,
+				32B0A58B73CB1FFBB675A0C4 /* hravemzdy2app */,
+				32B0AC8ACEFC40D585255974 /* hravemzdy2appTests */,
+			);
+			sourceTree = "<group>";
+		};
+		32B0AC8ACEFC40D585255974 /* hravemzdy2appTests */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A1C1F1C5C1940448AB34 /* Supporting Files */,
+				32B0A009A4C238E7647CBF6E /* hravemzdy2appTests.h */,
+				32B0AB2DCD080B2F2736B8F9 /* hravemzdy2appTests.m */,
+			);
+			path = hravemzdy2appTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32B0A659EE899AD87446155A /* hravemzdy2app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32B0A3C11CCD2F1F2D6031FC /* Build configuration list for PBXNativeTarget "hravemzdy2app" */;
+			buildPhases = (
+				32B0A85E0110AE76260190E0 /* Sources */,
+				32B0AB0ACC8563F8EF5421C6 /* Frameworks */,
+				32B0A638878BEBC538003DD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hravemzdy2app;
+			productName = hravemzdy2app;
+			productReference = 32B0A596E60A452FB87EA9DC /* hravemzdy2app.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32B0AC979612D60B62802C43 /* hravemzdy2appTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32B0A0FC15476B5F730D2919 /* Build configuration list for PBXNativeTarget "hravemzdy2appTests" */;
+			buildPhases = (
+				32B0A5988A741E305A081265 /* Sources */,
+				32B0A99B94AA29F45DCA431C /* Frameworks */,
+				32B0A1F279573B8395F04EA4 /* Resources */,
+				32B0AE93D1475896732A3D0C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32B0AB9893BC98CF4BFD6DCF /* PBXTargetDependency */,
+			);
+			name = hravemzdy2appTests;
+			productName = hravemzdy2appTests;
+			productReference = 32B0AB4DD7320B412A67636C /* hravemzdy2appTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32B0AC84628CEC906045E6D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "___HRAVEMZDY___";
+			};
+			buildConfigurationList = 32B0A8536DD1D88A17E0441E /* Build configuration list for PBXProject "hravemzdy2app" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32B0A9672113D37D9F93776A;
+			productRefGroup = 32B0A75025B507B867D9EB6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32B0A659EE899AD87446155A /* hravemzdy2app */,
+				32B0AC979612D60B62802C43 /* hravemzdy2appTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32B0A1F279573B8395F04EA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B0A94C999D82631CEC7E6B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32B0A638878BEBC538003DD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B0A3B5079CEA073FA1A9B0 /* InfoPlist.strings in Resources */,
+				32B0A22DF0B4BA29C55A2442 /* Default.png in Resources */,
+				32B0A3EE94406435DBCF5F5C /* Default@2x.png in Resources */,
+				32B0AF283A646B764166449D /* Default-568h@2x.png in Resources */,
+				32B0A2261C2C80010B2294DC /* PYGMasterViewController.xib in Resources */,
+				32B0AA0EE69575361E5ACEEF /* PYGDetailViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32B0AE93D1475896732A3D0C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32B0A5988A741E305A081265 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B0A07FE7C8BCE253C4587B /* hravemzdy2appTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32B0A85E0110AE76260190E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B0A94AFDF1C40F2A6BA17D /* main.m in Sources */,
+				32B0AAB5D8FE4B69FB7B9C3E /* PYGAppDelegate.m in Sources */,
+				32B0A6C4C8D0E520DA76CD0D /* PYGMasterViewController.m in Sources */,
+				32B0A2C3EFF7713460CB64FB /* PYGDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32B0AB9893BC98CF4BFD6DCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32B0A659EE899AD87446155A /* hravemzdy2app */;
+			targetProxy = 32B0A074277FC53CF09C4918 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		32B0A013698EC871FC84F318 /* PYGMasterViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32B0AE8FD9CE36BFB8E97A51 /* en */,
+			);
+			name = PYGMasterViewController.xib;
+			sourceTree = "<group>";
+		};
+		32B0A3058DF1EDA8C7223E88 /* PYGDetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32B0ACBD30FE5A4F2A05A172 /* en */,
+			);
+			name = PYGDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		32B0A8A123614D5E6B51D666 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32B0AF21F994A79F9C143FF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32B0AB19D76353C8CBB4AE07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32B0AB9C096B092D4A8D8E2C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32B0A6236714434A7278FC49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
+				INFOPLIST_FILE = "hravemzdy2app/hravemzdy2app-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		32B0A754DBEA540A39316808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32B0A9F848BF2F81CA53E724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/hravemzdy2app.app/hravemzdy2app";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
+				INFOPLIST_FILE = "hravemzdy2appTests/hravemzdy2appTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		32B0AB347861BABA5B8C824A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/hravemzdy2app.app/hravemzdy2app";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
+				INFOPLIST_FILE = "hravemzdy2appTests/hravemzdy2appTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		32B0ABF4E848A0E27896E8A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		32B0AFAD04FB26F884360D21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
+				INFOPLIST_FILE = "hravemzdy2app/hravemzdy2app-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32B0A0FC15476B5F730D2919 /* Build configuration list for PBXNativeTarget "hravemzdy2appTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32B0AB347861BABA5B8C824A /* Release */,
+				32B0A9F848BF2F81CA53E724 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		32B0A3C11CCD2F1F2D6031FC /* Build configuration list for PBXNativeTarget "hravemzdy2app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32B0AFAD04FB26F884360D21 /* Release */,
+				32B0A6236714434A7278FC49 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		32B0A8536DD1D88A17E0441E /* Build configuration list for PBXProject "hravemzdy2app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32B0A754DBEA540A39316808 /* Release */,
+				32B0ABF4E848A0E27896E8A1 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32B0AC84628CEC906045E6D7 /* Project object */;
+}
