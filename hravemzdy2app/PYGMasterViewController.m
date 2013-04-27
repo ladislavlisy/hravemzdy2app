@@ -76,6 +76,12 @@
     return 8;
 }
 
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    return @"Payroll details";
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -141,7 +147,7 @@
     if (tf != nil) {
         tf.frame = CGRectMake(150, 12, 140, 30);
         // Workaround to dismiss keyboard when Done/Return is tapped
-        [tf addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
+        [tf addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEnd];
 
         // We want to handle textFieldDidEndEditing
         tf.delegate = self ;
@@ -151,7 +157,7 @@
     if (sf != nil) {
         sf.frame = CGRectMake(220, 8, 70, 30);
         // Workaround to dismiss keyboard when Done/Return is tapped
-        [sf addTarget:self action:@selector(switchFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
+        [sf addTarget:self action:@selector(switchFieldFinished:) forControlEvents:UIControlEventValueChanged];
 
         // We want to handle textFieldDidEndEditing
         tf.delegate = self ;
@@ -185,6 +191,7 @@
     tf.text = text ;
     tf.autocorrectionType = UITextAutocorrectionTypeNo ;
     tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    tf.textAlignment = NSTextAlignmentRight;
     tf.adjustsFontSizeToFitWidth = YES;
     tf.textColor = [UIColor colorWithRed:56.0f/255.0f green:84.0f/255.0f blue:135.0f/255.0f alpha:1.0f];
     return tf ;
@@ -206,6 +213,9 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ( textField == _descriptionField ) {
         self.description = textField.text ;
+        if (self.detailViewController != nil) {
+            [self.detailViewController setDescription:self.description];
+        }
     }
     else if ( textField == _employerNameField ) {
         self.employerName = textField.text ;

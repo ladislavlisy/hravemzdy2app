@@ -10,9 +10,11 @@
 		32B0A07FE7C8BCE253C4587B /* hravemzdy2appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AB2DCD080B2F2736B8F9 /* hravemzdy2appTests.m */; };
 		32B0A2261C2C80010B2294DC /* PYGMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A013698EC871FC84F318 /* PYGMasterViewController.xib */; };
 		32B0A22DF0B4BA29C55A2442 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A6CF647055E8EE765311 /* Default.png */; };
+		32B0A254E51D36D1041AA957 /* PYGDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A30D59BCC7CBD94ED659 /* PYGDetailTableViewCell.xib */; };
 		32B0A2C3EFF7713460CB64FB /* PYGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */; };
 		32B0A3B5079CEA073FA1A9B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A8A123614D5E6B51D666 /* InfoPlist.strings */; };
 		32B0A3EE94406435DBCF5F5C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AED9FFB882A78CD850E5 /* Default@2x.png */; };
+		32B0A543C52CF6C57D922D3F /* PYGDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AD517F25F38223C47949 /* PYGDetailTableViewCell.m */; };
 		32B0A5C8F016E4BFE845EB3C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0AFA3EFD769B197FB6EDC /* CoreGraphics.framework */; };
 		32B0A6C4C8D0E520DA76CD0D /* PYGMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A985FFE3D77831A3BC49 /* PYGMasterViewController.m */; };
 		32B0A707B61D7B6B13C71C9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A1983D682FDB1B2FB23C /* Foundation.framework */; };
@@ -45,8 +47,10 @@
 		32B0A1983D682FDB1B2FB23C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32B0A1A186858C41708B8FA7 /* PYGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PYGAppDelegate.h; sourceTree = "<group>"; };
 		32B0A1DEAD62B5B838334282 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		32B0A4384B8373F0D3EC4136 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGDetailTableViewCell.xib; sourceTree = "<group>"; };
 		32B0A5365533394289A10110 /* hravemzdy2appTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "hravemzdy2appTests-Info.plist"; sourceTree = "<group>"; };
 		32B0A596E60A452FB87EA9DC /* hravemzdy2app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hravemzdy2app.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32B0A5A7379F8CABAAAA67BE /* PYGDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGDetailTableViewCell.h; sourceTree = "<group>"; };
 		32B0A6BDD610109D242D24FB /* PYGDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PYGDetailViewController.h; sourceTree = "<group>"; };
 		32B0A6CF647055E8EE765311 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		32B0A72171D4457D46CD9DB6 /* PYGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PYGAppDelegate.m; sourceTree = "<group>"; };
@@ -58,6 +62,7 @@
 		32B0AB9C096B092D4A8D8E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32B0ACBD30FE5A4F2A05A172 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGDetailViewController.xib; sourceTree = "<group>"; };
 		32B0AD2ED3BC23F47BB5D48E /* hravemzdy2app-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hravemzdy2app-Prefix.pch"; sourceTree = "<group>"; };
+		32B0AD517F25F38223C47949 /* PYGDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGDetailTableViewCell.m; sourceTree = "<group>"; };
 		32B0AD828CA8C0C8403DD103 /* PYGMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PYGMasterViewController.h; sourceTree = "<group>"; };
 		32B0AE8FD9CE36BFB8E97A51 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGMasterViewController.xib; sourceTree = "<group>"; };
 		32B0AED9FFB882A78CD850E5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -121,6 +126,9 @@
 				32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */,
 				32B0A013698EC871FC84F318 /* PYGMasterViewController.xib */,
 				32B0A3058DF1EDA8C7223E88 /* PYGDetailViewController.xib */,
+				32B0A30D59BCC7CBD94ED659 /* PYGDetailTableViewCell.xib */,
+				32B0AD517F25F38223C47949 /* PYGDetailTableViewCell.m */,
+				32B0A5A7379F8CABAAAA67BE /* PYGDetailTableViewCell.h */,
 			);
 			path = hravemzdy2app;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 				32B0AF283A646B764166449D /* Default-568h@2x.png in Resources */,
 				32B0A2261C2C80010B2294DC /* PYGMasterViewController.xib in Resources */,
 				32B0AA0EE69575361E5ACEEF /* PYGDetailViewController.xib in Resources */,
+				32B0A254E51D36D1041AA957 /* PYGDetailTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +299,7 @@
 				32B0AAB5D8FE4B69FB7B9C3E /* PYGAppDelegate.m in Sources */,
 				32B0A6C4C8D0E520DA76CD0D /* PYGMasterViewController.m in Sources */,
 				32B0A2C3EFF7713460CB64FB /* PYGDetailViewController.m in Sources */,
+				32B0A543C52CF6C57D922D3F /* PYGDetailTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +328,14 @@
 				32B0ACBD30FE5A4F2A05A172 /* en */,
 			);
 			name = PYGDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		32B0A30D59BCC7CBD94ED659 /* PYGDetailTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32B0A4384B8373F0D3EC4136 /* en */,
+			);
+			name = PYGDetailTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		32B0A8A123614D5E6B51D666 /* InfoPlist.strings */ = {
@@ -463,6 +481,7 @@
 				32B0A9F848BF2F81CA53E724 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32B0A3C11CCD2F1F2D6031FC /* Build configuration list for PBXNativeTarget "hravemzdy2app" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +490,7 @@
 				32B0A6236714434A7278FC49 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32B0A8536DD1D88A17E0441E /* Build configuration list for PBXProject "hravemzdy2app" */ = {
 			isa = XCConfigurationList;

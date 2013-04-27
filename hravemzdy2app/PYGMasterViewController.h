@@ -13,10 +13,6 @@
 @interface PYGMasterViewController : UITableViewController<UITextFieldDelegate> {
 }
 
-// Creates a textfield with the specified text and placeholder text
--(UITextField*) makeTextField: (NSString*)text
-                  placeholder: (NSString*)placeholder  ;
-
 // Handles UIControlEventEditingDidEndOnExit
 - (IBAction)textFieldFinished:(id)sender ;
 

@@ -16,4 +16,5 @@
 - (IBAction) showEmployeePayslip:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
+- (void)setDescription:(NSString *)description;
 @end

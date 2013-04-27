@@ -6,7 +6,15 @@
 //  Copyright (c) 2013 ___HRAVEMZDY___. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "PYGDetailViewController.h"
+
+typedef enum {
+    DetailLabelCell1 = 1,
+    DetailLabelCell2 = 2,
+    DetailValueCell1 = 3,
+    DetailValueCell2 = 4
+} allDetailCells;
 
 @interface PYGDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -23,6 +31,13 @@
     }
     return self;
 }
+
+- (void)setDescription:(NSString *)description {
+    if (descriptionField != nil) {
+        descriptionField.text = description;
+    }
+}
+
 
 #pragma mark - Managing the detail item
 
@@ -69,6 +84,61 @@
 
 - (IBAction)showEmployeePayslip:(id)sender {
 
+}
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 8;
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    return @"Payslip details";
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *DetailCellIdentifier = @"DetailTableCell";
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+
+    if (cell == nil) {
+        NSArray *cellObjects = [[NSBundle mainBundle] loadNibNamed:@"PYGDetailTableViewCell" owner:self options:nil];
+        cell = (UITableViewCell*) [cellObjects objectAtIndex:0];
+    }
+    // Make cell unselectable
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    // portrait  = 728.000000 - 704.000000 - 200.000000
+    // landscape = 663.000000 - 704.000000 - 200.000000
+    UILabel * label1 = (UILabel *)[cell viewWithTag:DetailLabelCell1];
+    UILabel * label2 = (UILabel *)[cell viewWithTag:DetailLabelCell2];
+    UILabel * value1 = (UILabel *)[cell viewWithTag:DetailValueCell1];
+    UILabel * value2 = (UILabel *)[cell viewWithTag:DetailValueCell2];
+    label1.text = @"label c.1";
+    label2.text = @"label c.2";
+    value1.text = @"0";
+    value2.text = @"1 000";
+
+    NSLog(@"%f - %f - %f", tableView.frame.origin.x, cell.frame.origin.x, label1.frame.origin.x);
+
+    return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return NO;
 }
 
 @end
