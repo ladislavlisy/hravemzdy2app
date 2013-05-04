@@ -141,4 +141,16 @@ titleForHeaderInSection:(NSInteger)section
     return NO;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {}
+    else
+    {}
+    //[tableView reloadData];
+    //[self.tableView reloadData];
+    //[self reloadData];
+    return YES;
+}
+
 @end

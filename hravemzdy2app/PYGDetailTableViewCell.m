@@ -23,4 +23,13 @@
     return self;
 }
 
+-(void)setFrame:(CGRect)frame
+{
+    NSUInteger inset = 30;
+    //Do your rotation stuffs here :)
+//    frame.origin.x += inset;
+//    frame.size.width -= 2 * inset;
+    [super setFrame:frame];
+}
+
 @end
