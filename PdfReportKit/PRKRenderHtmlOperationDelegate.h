@@ -22,6 +22,6 @@ typedef NS_ENUM(NSInteger, PRKSectionType) {
 
 @protocol PRKRenderHtmlOperationDelegate <NSObject>
 
-- (void) didFinishLoadingSection: (PRKSectionType)sectionType withPrintFormatter: (UIPrintFormatter *)formatter;
+- (void) didFinishLoadingSection:(PRKSectionType)sectionType withPrintFormatter:(UIPrintFormatter *)formatter;
 
 @end

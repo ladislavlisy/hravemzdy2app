@@ -15,11 +15,8 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
-        // Initialization code
-    }
+    if (!(self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier])) return nil;
+    // Initialization code
     return self;
 }
 
@@ -30,6 +27,17 @@
 //    frame.origin.x += inset;
 //    frame.size.width -= 2 * inset;
     [super setFrame:frame];
+}
+
+- (void)layoutSubviews
+{
+//    CGRect b = [self bounds];
+//    b.size.width += 30; // allow extra width to slide for editing
+//    b.origin.x -= (self.editing) ? 0 : 30; // start 30px left unless editing
+//    [contentView setFrame:b];
+//    // then calculate (NSString sizeWithFont) and addSubView, the textField as appropriate...
+//    //
+    [super layoutSubviews];
 }
 
 @end

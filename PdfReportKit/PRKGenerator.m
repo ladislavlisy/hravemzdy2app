@@ -117,7 +117,6 @@ static NSArray * reportDefaultTags = nil;
                                              renderToPdf] waitUntilFinished:NO];
 
     }
-    
     [self.renderingQueue addOperationWithBlock:^{
         // Invoke on main thread, otherwise it won't work!
         [self performSelectorOnMainThread:@selector(closePdfContext) withObject:nil waitUntilDone:YES];

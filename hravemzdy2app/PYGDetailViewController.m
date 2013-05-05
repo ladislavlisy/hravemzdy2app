@@ -8,6 +8,8 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 #import "PYGDetailViewController.h"
+#import "PdfRenderer.h"
+#import "PdfPaycheckGenerator.h"
 
 typedef enum {
     DetailLabelCell1 = 1,
@@ -18,6 +20,7 @@ typedef enum {
 
 @interface PYGDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (strong, nonatomic) PdfPaycheckGenerator* generator;
 - (void)configureView;
 @end
 
@@ -25,11 +28,28 @@ typedef enum {
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = NSLocalizedString(@"Detail", @"Detail");
-    }
+    if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) return nil;
+    self.title = NSLocalizedString(@"Detail", @"Detail");
+
+    NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
+    self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:pdfFileName];
+
     return self;
+}
+
+-(NSString*)getPdfFileName:(NSString *)pdfName
+{
+    NSString* fileName = pdfName;
+
+    NSArray *arrayPaths =
+            NSSearchPathForDirectoriesInDomains(
+                    NSDocumentDirectory,
+                    NSUserDomainMask,
+                    YES);
+    NSString *path = [arrayPaths objectAtIndex:0];
+    NSString* pdfFileName = [path stringByAppendingPathComponent:fileName];
+
+    return pdfFileName;
 }
 
 - (void)setDescription:(NSString *)description {
@@ -83,7 +103,11 @@ typedef enum {
 }
 
 - (IBAction)showEmployeePayslip:(id)sender {
+    NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
 
+    //[self drawPDF:pdfFileName];
+    [self drawInvoicePDF:pdfFileName];
+    [self showPdfFile:pdfFileName];
 }
 
 #pragma mark - Table View
@@ -131,6 +155,9 @@ titleForHeaderInSection:(NSInteger)section
     value2.text = @"1 000";
 
     NSLog(@"%f - %f - %f", tableView.frame.origin.x, cell.frame.origin.x, label1.frame.origin.x);
+    [label1 setFrame:CGRectMake(100, label1.frame.origin.y, label1.frame.size.height, label1.frame.size.width)];
+    //[cell setFrame:CGRectMake(label1.frame.origin.x + tableView.frame.origin.x + 10, cell.frame.origin.y, cell.frame.size.height, cell.frame.size.width)];
+    NSLog(@"%f - %f - %f", tableView.frame.origin.x, cell.frame.origin.x, label1.frame.origin.x);
 
     return cell;
 }
@@ -141,16 +168,101 @@ titleForHeaderInSection:(NSInteger)section
     return NO;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-    {}
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+//    if (UIInterfaceOrientationIsPortrait(orientation))
+//    {}
+//    else
+//    {}
+//}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3f];
+    //self.myScroll.hidden = YES;
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView commitAnimations];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3f];
+    //self.myScroll.hidden = NO;
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView commitAnimations];
+}
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                        duration:(NSTimeInterval)duration {
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+//        boardView.frame = CGRectMake(0, 0, 320, 320);
+//        buttonsView.frame = CGRectMake(0, 320, 320, 140);
+    } else {
+//        boardView.frame = CGRectMake(0, 0, 300, 300);
+//        buttonsView.frame = CGRectMake(300, 0, 180, 300);
+    }
+}
+
+- (void)layoutForOrientation:(UIInterfaceOrientation)orientation {
+    if (UIInterfaceOrientationIsPortrait(orientation))
+        [self layoutPortraitViews];
     else
-    {}
-    //[tableView reloadData];
+        [self layoutLandscapeViews];
+}
+
+- (void)layoutLandscapeViews {
     //[self.tableView reloadData];
-    //[self reloadData];
-    return YES;
+}
+
+- (void)layoutPortraitViews {
+    //[self.tableView reloadData];
+}
+
+#pragma mark - Pdf file renderer
+- (void)drawInvoicePDF:(NSString*)fileNameWithPath
+{
+    [self.generator generateReport];
+}
+
+- (void)drawPDF:(NSString*)fileNameWithPath
+{
+    // Create the PDF context using the default page size of 612 x 792.
+    UIGraphicsBeginPDFContextToFile(fileNameWithPath, CGRectZero, nil);
+    // Mark the beginning of a new page.
+    UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, 612, 792), nil);
+
+    PdfRenderer * pdfEngine = [PdfRenderer pdfRenderer];
+
+    int xOrigin = 50;
+    int yOrigin = 300;
+
+    int rowHeight = 50;
+    int titleColumnWidth = 240;
+    int valueColumnWidth = 120;
+
+    int numberOfRows = 7;
+
+    CGPoint originNil = CGPointMake(50, -300);
+    [pdfEngine drawTableDataAt:originNil withRowHeight:rowHeight
+            andTitleWidth:titleColumnWidth andValueWidth:valueColumnWidth andRowCount:numberOfRows];
+
+    CGPoint origin = CGPointMake(xOrigin, yOrigin);
+    [pdfEngine drawTableAt:origin withRowHeight:rowHeight
+             andTitleWidth:titleColumnWidth andValueWidth:valueColumnWidth andRowCount:numberOfRows];
+
+    // Close the PDF context and write the contents out.
+    UIGraphicsEndPDFContext();
+}
+
+-(void)showPdfFile:(NSString *)fileNameWithPath
+{
+    UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024)];
+
+    NSURL *url = [NSURL fileURLWithPath:fileNameWithPath];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView setScalesPageToFit:YES];
+    [webView loadRequest:request];
+
+    [self.view addSubview:webView];
 }
 
 @end

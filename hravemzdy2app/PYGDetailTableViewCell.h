@@ -10,4 +10,7 @@
 
 
 @interface PYGDetailTableViewCell : UITableViewCell
+
+@property(nonatomic,strong) IBOutlet UIWebView *webView;
+
 @end

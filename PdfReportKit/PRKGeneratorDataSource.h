@@ -18,8 +18,6 @@
 @protocol PRKGeneratorDataSource <NSObject>
 
 @required
-- (id)         reportsGenerator: (PRKGenerator *)generator dataForReport: (NSString *)reportName withTag: (NSString *)tagName forPage: (NSUInteger)pageNumber;
-
-
+- (id) reportsGenerator:(PRKGenerator *)generator dataForReport:(NSString *)reportName withTag:(NSString *)tagName forPage:(NSUInteger)pageNumber;
 
 @end

@@ -16,5 +16,6 @@
 - (IBAction) showEmployeePayslip:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
+- (NSString*)getPdfFileName:(NSString *)pdfName;
 - (void)setDescription:(NSString *)description;
 @end
