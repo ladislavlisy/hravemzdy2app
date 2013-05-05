@@ -12,10 +12,8 @@
 #import "PdfPaycheckGenerator.h"
 
 typedef enum {
-    DetailLabelCell1 = 1,
-    DetailLabelCell2 = 2,
-    DetailValueCell1 = 3,
-    DetailValueCell2 = 4
+    DetailTitleCell = 1,
+    DetailValueCell = 2
 } allDetailCells;
 
 @interface PYGDetailViewController ()
@@ -37,27 +35,11 @@ typedef enum {
     return self;
 }
 
--(NSString*)getPdfFileName:(NSString *)pdfName
-{
-    NSString* fileName = pdfName;
-
-    NSArray *arrayPaths =
-            NSSearchPathForDirectoriesInDomains(
-                    NSDocumentDirectory,
-                    NSUserDomainMask,
-                    YES);
-    NSString *path = [arrayPaths objectAtIndex:0];
-    NSString* pdfFileName = [path stringByAppendingPathComponent:fileName];
-
-    return pdfFileName;
-}
-
 - (void)setDescription:(NSString *)description {
     if (descriptionField != nil) {
         descriptionField.text = description;
     }
 }
-
 
 #pragma mark - Managing the detail item
 
@@ -102,14 +84,6 @@ typedef enum {
     self.masterPopoverController = nil;
 }
 
-- (IBAction)showEmployeePayslip:(id)sender {
-    NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
-
-    //[self drawPDF:pdfFileName];
-    [self drawInvoicePDF:pdfFileName];
-    [self showPdfFile:pdfFileName];
-}
-
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -145,22 +119,19 @@ titleForHeaderInSection:(NSInteger)section
 
     // portrait  = 728.000000 - 704.000000 - 200.000000
     // landscape = 663.000000 - 704.000000 - 200.000000
-    UILabel * label1 = (UILabel *)[cell viewWithTag:DetailLabelCell1];
-    UILabel * label2 = (UILabel *)[cell viewWithTag:DetailLabelCell2];
-    UILabel * value1 = (UILabel *)[cell viewWithTag:DetailValueCell1];
-    UILabel * value2 = (UILabel *)[cell viewWithTag:DetailValueCell2];
-    label1.text = @"label c.1";
-    label2.text = @"label c.2";
-    value1.text = @"0";
-    value2.text = @"1 000";
-
-    NSLog(@"%f - %f - %f", tableView.frame.origin.x, cell.frame.origin.x, label1.frame.origin.x);
-    [label1 setFrame:CGRectMake(100, label1.frame.origin.y, label1.frame.size.height, label1.frame.size.width)];
-    //[cell setFrame:CGRectMake(label1.frame.origin.x + tableView.frame.origin.x + 10, cell.frame.origin.y, cell.frame.size.height, cell.frame.size.width)];
-    NSLog(@"%f - %f - %f", tableView.frame.origin.x, cell.frame.origin.x, label1.frame.origin.x);
+    UILabel * labelTitle = (UILabel *)[cell viewWithTag:DetailTitleCell];
+    UILabel * labelValue = (UILabel *)[cell viewWithTag:DetailValueCell];
+    labelTitle.text = @"label c.1";
+    labelValue.text = @"1 000";
 
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSLog(@"willDisplayCell table.width %f cell.width %f", tableView.frame.size.width, cell.contentView.frame.size.width);
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -218,6 +189,29 @@ titleForHeaderInSection:(NSInteger)section
 }
 
 #pragma mark - Pdf file renderer
+- (IBAction)showEmployeePayslip:(id)sender {
+    NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
+
+    //[self drawPDF:pdfFileName];
+    [self drawInvoicePDF:pdfFileName];
+    [self showPdfFile:pdfFileName];
+}
+
+- (NSString*)getPdfFileName:(NSString *)pdfName
+{
+    NSString* fileName = pdfName;
+
+    NSArray *arrayPaths =
+            NSSearchPathForDirectoriesInDomains(
+                    NSDocumentDirectory,
+                    NSUserDomainMask,
+                    YES);
+    NSString *path = [arrayPaths objectAtIndex:0];
+    NSString* pdfFileName = [path stringByAppendingPathComponent:fileName];
+
+    return pdfFileName;
+}
+
 - (void)drawInvoicePDF:(NSString*)fileNameWithPath
 {
     [self.generator generateReport];

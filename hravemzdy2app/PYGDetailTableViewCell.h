@@ -11,6 +11,7 @@
 
 @interface PYGDetailTableViewCell : UITableViewCell
 
-@property(nonatomic,strong) IBOutlet UIWebView *webView;
+@property(nonatomic,strong) IBOutlet UILabel *labelTitle;
+@property(nonatomic,strong) IBOutlet UILabel *labelValue;
 
 @end
