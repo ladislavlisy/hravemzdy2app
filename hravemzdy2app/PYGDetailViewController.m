@@ -89,7 +89,6 @@ typedef enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -100,7 +99,7 @@ typedef enum {
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
 {
-    return @"Payslip details";
+    return @"Payroll details";
 }
 
 // Customize the appearance of table view cells.
@@ -117,8 +116,8 @@ titleForHeaderInSection:(NSInteger)section
     // Make cell unselectable
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    // portrait  = 728.000000 - 704.000000 - 200.000000
-    // landscape = 663.000000 - 704.000000 - 200.000000
+    // portrait  = 728.000000 - 710.000000
+    // landscape = 663.000000 - 645.000000
     UILabel * labelTitle = (UILabel *)[cell viewWithTag:DetailTitleCell];
     UILabel * labelValue = (UILabel *)[cell viewWithTag:DetailValueCell];
     labelTitle.text = @"label c.1";
@@ -127,65 +126,10 @@ titleForHeaderInSection:(NSInteger)section
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    NSLog(@"willDisplayCell table.width %f cell.width %f", tableView.frame.size.width, cell.contentView.frame.size.width);
-}
-
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
-}
-
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
-//    if (UIInterfaceOrientationIsPortrait(orientation))
-//    {}
-//    else
-//    {}
-//}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3f];
-    //self.myScroll.hidden = YES;
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView commitAnimations];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3f];
-    //self.myScroll.hidden = NO;
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView commitAnimations];
-}
-
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-                                        duration:(NSTimeInterval)duration {
-    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-//        boardView.frame = CGRectMake(0, 0, 320, 320);
-//        buttonsView.frame = CGRectMake(0, 320, 320, 140);
-    } else {
-//        boardView.frame = CGRectMake(0, 0, 300, 300);
-//        buttonsView.frame = CGRectMake(300, 0, 180, 300);
-    }
-}
-
-- (void)layoutForOrientation:(UIInterfaceOrientation)orientation {
-    if (UIInterfaceOrientationIsPortrait(orientation))
-        [self layoutPortraitViews];
-    else
-        [self layoutLandscapeViews];
-}
-
-- (void)layoutLandscapeViews {
-    //[self.tableView reloadData];
-}
-
-- (void)layoutPortraitViews {
-    //[self.tableView reloadData];
 }
 
 #pragma mark - Pdf file renderer

@@ -11,29 +11,36 @@
 #import "PYGDetailViewController.h"
 
 @interface PYGMasterViewController () {
-    UITextField* _descriptionField;
-    UITextField* _employerNameField;
-    UITextField* _employeeNameField;
-    UITextField* _employeeNumbField;
-    UITextField* _departmentField;
-    UITextField* _salaryMoneyField;
-    UISwitch * _taxDeclarationField;
-    UISwitch * _taxPayerClaimField;
 }
+
+@property (strong, nonatomic) UITextField* descriptionField;
+@property (strong, nonatomic) UITextField* periodField;
+@property (strong, nonatomic) UITextField* employerNameField;
+@property (strong, nonatomic) UITextField* employeeNameField;
+@property (strong, nonatomic) UITextField* employeeNumbField;
+@property (strong, nonatomic) UITextField* departmentField;
+@property (strong, nonatomic) UITextField* salaryMoneyField;
+@property (strong, nonatomic) UISwitch * taxDeclarationField;
+@property (strong, nonatomic) UISwitch * taxPayerClaimField;
+@property (strong, nonatomic) UISwitch * taxStudyClaimField;
+@property (strong, nonatomic) NSArray* sections;
+
 @end
 
 @implementation PYGMasterViewController
-
-@synthesize description = _description;
-@synthesize employerName = _employerName;
-@synthesize employeeName = _employeeName;
-@synthesize employeeNumb = _employeeNumb;
-@synthesize department = _department;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) return nil;
     self.title = NSLocalizedString(@"Master", @"Master");
+    self.sections = @[
+            @"Payroll details",
+            @"Payslip details",
+            @"Tax payer declaration",
+            @"Tax disability benefit",
+            @"Tax child benefit",
+            @"Contact for results"
+    ];
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     return self;
@@ -46,6 +53,7 @@
     self.detailViewController = (PYGDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     self.description  = @"" ;
+    self.period       = @"" ;
     self.employerName = @"" ;
     self.employeeName = @"" ;
     self.employeeNumb = @"" ;
@@ -53,6 +61,7 @@
     self.salaryMoney  = @"";
     self.taxDeclaration = @YES;
     self.taxPayerClaim  = @YES;
+    self.taxStudyClaim  = @NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,85 +72,202 @@
 
 #pragma mark - Table View
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
-
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    switch (section) {
+        case 0: return 3; break;
+        case 1: return 4; break;
+        case 2: return 3; break;
+        case 3: return 3; break;
+        case 4: return 5; break;
+        case 5: return 3; break;
+        default: break;
+    }
+    return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
 {
-    return @"Payroll details";
+    return (NSString *)self.sections[(NSUInteger)section];
 }
 
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-
-    // Make cell unselectable
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+//Payroll details
+//  description
+//  payroll period
+//  salary
+- (void)createCellInSectionPayrollDetails:(UITableViewCell *)cell forRow:(NSUInteger)row {
     UITextField* tf = nil ;
-    UISwitch* sf = nil ;
-    switch ( indexPath.row ) {
+    switch ( row ) {
         case 0: {
             cell.textLabel.text = @"Description" ;
-            tf = _descriptionField = [self makeTextField:self.description placeholder:@"My happy payroll"];
-            [cell addSubview:_descriptionField];
+            tf = self.descriptionField = [self makeTextField:self.description placeholder:@"My happy payroll"];
+            [cell addSubview:self.descriptionField];
+            break ;
+        }
+        case 1: {
+            cell.textLabel.text = @"Period" ;
+            tf = self.periodField = [self makeTextField:self.period placeholder:@"January 2013"];
+            [cell addSubview:self.periodField];
+            break ;
+        }
+        case 2: {
+            cell.textLabel.text = @"Salary" ;
+            tf = self.salaryMoneyField = [self makeNumberField:self.salaryMoney placeholder:@" CZK"];
+            [cell addSubview:self.salaryMoneyField];
+            break ;
+        }
+        default:
+            break;
+    }
+    [self setTextFieldDimensionAndAction:tf];
+}
+
+//Payslip details
+//  employer name
+//  employee name
+//  department
+//  employee number
+- (void)createCellInSectionPayslipDetails:(UITableViewCell *)cell forRow:(NSUInteger)row {
+    UITextField* tf = nil ;
+    switch ( row ) {
+        case 0: {
+            cell.textLabel.text = @"Employee" ;
+            tf = self.employeeNameField = [self makeTextField:self.employeeName placeholder:@"Jája Pája"];
+            [cell addSubview:self.employeeNameField];
             break ;
         }
         case 1: {
             cell.textLabel.text = @"Employer" ;
-            tf = _employerNameField = [self makeTextField:self.employerName placeholder:@"Employer name"];
-            [cell addSubview:_employerNameField];
+            tf = self.employerNameField = [self makeTextField:self.employerName placeholder:@"Employer name"];
+            [cell addSubview:self.employerNameField];
             break ;
         }
         case 2: {
-            cell.textLabel.text = @"Personnel" ;
-            tf = _employeeNumbField = [self makeTextField:self.employeeNumb placeholder:@"Number"];
-            [cell addSubview:_employeeNumbField];
+            cell.textLabel.text = @"Department" ;
+            tf = self.departmentField = [self makeTextField:self.department placeholder:@"Work department"];
+            [cell addSubview:self.departmentField];
             break ;
         }
         case 3: {
-            cell.textLabel.text = @"Employee" ;
-            tf = _employeeNameField = [self makeTextField:self.employeeName placeholder:@"Jája Pája"];
-            [cell addSubview:_employeeNameField];
+            cell.textLabel.text = @"Personnel" ;
+            tf = self.employeeNumbField = [self makeTextField:self.employeeNumb placeholder:@"Number"];
+            [cell addSubview:self.employeeNumbField];
             break ;
+        }
+        default:
+            break;
+    }
+    [self setTextFieldDimensionAndAction:tf];
+}
+
+//Tax payer declaration
+//  tax declaration
+//  claim tax payer benefit
+//  claim studying benefit
+- (void)createCellInSectionTaxDeclaration:(UITableViewCell *)cell forRow:(NSUInteger)row {
+    UISwitch* sf = nil ;
+    switch ( row ) {
+        case 0: {
+            cell.textLabel.text = @"Tax declaration" ;
+            sf = self.taxDeclarationField = [self makeYesNoField:self.taxDeclaration];
+            [cell addSubview:self.taxDeclarationField];
+            break ;
+        }
+        case 1: {
+            cell.textLabel.text = @"Tax payer claim" ;
+            sf = self.taxPayerClaimField = [self makeYesNoField:self.taxPayerClaim];
+            [cell addSubview:self.taxPayerClaimField];
+            break ;
+        }
+        case 2: {
+            cell.textLabel.text = @"Tax studying claim" ;
+            sf = self.taxStudyClaimField = [self makeYesNoField:self.taxStudyClaim];
+            [cell addSubview:self.taxStudyClaimField];
+            break ;
+        }
+        default:
+            break;
+    }
+    [self setSwitchFieldDimensionAndAction:sf];
+}
+
+//Tax disability benefit
+//  claim disability benefit 1
+//  claim disability benefit 2
+//  claim disability benefit 3
+- (void)createCellInSectionDisabilityBenefit:(UITableViewCell *)cell forRow:(NSUInteger)row {
+    switch ( row ) {
+        case 0: {
+            break;
+        }
+        case 1: {
+            break;
+        }
+        case 2: {
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+//Tax child benefit
+//  claim 1. child benefit
+//  claim 2. child benefit
+//  claim 3. child benefit
+//  claim 4. child benefit
+//  claim 5. child benefit
+- (void)createCellInSectionChildBenefit:(UITableViewCell *)cell forRow:(NSUInteger)row {
+    switch ( row ) {
+        case 0: {
+            break;
+        }
+        case 1: {
+            break;
+        }
+        case 2: {
+            break;
+        }
+        case 3: {
+            break;
         }
         case 4: {
-            cell.textLabel.text = @"Department" ;
-            tf = _departmentField = [self makeTextField:self.department placeholder:@"Work department"];
-            [cell addSubview:_departmentField];
-            break ;
+            break;
         }
-        case 5: {
-            cell.textLabel.text = @"Salary" ;
-            tf = _salaryMoneyField = [self makeNumberField:self.salaryMoney placeholder:@" CZK"];
-            [cell addSubview:_salaryMoneyField];
-            break ;
-        }
-        case 6: {
-            cell.textLabel.text = @"Tax declaration" ;
-            sf = _taxDeclarationField = [self makeYesNoField:self.taxDeclaration placeholder:@"Work department"];
-            [cell addSubview:_taxDeclarationField];
-            break ;
-        }
-        case 7: {
-            cell.textLabel.text = @"Tax payer claim" ;
-            sf = _taxPayerClaimField = [self makeYesNoField:self.taxPayerClaim placeholder:@"Work department"];
-            [cell addSubview:_taxPayerClaimField];
-            break ;
-        }
+        default:
+            break;
     }
+}
 
-    // Textfield dimensions
+//Contact for results
+//  company name
+//  payrollee name
+//  payrollee email
+- (void)createCellInSectionContactDetails:(UITableViewCell *)cell forRow:(NSUInteger)row {
+    switch ( row ) {
+        case 0: {
+            break;
+        }
+        case 1: {
+            break;
+        }
+        case 2: {
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)setTextFieldDimensionAndAction:(UITextField*)tf {
+    // TextField dimensions
     if (tf != nil) {
         tf.frame = CGRectMake(150, 12, 140, 30);
         // Workaround to dismiss keyboard when Done/Return is tapped
@@ -150,17 +276,53 @@ titleForHeaderInSection:(NSInteger)section
         // We want to handle textFieldDidEndEditing
         tf.delegate = self ;
     }
+}
 
+- (void)setSwitchFieldDimensionAndAction:(UISwitch*)sf {
     // Switch dimensions
     if (sf != nil) {
         sf.frame = CGRectMake(220, 8, 70, 30);
         // Workaround to dismiss keyboard when Done/Return is tapped
         [sf addTarget:self action:@selector(switchFieldFinished:) forControlEvents:UIControlEventValueChanged];
-
-        // We want to handle textFieldDidEndEditing
-        tf.delegate = self ;
     }
+}
 
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+
+    // Make cell un-selectable
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    switch ( indexPath.section ) {
+        case 0: {
+            [self createCellInSectionPayrollDetails:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        case 1: {
+            [self createCellInSectionPayslipDetails:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        case 2: {
+            [self createCellInSectionTaxDeclaration:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        case 3: {
+            [self createCellInSectionDisabilityBenefit:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        case 4: {
+            [self createCellInSectionChildBenefit:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        case 5: {
+            [self createCellInSectionContactDetails:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        default:
+            break;
+    }
     return cell;
 }
 
@@ -195,8 +357,7 @@ titleForHeaderInSection:(NSInteger)section
     return tf ;
 }
 
--(UISwitch*) makeYesNoField: (NSNumber*)value
-                    placeholder: (NSString*)placeholder  {
+-(UISwitch*) makeYesNoField: (NSNumber*)value  {
     UISwitch *sf = [[UISwitch alloc] init];
     [sf setOn:[value boolValue] animated:NO];
     return sf ;
