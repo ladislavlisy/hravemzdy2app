@@ -19,6 +19,7 @@
 - (id)init {
     if (!(self=[super init])) return nil;
     models = [NSMutableDictionary dictionaryWithObjectsAndKeys:[PYGUnknownName name], @(TAG_UNKNOWN), nil];
+    [self loadModels];
     return self;
 }
 

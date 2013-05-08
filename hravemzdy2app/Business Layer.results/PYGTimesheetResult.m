@@ -48,11 +48,15 @@
 }
 
 - (NSString *)xmlValue {
-    return @"";
+    NSInteger sum_hours = [self hours];
+    NSString * hoursString = [@(sum_hours) stringValue];
+    return [hoursString stringByAppendingString:@" hours"];
 }
 
 - (NSString *)exportValueResult {
-    return @"";
+    NSInteger sum_hours = [self hours];
+    NSString * hoursString = [@(sum_hours) stringValue];
+    return [hoursString stringByAppendingString:@" hours"];
 }
 
 @end

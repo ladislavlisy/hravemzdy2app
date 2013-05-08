@@ -17,6 +17,7 @@
 +(PYGCodeNameRefer*)CodeNameReferWithCode:(NSUInteger)code andName:(NSString *)name;
 
 //TODO: PYGCodeNameRefer - equal, hash, compare
+-(id)copyWithZone:(NSZone*) zone;
 -(NSComparisonResult) compare:(PYGCodeNameRefer*) other;
 -(BOOL)isEqual:object;
 -(unsigned)hash;

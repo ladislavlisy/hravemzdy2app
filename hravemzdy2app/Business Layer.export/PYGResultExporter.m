@@ -31,7 +31,7 @@
     return self;
 }
 
-+ (id)exporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig {
++ (id)resultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig {
     return [[self alloc] initWithPayrollConfig:pPayrollConfig];
 }
 
@@ -45,7 +45,7 @@
 // VPAYGRP_SUMMARY    = 'VPAYGRP_SUMMARY'
 
 - (NSArray *)getSourceScheduleExport {
-    return [self getResultExport:VPAYGRP_SUMMARY];
+    return [self getResultExport:VPAYGRP_SCHEDULE];
 }
 
 - (NSArray *)getSourcePaymentsExport {
@@ -56,12 +56,24 @@
     return [self getResultExport:VPAYGRP_TAX_SOURCE];
 }
 
+- (NSArray *)getSourceTaxInsIncomeExport {
+    NSArray * partIns = [self getResultExport:VPAYGRP_INS_INCOME];
+    NSArray * partTax = [self getResultExport:VPAYGRP_TAX_INCOME];
+    return [partIns arrayByAddingObjectsFromArray:partTax];
+}
+
 - (NSArray *)getSourceTaxIncomeExport {
     return [self getResultExport:VPAYGRP_TAX_INCOME];
 }
 
 - (NSArray *)getSourceInsIncomeExport {
     return [self getResultExport:VPAYGRP_INS_INCOME];
+}
+
+- (NSArray *)getSourceTaxInsResultExport {
+    NSArray * partIns = [self getResultExport:VPAYGRP_INS_RESULT];
+    NSArray * partTax = [self getResultExport:VPAYGRP_TAX_RESULT];
+    return [partIns arrayByAddingObjectsFromArray:partTax];
 }
 
 - (NSArray *)getSourceTaxResultExport {

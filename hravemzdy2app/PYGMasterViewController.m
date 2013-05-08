@@ -9,12 +9,21 @@
 #import "PYGMasterViewController.h"
 
 #import "PYGDetailViewController.h"
+#import "PYGSymbolTags.h"
+
+#define DEFAULT_SCHEDULE 40
+#define DEFAULT_ABSENCE 0
+#define DEFAULT_TAX_PAYER 1
+#define DEFAULT_INS_PAYER 1
+#define DEFAULT_INS_MINIM 1
+#define DEFAULT_INS_PENSION 0
+#define DEFAULT_INS_EMPLOYER 1
+
 
 @interface PYGMasterViewController () {
 }
 
 @property (strong, nonatomic) UITextField* descriptionField;
-@property (strong, nonatomic) UITextField* periodField;
 @property (strong, nonatomic) UITextField* employerNameField;
 @property (strong, nonatomic) UITextField* employeeNameField;
 @property (strong, nonatomic) UITextField* employeeNumbField;
@@ -23,7 +32,27 @@
 @property (strong, nonatomic) UISwitch * taxDeclarationField;
 @property (strong, nonatomic) UISwitch * taxPayerClaimField;
 @property (strong, nonatomic) UISwitch * taxStudyClaimField;
+@property (strong, nonatomic) UISwitch * taxDisability1Field;
+@property (strong, nonatomic) UISwitch * taxDisability2Field;
+@property (strong, nonatomic) UISwitch * taxDisability3Field;
+@property (strong, nonatomic) UISwitch * taxBenefitChild1Field;
+@property (strong, nonatomic) UISwitch * taxBenefitChild2Field;
+@property (strong, nonatomic) UISwitch * taxBenefitChild3Field;
+@property (strong, nonatomic) UISwitch * taxBenefitChild4Field;
+@property (strong, nonatomic) UISwitch * taxBenefitChild5Field;
+@property (strong, nonatomic) UITextField* companyNameField;
+@property (strong, nonatomic) UITextField* payrolleeNameField;
+@property (strong, nonatomic) UITextField* payrolleeEmailField;
 @property (strong, nonatomic) NSArray* sections;
+@property (strong, nonatomic) NSArray* sectionRows1;
+@property (strong, nonatomic) NSArray* sectionRows2;
+@property (strong, nonatomic) NSArray* sectionRows3;
+@property (strong, nonatomic) NSArray* sectionRows4;
+@property (strong, nonatomic) NSArray* sectionRows5;
+@property (strong, nonatomic) NSArray* sectionRows6;
+@property (strong, nonatomic) NSArray* placeholders1;
+@property (strong, nonatomic) NSArray* placeholders2;
+@property (strong, nonatomic) NSArray* placeholders6;
 
 @end
 
@@ -32,7 +61,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) return nil;
-    self.title = NSLocalizedString(@"Master", @"Master");
+    self.title = NSLocalizedString(@"Payroll specs", @"Payroll specs");
     self.sections = @[
             @"Payroll details",
             @"Payslip details",
@@ -40,6 +69,54 @@
             @"Tax disability benefit",
             @"Tax child benefit",
             @"Contact for results"
+    ];
+    self.sectionRows1 = @[
+            @"Description",
+            @"Salary"
+    ];
+    self.placeholders1 = @[
+            @"My happy payroll",
+            @"January 2013",
+            @" CZK"
+    ];
+    self.sectionRows2 = @[
+            @"Employee",
+            @"Employer",
+            @"Department",
+            @"Personnel"
+    ];
+    self.placeholders2 = @[
+            @"Jája Pája",
+            @"Employer name",
+            @"Work department",
+            @"Number"
+    ];
+    self.sectionRows3 = @[
+            @"Tax declaration",
+            @"Tax payer claim",
+            @"Tax studying claim"
+    ];
+    self.sectionRows4 = @[
+            @"claim level 1",
+            @"claim level 2",
+            @"claim level 3"
+    ];
+    self.sectionRows5 = @[
+            @"claim 1. child",
+            @"claim 2. child",
+            @"claim 3. child",
+            @"claim 4. child",
+            @"claim 5. child"
+    ];
+    self.sectionRows6 = @[
+            @"Company",
+            @"Payrollee",
+            @"Email"
+    ];
+    self.placeholders6 = @[
+            @"My Company Inc.",
+            @"MyPayroll Best",
+            @"pyarollee@my-company.com"
     ];
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -52,16 +129,26 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.detailViewController = (PYGDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
-    self.description  = @"" ;
-    self.period       = @"" ;
-    self.employerName = @"" ;
-    self.employeeName = @"" ;
-    self.employeeNumb = @"" ;
-    self.department   = @"" ;
-    self.salaryMoney  = @"";
-    self.taxDeclaration = @YES;
-    self.taxPayerClaim  = @YES;
-    self.taxStudyClaim  = @NO;
+    self.description       = @"" ;
+    self.employerName      = @"" ;
+    self.employeeName      = @"" ;
+    self.employeeNumb      = @"" ;
+    self.department        = @"" ;
+    self.salaryMoney       = @"";
+    self.taxDeclaration    = @YES;
+    self.taxPayerClaim     = @YES;
+    self.taxStudyClaim     = @NO;
+    self.taxDisability1    = @NO;
+    self.taxDisability2    = @NO;
+    self.taxDisability3    = @NO;
+    self.taxBenefitChild1  = @NO;
+    self.taxBenefitChild2  = @NO;
+    self.taxBenefitChild3  = @NO;
+    self.taxBenefitChild4  = @NO;
+    self.taxBenefitChild5  = @NO;
+    self.companyName       = @"";
+    self.payrolleeName     = @"";
+    self.payrolleeEmail    = @"";
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,12 +168,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return 3; break;
-        case 1: return 4; break;
-        case 2: return 3; break;
-        case 3: return 3; break;
-        case 4: return 5; break;
-        case 5: return 3; break;
+        case 0: return self.sectionRows1.count; break;
+        case 1: return self.sectionRows2.count; break;
+        case 2: return self.sectionRows3.count; break;
+        case 3: return self.sectionRows4.count; break;
+        case 4: return self.sectionRows5.count; break;
+        case 5: return self.sectionRows6.count; break;
         default: break;
     }
     return 0;
@@ -98,35 +185,77 @@ titleForHeaderInSection:(NSInteger)section
     return (NSString *)self.sections[(NSUInteger)section];
 }
 
+- (UITextField *)createSection1CellWithTextField:(UITableViewCell *)cell andValue:(NSString*) textFieldValue inRow:(NSUInteger)row {
+    UITextField *tf;
+    cell.textLabel.text = self.sectionRows1[row] ;
+    tf = [self makeTextField:textFieldValue placeholder:self.placeholders1[row]];
+    [cell addSubview:tf];
+    [self setTextFieldDimensionAndAction:tf];
+    return tf;
+}
+
+- (UITextField *)createSection2CellWithTextField:(UITableViewCell *)cell andValue:(NSString*) textFieldValue inRow:(NSUInteger)row {
+    UITextField *tf;
+    cell.textLabel.text = self.sectionRows2[row] ;
+    tf = [self makeTextField:textFieldValue placeholder:self.placeholders2[row]];
+    [cell addSubview:tf];
+    [self setTextFieldDimensionAndAction:tf];
+    return tf;
+}
+
+- (UISwitch *)createSection3CellWithSwitchField:(UITableViewCell *)cell andValue:(NSNumber*) switchFieldValue inRow:(NSUInteger)row {
+    UISwitch* sf = nil ;
+    cell.textLabel.text = self.sectionRows3[row] ;
+    sf = [self makeYesNoField:switchFieldValue];
+    [cell addSubview:sf];
+    [self setSwitchFieldDimensionAndAction:sf];
+    return sf;
+}
+
+- (UISwitch *)createSection4CellWithSwitchField:(UITableViewCell *)cell andValue:(NSNumber*) switchFieldValue inRow:(NSUInteger)row {
+    UISwitch* sf = nil ;
+    cell.textLabel.text = self.sectionRows4[row] ;
+    sf = [self makeYesNoField:switchFieldValue];
+    [cell addSubview:sf];
+    [self setSwitchFieldDimensionAndAction:sf];
+    return sf;
+}
+
+- (UISwitch *)createSection5CellWithSwitchField:(UITableViewCell *)cell andValue:(NSNumber*) switchFieldValue inRow:(NSUInteger)row {
+    UISwitch* sf = nil ;
+    cell.textLabel.text = self.sectionRows5[row] ;
+    sf = [self makeYesNoField:switchFieldValue];
+    [cell addSubview:sf];
+    [self setSwitchFieldDimensionAndAction:sf];
+    return sf;
+}
+
+- (UITextField *)createSection6CellWithTextField:(UITableViewCell *)cell andValue:(NSString*) textFieldValue inRow:(NSUInteger)row {
+    UITextField *tf;
+    cell.textLabel.text = self.sectionRows6[row] ;
+    tf = [self makeTextField:textFieldValue placeholder:self.placeholders6[row]];
+    [cell addSubview:tf];
+    [self setTextFieldDimensionAndAction:tf];
+    return tf;
+}
+
 //Payroll details
 //  description
 //  payroll period
 //  salary
 - (void)createCellInSectionPayrollDetails:(UITableViewCell *)cell forRow:(NSUInteger)row {
-    UITextField* tf = nil ;
     switch ( row ) {
         case 0: {
-            cell.textLabel.text = @"Description" ;
-            tf = self.descriptionField = [self makeTextField:self.description placeholder:@"My happy payroll"];
-            [cell addSubview:self.descriptionField];
+            self.descriptionField = [self createSection1CellWithTextField:cell andValue:self.description inRow:row];
             break ;
         }
         case 1: {
-            cell.textLabel.text = @"Period" ;
-            tf = self.periodField = [self makeTextField:self.period placeholder:@"January 2013"];
-            [cell addSubview:self.periodField];
-            break ;
-        }
-        case 2: {
-            cell.textLabel.text = @"Salary" ;
-            tf = self.salaryMoneyField = [self makeNumberField:self.salaryMoney placeholder:@" CZK"];
-            [cell addSubview:self.salaryMoneyField];
+            self.salaryMoneyField = [self createSection1CellWithTextField:cell andValue:self.salaryMoney inRow:row];
             break ;
         }
         default:
             break;
     }
-    [self setTextFieldDimensionAndAction:tf];
 }
 
 //Payslip details
@@ -135,36 +264,26 @@ titleForHeaderInSection:(NSInteger)section
 //  department
 //  employee number
 - (void)createCellInSectionPayslipDetails:(UITableViewCell *)cell forRow:(NSUInteger)row {
-    UITextField* tf = nil ;
     switch ( row ) {
         case 0: {
-            cell.textLabel.text = @"Employee" ;
-            tf = self.employeeNameField = [self makeTextField:self.employeeName placeholder:@"Jája Pája"];
-            [cell addSubview:self.employeeNameField];
+            self.employeeNameField = [self createSection2CellWithTextField:cell andValue:self.employeeName inRow:row];
             break ;
         }
         case 1: {
-            cell.textLabel.text = @"Employer" ;
-            tf = self.employerNameField = [self makeTextField:self.employerName placeholder:@"Employer name"];
-            [cell addSubview:self.employerNameField];
+            self.employerNameField = [self createSection2CellWithTextField:cell andValue:self.employerName inRow:row];
             break ;
         }
         case 2: {
-            cell.textLabel.text = @"Department" ;
-            tf = self.departmentField = [self makeTextField:self.department placeholder:@"Work department"];
-            [cell addSubview:self.departmentField];
+            self.departmentField = [self createSection2CellWithTextField:cell andValue:self.department inRow:row];
             break ;
         }
         case 3: {
-            cell.textLabel.text = @"Personnel" ;
-            tf = self.employeeNumbField = [self makeTextField:self.employeeNumb placeholder:@"Number"];
-            [cell addSubview:self.employeeNumbField];
+            self.employeeNumbField = [self createSection2CellWithTextField:cell andValue:self.employeeNumb inRow:row];
             break ;
         }
         default:
             break;
     }
-    [self setTextFieldDimensionAndAction:tf];
 }
 
 //Tax payer declaration
@@ -172,30 +291,22 @@ titleForHeaderInSection:(NSInteger)section
 //  claim tax payer benefit
 //  claim studying benefit
 - (void)createCellInSectionTaxDeclaration:(UITableViewCell *)cell forRow:(NSUInteger)row {
-    UISwitch* sf = nil ;
     switch ( row ) {
         case 0: {
-            cell.textLabel.text = @"Tax declaration" ;
-            sf = self.taxDeclarationField = [self makeYesNoField:self.taxDeclaration];
-            [cell addSubview:self.taxDeclarationField];
+            self.taxDeclarationField = [self createSection3CellWithSwitchField:cell andValue:self.taxDeclaration inRow:row];
             break ;
         }
         case 1: {
-            cell.textLabel.text = @"Tax payer claim" ;
-            sf = self.taxPayerClaimField = [self makeYesNoField:self.taxPayerClaim];
-            [cell addSubview:self.taxPayerClaimField];
+            self.taxPayerClaimField = [self createSection3CellWithSwitchField:cell andValue:self.taxPayerClaim inRow:row];
             break ;
         }
         case 2: {
-            cell.textLabel.text = @"Tax studying claim" ;
-            sf = self.taxStudyClaimField = [self makeYesNoField:self.taxStudyClaim];
-            [cell addSubview:self.taxStudyClaimField];
+            self.taxStudyClaimField = [self createSection3CellWithSwitchField:cell andValue:self.taxStudyClaim inRow:row];
             break ;
         }
         default:
             break;
     }
-    [self setSwitchFieldDimensionAndAction:sf];
 }
 
 //Tax disability benefit
@@ -205,12 +316,15 @@ titleForHeaderInSection:(NSInteger)section
 - (void)createCellInSectionDisabilityBenefit:(UITableViewCell *)cell forRow:(NSUInteger)row {
     switch ( row ) {
         case 0: {
+            self.taxDisability1Field = [self createSection4CellWithSwitchField:cell andValue:self.taxDisability1 inRow:row];
             break;
         }
         case 1: {
+            self.taxDisability2Field = [self createSection4CellWithSwitchField:cell andValue:self.taxDisability2 inRow:row];
             break;
         }
         case 2: {
+            self.taxDisability3Field = [self createSection4CellWithSwitchField:cell andValue:self.taxDisability3 inRow:row];
             break;
         }
         default:
@@ -227,18 +341,23 @@ titleForHeaderInSection:(NSInteger)section
 - (void)createCellInSectionChildBenefit:(UITableViewCell *)cell forRow:(NSUInteger)row {
     switch ( row ) {
         case 0: {
+            self.taxBenefitChild1Field = [self createSection5CellWithSwitchField:cell andValue:self.taxBenefitChild1 inRow:row];
             break;
         }
         case 1: {
+            self.taxBenefitChild2Field = [self createSection5CellWithSwitchField:cell andValue:self.taxBenefitChild2 inRow:row];
             break;
         }
         case 2: {
+            self.taxBenefitChild3Field = [self createSection5CellWithSwitchField:cell andValue:self.taxBenefitChild3 inRow:row];
             break;
         }
         case 3: {
+            self.taxBenefitChild4Field = [self createSection5CellWithSwitchField:cell andValue:self.taxBenefitChild4 inRow:row];
             break;
         }
         case 4: {
+            self.taxBenefitChild5Field = [self createSection5CellWithSwitchField:cell andValue:self.taxBenefitChild5 inRow:row];
             break;
         }
         default:
@@ -253,12 +372,15 @@ titleForHeaderInSection:(NSInteger)section
 - (void)createCellInSectionContactDetails:(UITableViewCell *)cell forRow:(NSUInteger)row {
     switch ( row ) {
         case 0: {
+            self.companyNameField = [self createSection6CellWithTextField:cell andValue:self.companyName inRow:row];
             break;
         }
         case 1: {
+            self.payrolleeNameField = [self createSection6CellWithTextField:cell andValue:self.payrolleeName inRow:row];
             break;
         }
         case 2: {
+            self.payrolleeEmailField = [self createSection6CellWithTextField:cell andValue:self.payrolleeEmail inRow:row];
             break;
         }
         default:
@@ -368,37 +490,182 @@ titleForHeaderInSection:(NSInteger)section
     // [sender resignFirstResponder];
 }
 
-// Textfield value changed, store the new value.
+// TextField value changed, store the new value.
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if ( textField == _descriptionField ) {
+    if ( textField == self.descriptionField ) {
         self.description = textField.text ;
-        if (self.detailViewController != nil) {
-            [self.detailViewController setDescription:self.description];
-        }
     }
-    else if ( textField == _employerNameField ) {
-        self.employerName = textField.text ;
-    }
-    else if ( textField == _employeeNameField ) {
-        self.employeeName = textField.text ;
-    }
-    else if ( textField == _employeeNumbField ) {
-        self.employeeNumb = textField.text ;
-    }
-    else if ( textField == _departmentField ) {
-        self.department = textField.text ;
-    }
-    else if ( textField == _salaryMoneyField ) {
+    else if ( textField == self.salaryMoneyField ) {
         self.salaryMoney = textField.text;
     }
+    else if ( textField == self.employerNameField ) {
+        self.employerName = textField.text ;
+    }
+    else if ( textField == self.employeeNameField ) {
+        self.employeeName = textField.text ;
+    }
+    else if ( textField == self.employeeNumbField ) {
+        self.employeeNumb = textField.text ;
+    }
+    else if ( textField == self.departmentField ) {
+        self.department = textField.text ;
+    }
+    else if ( textField == self.companyNameField ) {
+        self.companyName = textField.text;
+    }
+    else if ( textField == self.payrolleeNameField ) {
+        self.payrolleeName = textField.text;
+    }
+    else if ( textField == self.payrolleeEmailField ) {
+        self.payrolleeEmail = textField.text;
+    }
+    NSDictionary * payroll_titles = [self collectPayrollTitles];
+    if (self.detailViewController != nil) {
+        [self.detailViewController setPayrollTitles:payroll_titles];
+    }
+    NSDictionary * payroll_values = [self collectPayrollValues];
+    if (self.detailViewController != nil) {
+        [self.detailViewController setPayrollValues:payroll_values];
+    }
 }
-// Switchfield value changed, store the new value.
+
+// SwitchField value changed, store the new value.
 - (void)switchFieldFinished:(UISwitch *)switchField {
-    if ( switchField == _taxDeclarationField ) {
+    if ( switchField == self.taxDeclarationField ) {
         self.taxDeclaration = @(switchField.isOn);
     }
-    else if ( switchField == _taxPayerClaimField ) {
+    else if ( switchField == self.taxPayerClaimField ) {
         self.taxPayerClaim = @(switchField.isOn);
     }
+    else if ( switchField == self.taxStudyClaimField ) {
+        self.taxStudyClaim = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxDisability1Field ) {
+        self.taxDisability1 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxDisability2Field ) {
+        self.taxDisability2 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxDisability3Field ) {
+        self.taxDisability3 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxBenefitChild1Field ) {
+        self.taxBenefitChild1 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxBenefitChild2Field ) {
+        self.taxBenefitChild2 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxBenefitChild3Field ) {
+        self.taxBenefitChild3 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxBenefitChild4Field ) {
+        self.taxBenefitChild4 = @(switchField.isOn);
+    }
+    else if ( switchField == self.taxBenefitChild5Field ) {
+        self.taxBenefitChild5 = @(switchField.isOn);
+    }
+    NSDictionary * payroll_titles = [self collectPayrollTitles];
+    if (self.detailViewController != nil) {
+        [self.detailViewController setPayrollTitles:payroll_titles];
+    }
+    NSDictionary * payroll_values = [self collectPayrollValues];
+    if (self.detailViewController != nil) {
+        [self.detailViewController setPayrollValues:payroll_values];
+    }
+}
+
+- (NSDictionary *)collectPayrollTitles {
+    NSDictionary * payroll_titles = @{
+        @"description" : self.description,
+        @"employer" : self.employerName,
+        @"employee" : self.employeeName,
+        @"personnel" : self.employeeNumb,
+        @"department" : self.department,
+        @"company" : self.companyName,
+        @"payrollee" : self.payrolleeName,
+        @"email" : self.payrolleeEmail
+    };
+    return payroll_titles;
+}
+
+- (NSDictionary *)collectPayrollValues {
+    PYGCodeNameRefer * REF_SCHEDULE_WORK         = TAGS_REF(TAG_SCHEDULE_WORK);
+    PYGCodeNameRefer * REF_SCHEDULE_TERM         = TAGS_REF(TAG_SCHEDULE_TERM);
+    PYGCodeNameRefer * REF_HOURS_ABSENCE         = TAGS_REF(TAG_HOURS_ABSENCE);
+    PYGCodeNameRefer * REF_SALARY_BASE           = TAGS_REF(TAG_SALARY_BASE);
+    PYGCodeNameRefer * REF_TAX_INCOME_BASE       = TAGS_REF(TAG_TAX_INCOME_BASE);
+    PYGCodeNameRefer * REF_INSURANCE_HEALTH_BASE = TAGS_REF(TAG_INSURANCE_HEALTH_BASE);
+    PYGCodeNameRefer * REF_INSURANCE_HEALTH      = TAGS_REF(TAG_INSURANCE_HEALTH);
+    PYGCodeNameRefer * REF_INSURANCE_SOCIAL_BASE = TAGS_REF(TAG_INSURANCE_SOCIAL_BASE);
+    PYGCodeNameRefer * REF_INSURANCE_SOCIAL      = TAGS_REF(TAG_INSURANCE_SOCIAL);
+    PYGCodeNameRefer * REF_SAVINGS_PENSIONS      = TAGS_REF(TAG_SAVINGS_PENSIONS);
+    PYGCodeNameRefer * REF_TAX_CLAIM_PAYER       = TAGS_REF(TAG_TAX_CLAIM_PAYER);
+    PYGCodeNameRefer * REF_TAX_CLAIM_CHILD       = TAGS_REF(TAG_TAX_CLAIM_CHILD);
+    PYGCodeNameRefer * REF_TAX_CLAIM_DISABILITY  = TAGS_REF(TAG_TAX_CLAIM_DISABILITY);
+    PYGCodeNameRefer * REF_TAX_CLAIM_STUDYING    = TAGS_REF(TAG_TAX_CLAIM_STUDYING);
+    PYGCodeNameRefer * REF_TAX_EMPLOYERS_HEALTH  = TAGS_REF(TAG_TAX_EMPLOYERS_HEALTH);
+    PYGCodeNameRefer * REF_TAX_EMPLOYERS_SOCIAL  = TAGS_REF(TAG_TAX_EMPLOYERS_SOCIAL);
+
+    NSDictionary * payroll_values = @{
+            REF_SCHEDULE_WORK : @{
+                    I_MAKE_PAIR(@"hours_weekly", DEFAULT_SCHEDULE)
+            },
+            REF_SCHEDULE_TERM : @{
+                    //DT_MAKE_PAIR(@"date_from", nil),
+                    //DT_MAKE_PAIR(@"date_end", nil),
+            },
+            REF_HOURS_ABSENCE : @{
+                    I_MAKE_PAIR(@"hours", DEFAULT_ABSENCE)
+            },
+            REF_SALARY_BASE : @{
+                    D_MAKE_PAIR(@"amount_monthly", [NSDecimalNumber decimalNumberWithString:self.salaryMoney])
+            },
+            REF_TAX_INCOME_BASE : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_TAX_PAYER),
+                    U_MAKE_PAIR(@"declare_code",  self.taxDeclaration.unsignedIntegerValue)
+            },
+            REF_INSURANCE_HEALTH_BASE : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_PAYER),
+                    U_MAKE_PAIR(@"minimum_asses", DEFAULT_INS_MINIM)
+            },
+            REF_INSURANCE_HEALTH : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_PAYER),
+            },
+            REF_INSURANCE_SOCIAL_BASE : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_PAYER)
+            },
+            REF_INSURANCE_SOCIAL : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_PAYER),
+            },
+            REF_SAVINGS_PENSIONS : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_PENSION)
+            },
+            REF_TAX_CLAIM_PAYER : @{
+                    U_MAKE_PAIR(@"relief_code", self.taxPayerClaim.unsignedIntegerValue)
+            },
+            REF_TAX_CLAIM_DISABILITY : @{
+                    U_MAKE_PAIR(@"relief_code_1", self.taxDisability1.unsignedIntegerValue),
+                    U_MAKE_PAIR(@"relief_code_2", self.taxDisability2.unsignedIntegerValue),
+                    U_MAKE_PAIR(@"relief_code_3", self.taxDisability3.unsignedIntegerValue)
+            },
+            REF_TAX_CLAIM_STUDYING : @{
+                    U_MAKE_PAIR(@"relief_code", self.taxStudyClaim.unsignedIntegerValue)
+            },
+            REF_TAX_CLAIM_CHILD : @{
+                    U_MAKE_PAIR(@"relief_code",
+                    self.taxBenefitChild1.unsignedIntegerValue +
+                    self.taxBenefitChild2.unsignedIntegerValue +
+                    self.taxBenefitChild3.unsignedIntegerValue +
+                    self.taxBenefitChild4.unsignedIntegerValue +
+                    self.taxBenefitChild5.unsignedIntegerValue)
+            },
+            REF_TAX_EMPLOYERS_HEALTH : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_EMPLOYER)
+            },
+            REF_TAX_EMPLOYERS_SOCIAL : @{
+                    U_MAKE_PAIR(@"interest_code", DEFAULT_INS_EMPLOYER)
+            }
+    };
+    return payroll_values;
 }
 @end

@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGScheduleResult.h"
 #import "PYGPayrollConcept.h"
+#import "NSArray+Func.h"
 
 
 @implementation PYGScheduleResult {
@@ -37,12 +38,26 @@
     _weekSchedule = A_SAFE_VALUES(@"week_schedule");
 }
 
+- (NSInteger)hours {
+    NSInteger weekHours = 0;
+    if (self.weekSchedule != nil) {
+        weekHours = [self.weekSchedule injectForInteger:(0) with:^NSInteger (NSInteger agr, NSInteger dh, NSUInteger index) {
+            return (agr + dh);
+        }];
+    }
+    return weekHours;
+}
+
 - (NSString *)xmlValue {
-    return @"";
+    NSInteger sum_hours = [self hours];
+    NSString * hoursString = [@(sum_hours) stringValue];
+    return [hoursString stringByAppendingString:@" hours"];
 }
 
 - (NSString *)exportValueResult {
-    return @"";
+    NSInteger sum_hours = [self hours];
+    NSString * hoursString = [@(sum_hours) stringValue];
+    return [hoursString stringByAppendingString:@" hours"];
 }
 
 @end

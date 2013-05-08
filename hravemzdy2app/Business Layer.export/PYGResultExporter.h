@@ -12,13 +12,15 @@
 @interface PYGResultExporter : NSObject
 
 -(id)initWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
-+(id)exporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
++(id)resultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
 
 -(NSArray *)getSourceScheduleExport;
 -(NSArray *)getSourcePaymentsExport;
 -(NSArray *)getSourceTaxSourceExport;
+-(NSArray *)getSourceTaxInsIncomeExport;
 -(NSArray *)getSourceTaxIncomeExport;
 -(NSArray *)getSourceInsIncomeExport;
+-(NSArray *)getSourceTaxInsResultExport;
 -(NSArray *)getSourceTaxResultExport;
 -(NSArray *)getSourceInsResultExport;
 -(NSArray *)getSourceSummaryExport;

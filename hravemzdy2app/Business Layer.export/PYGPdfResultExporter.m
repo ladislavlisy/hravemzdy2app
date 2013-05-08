@@ -19,7 +19,7 @@
     return self;
 }
 
-+ (id)exporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig {
++ (id)resultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig {
     return [[self alloc] initWithPayrollConfig:pPayrollConfig];
 }
 

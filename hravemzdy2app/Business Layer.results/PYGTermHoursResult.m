@@ -37,11 +37,13 @@
 }
 
 - (NSString *)xmlValue {
-    return @"";
+    NSString * hoursString = [@(self.hours) stringValue];
+    return [hoursString stringByAppendingString:@" hours"];
 }
 
 - (NSString *)exportValueResult {
-    return @"";
+    NSString * hoursString = [@(self.hours) stringValue];
+    return [hoursString stringByAppendingString:@" hours"];
 }
 
 @end

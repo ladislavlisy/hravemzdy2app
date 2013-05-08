@@ -1,6 +1,7 @@
 #define mustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 
 #define CODE_NAME_REF(tag, name) [PYGCodeNameRefer CodeNameReferWithCode:tag andName:name],[NSNumber numberWithUnsignedInt:tag]
+#define TAGS_REF(tag) [PYGSymbolTags codeRef:tag]
 
 #define DECIMAL_ZERO [NSDecimalNumber zero]
 

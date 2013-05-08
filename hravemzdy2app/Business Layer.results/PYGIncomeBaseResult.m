@@ -58,11 +58,20 @@
 }
 
 - (NSString *)xmlValue {
-    return @"";
+    NSString * amountString = [self.incomeBase stringValue];
+    return [amountString stringByAppendingString:@" CZK"];
 }
 
 - (NSString *)exportValueResult {
-    return @"";
+    NSError *error = NULL;
+    //Create the regular expression to match against
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d)(?=(\\d\\d\\d)+(?!\\d))" options:NSRegularExpressionCaseInsensitive error:&error];
+    // create the new string by replacing the matching of the regex pattern with the template pattern(whitespace)
+    NSString * amountString = [self.incomeBase stringValue];
+    NSString * formatAmount = [regex stringByReplacingMatchesInString:amountString options:0
+                                                                range:NSMakeRange(0, [amountString length])
+                                                         withTemplate:@"$1 "];
+    return [formatAmount stringByAppendingString:@" CZK"];
 }
 
 @end

@@ -39,11 +39,29 @@
 }
 
 - (NSString *)xmlValue {
-    return @"";
+    NSString * fromString = [@(self.dayOrdFrom) stringValue];
+    NSString * endString  = [@(self.dayOrdEnd) stringValue];
+    if (self.dayOrdFrom!=0 && self.dayOrdEnd!=0)
+    {
+       return [NSString stringWithFormat:@"%@ - %@", fromString, endString];
+    }
+    else
+    {
+        return @"whole period";
+    }
 }
 
 - (NSString *)exportValueResult {
-    return @"";
+    NSString * fromString = [@(self.dayOrdFrom) stringValue];
+    NSString * endString  = [@(self.dayOrdEnd) stringValue];
+    if (self.dayOrdFrom!=0 && self.dayOrdEnd!=0)
+    {
+        return [NSString stringWithFormat:@"%@ - %@", fromString, endString];
+    }
+    else
+    {
+        return @"whole period";
+    }
 }
 
 @end

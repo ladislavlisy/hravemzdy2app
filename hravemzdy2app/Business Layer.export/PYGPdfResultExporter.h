@@ -12,7 +12,7 @@
 @interface PYGPdfResultExporter : PYGResultExporter
 
 -(id)initWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
-+(id)exporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
++(id)resultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
 
 - (bool)exportPdf:(NSString *)fileName forCompany:(NSString *)company andDepartment:(NSString *)department
     andPersonName:(NSString *)personName andPersonNumber:(NSString *)personNumber;

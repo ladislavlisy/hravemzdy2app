@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate>
-{
-    IBOutlet UITextField *descriptionField;
-    IBOutlet UITextField *employeeNameField;
-}
-- (IBAction) showEmployeePayslip:(id)sender;
+
+@property(nonatomic, strong) IBOutlet UITableView * payrollResultView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
 - (NSString*)getPdfFileName:(NSString *)pdfName;
-- (void)setDescription:(NSString *)description;
+- (void)setPayrollTitles:(NSDictionary *)values;
+- (void)setPayrollValues:(NSDictionary *)values;
 @end
