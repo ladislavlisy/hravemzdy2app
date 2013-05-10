@@ -58,6 +58,7 @@
 		32B0A4D935AE58E5E06CEEB4 /* PYGTaxClaimStudyingTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A8A436B8EED4DE2C11AF /* PYGTaxClaimStudyingTag.m */; };
 		32B0A4F68032508D2FA9E6E4 /* PYGInsuranceHealthConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A8F21072E86CEC1E9367 /* PYGInsuranceHealthConcept.m */; };
 		32B0A51060EDD7AADEF64347 /* PYGSavingsPensionsTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A88F9B842D45DF03E0FF /* PYGSavingsPensionsTag.m */; };
+		32B0A5160DB2BD5CF7D5160B /* PYGPeriodPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A584A0662E3390EF4812 /* PYGPeriodPickerViewController.xib */; };
 		32B0A543C52CF6C57D922D3F /* PYGDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AD517F25F38223C47949 /* PYGDetailTableViewCell.m */; };
 		32B0A55CEEDE1DB0AE34BC5E /* PYGSavingsPensionsConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AF448D4A9FCA516DCAEA /* PYGSavingsPensionsConcept.m */; };
 		32B0A573DB38077E4E7889BB /* PYGInsuranceHealthName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A3909EBB3591885F9F26 /* PYGInsuranceHealthName.m */; };
@@ -81,6 +82,7 @@
 		32B0A718C7C556021F9A69D2 /* PYGInsuranceSocialTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC4ECA868DD2F3ECD2A4 /* PYGInsuranceSocialTag.m */; };
 		32B0A71CA5CCA20B195576A4 /* PYGPaymentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A1494EC5E270C895D15A /* PYGPaymentResult.m */; };
 		32B0A763072A8B5FF302A229 /* PYGInsuranceHealthTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A328EA993FCA4F551F43 /* PYGInsuranceHealthTag.m */; };
+		32B0A779E0CBAA58587F9516 /* UIMonthYearPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A173DE93A115B1A62ED9 /* UIMonthYearPicker.m */; };
 		32B0A78278FBF95AC18C5A90 /* PYGIncomeGrossName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A9B475F607FFB79277D8 /* PYGIncomeGrossName.m */; };
 		32B0A7B0EA0BD957097AEB52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A1983D682FDB1B2FB23C /* Foundation.framework */; };
 		32B0A7B502632BAF08D952B4 /* PYGPdfResultExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABE65EDAC452C6A79FDA /* PYGPdfResultExporter.m */; };
@@ -164,6 +166,7 @@
 		32B0AF2F12CFB2A2067ECDA6 /* PYGPayrollName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A605B5B3CC7296AB556F /* PYGPayrollName.m */; };
 		32B0AF3CD8D6CE76BECA1A2A /* PYGTaxWithholdBaseConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AE888B205771281646CB /* PYGTaxWithholdBaseConcept.m */; };
 		32B0AF6324E052CEF7CBCC3A /* PYGTaxReliefPayerName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A815DACE0C592367878A /* PYGTaxReliefPayerName.m */; };
+		32B0AF641BD407C0B370294C /* PYGPeriodPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A7EF3A69F46EDED6CE9A /* PYGPeriodPickerViewController.m */; };
 		32B0AF67487D9B1C8E0DDA2B /* PYGInsuranceHealthBaseName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A49C93EA3E72A54B9AC7 /* PYGInsuranceHealthBaseName.m */; };
 		32B0AF99733396E86B917A28 /* PYGTaxReliefChildTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AB03BD5955C57632F44C /* PYGTaxReliefChildTag.m */; };
 		32B0AF9D409E39A5CEE28950 /* PYGInsuranceSocialBaseName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AEC6D3E5A4B05EA6E1B2 /* PYGInsuranceSocialBaseName.m */; };
@@ -202,6 +205,7 @@
 		32B0A09DA762165897372B27 /* PYGUnknownName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGUnknownName.h; sourceTree = "<group>"; };
 		32B0A0A37426D8FD721CC634 /* PYGPayrollPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPayrollPeriod.m; sourceTree = "<group>"; };
 		32B0A0C65EC8B54C25C3F35D /* PYGTaxWithholdTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxWithholdTag.h; sourceTree = "<group>"; };
+		32B0A0CC8C2C2E67DE59BFF4 /* PYGPeriodPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGPeriodPickerViewController.h; sourceTree = "<group>"; };
 		32B0A0E1098AAD544F614F30 /* PYGScheduleTermTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGScheduleTermTag.h; sourceTree = "<group>"; };
 		32B0A0E401374444F26A0408 /* PYGTaxAdvanceResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxAdvanceResult.m; sourceTree = "<group>"; };
 		32B0A0E46F426B2555BD9F24 /* PYGTaxReliefPayerTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxReliefPayerTag.m; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 		32B0A1413C8779ED9F0CF248 /* PayrollCalcIncomeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollCalcIncomeTests.m; path = hravemzdylibTest/PayrollCalcIncomeTests.m; sourceTree = SOURCE_ROOT; };
 		32B0A1494EC5E270C895D15A /* PYGPaymentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPaymentResult.m; sourceTree = "<group>"; };
 		32B0A15A08E476943D3E6711 /* hravemzdy2app-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "hravemzdy2app-Info.plist"; sourceTree = "<group>"; };
+		32B0A161C8957AFB9229BEA4 /* UIMonthYearPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMonthYearPicker.h; sourceTree = "<group>"; };
+		32B0A173DE93A115B1A62ED9 /* UIMonthYearPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMonthYearPicker.m; sourceTree = "<group>"; };
 		32B0A190B17CE2F7A05A32E8 /* PYGTimesheetPeriodTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTimesheetPeriodTag.m; sourceTree = "<group>"; };
 		32B0A193AFE8B63BB695970C /* PYGTaxClaimDisabilityName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxClaimDisabilityName.h; sourceTree = "<group>"; };
 		32B0A1983D682FDB1B2FB23C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -298,6 +304,7 @@
 		32B0A564D1A46B0CF331CB79 /* PYGTaxEmployersSocialConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxEmployersSocialConcept.h; sourceTree = "<group>"; };
 		32B0A5753070D5FB241B5DE2 /* PYGTaxReliefChildName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxReliefChildName.m; sourceTree = "<group>"; };
 		32B0A581ACEF82FAD202153A /* PYGTaxAdvanceFinalTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxAdvanceFinalTag.h; sourceTree = "<group>"; };
+		32B0A584A0662E3390EF4812 /* PYGPeriodPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PYGPeriodPickerViewController.xib; sourceTree = "<group>"; };
 		32B0A591A782B5E8DB22E257 /* PYGIncomeGrossConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGIncomeGrossConcept.m; sourceTree = "<group>"; };
 		32B0A596E60A452FB87EA9DC /* hravemzdy2app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hravemzdy2app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32B0A597027E04DB333EA896 /* PYGIncomeGrossName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGIncomeGrossName.h; sourceTree = "<group>"; };
@@ -340,6 +347,7 @@
 		32B0A7C08DF6EE4D4F79473C /* PYGTaxEmployersHealthName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxEmployersHealthName.h; sourceTree = "<group>"; };
 		32B0A7E65B15F45AF8D7599F /* PYGTaxClaimDisabilityConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxClaimDisabilityConcept.m; sourceTree = "<group>"; };
 		32B0A7E6D7077F5210DBBE69 /* PYGTaxAdvanceBaseTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxAdvanceBaseTag.h; sourceTree = "<group>"; };
+		32B0A7EF3A69F46EDED6CE9A /* PYGPeriodPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPeriodPickerViewController.m; sourceTree = "<group>"; };
 		32B0A7F4A87F33DF995DE923 /* PYGHoursWorkingConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGHoursWorkingConcept.h; sourceTree = "<group>"; };
 		32B0A803683855D8007E55DA /* PYGTaxClaimDisabilityConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxClaimDisabilityConcept.h; sourceTree = "<group>"; };
 		32B0A805BF01F81151E19118 /* PYGIncomeBaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGIncomeBaseResult.h; sourceTree = "<group>"; };
@@ -706,6 +714,10 @@
 				32B0A9C65B12518DFA3ED8EF /* InvoiceItem.h */,
 				32B0A2043E6EA8E6E7157F07 /* InvoiceItem.m */,
 				32B0ACD4DF50E447F4CAAC62 /* paycheck.mustache */,
+				32B0A747CA2F209529FBB34E /* UI Layer.libs */,
+				32B0A584A0662E3390EF4812 /* PYGPeriodPickerViewController.xib */,
+				32B0A7EF3A69F46EDED6CE9A /* PYGPeriodPickerViewController.m */,
+				32B0A0CC8C2C2E67DE59BFF4 /* PYGPeriodPickerViewController.h */,
 			);
 			path = hravemzdy2app;
 			sourceTree = "<group>";
@@ -761,6 +773,15 @@
 				32B0A90D9C7AC07E26DCC32D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32B0A747CA2F209529FBB34E /* UI Layer.libs */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A161C8957AFB9229BEA4 /* UIMonthYearPicker.h */,
+				32B0A173DE93A115B1A62ED9 /* UIMonthYearPicker.m */,
+			);
+			path = "UI Layer.libs";
 			sourceTree = "<group>";
 		};
 		32B0A75025B507B867D9EB6E /* Products */ = {
@@ -1096,6 +1117,7 @@
 				32B0ACD123F6B913E554D3E9 /* paycheck_logo.png in Resources */,
 				32B0AC35B39A50C95DA5F983 /* paycheck_text.png in Resources */,
 				32B0AA83A9F5855330FED112 /* paycheck.mustache in Resources */,
+				32B0A5160DB2BD5CF7D5160B /* PYGPeriodPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1274,6 +1296,8 @@
 				32B0AFB021515806386EF4AF /* PdfRenderer.m in Sources */,
 				32B0AB5750C8D749DAEF9B44 /* PdfPaycheckGenerator.m in Sources */,
 				32B0A8347679A718B47F8511 /* InvoiceItem.m in Sources */,
+				32B0A779E0CBAA58587F9516 /* UIMonthYearPicker.m in Sources */,
+				32B0AF641BD407C0B370294C /* PYGPeriodPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

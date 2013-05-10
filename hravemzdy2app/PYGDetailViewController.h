@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate, UIPopoverControllerDelegate>
 
 @property(nonatomic, strong) IBOutlet UITableView * payrollResultView;
 

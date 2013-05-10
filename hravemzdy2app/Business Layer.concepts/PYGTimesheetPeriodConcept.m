@@ -92,9 +92,14 @@
 
 - (NSInteger)hoursFromWeek:(NSArray *)weekHours forOrdDay:(NSUInteger)dayOrdinal andCalBegWeekDay:(NSUInteger)calendarBegCwd {
     //calendar_day = Date.new(calendar_beg.year, calendar_beg.month, day_ordinal)
-    NSUInteger dayOfWeek = (dayOrdinal%7)+(calendarBegCwd-1);
+    NSUInteger dayOfWeek = [self getDayOfWeekFromOrdinal:dayOrdinal andBeginWeekDay:calendarBegCwd];
     NSNumber * hoursNumber = weekHours[dayOfWeek-1];
     return hoursNumber.integerValue;
+}
+
+- (NSUInteger)getDayOfWeekFromOrdinal:(NSUInteger)dayOrdinal andBeginWeekDay:(NSUInteger)calendarBegCwd {
+    NSUInteger dayOfWeek = (((dayOrdinal-1)+(calendarBegCwd-1))%7)+1;
+    return dayOfWeek;
 }
 
 - (NSArray*)arrayOfDaysFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex {

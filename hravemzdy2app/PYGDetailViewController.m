@@ -15,6 +15,10 @@
 #import "PYGPayTagGateway.h"
 #import "PYGSymbolTags.h"
 #import "PYGResultExporter.h"
+#import "PYGPayrollPeriod.h"
+#import "NSDate+PYGDateOnly.h"
+#import "PYGPeriodPickerViewController.h"
+#import "PYGTagRefer.h"
 
 typedef enum {
     DetailTitleCell = 1,
@@ -26,10 +30,29 @@ typedef enum {
 
 @interface PYGDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (strong, nonatomic) UIPopoverController *periodPopoverController;
 @property (strong, nonatomic) NSArray* sections;
 
 @property (strong, nonatomic) PdfPaycheckGenerator* generator;
+@property (strong, nonatomic) NSDateFormatter* dateFormatter;
+
+@property (strong, nonatomic) PYGPayrollPeriod * period;
 @property (strong, nonatomic) PYGPayrollProcess* payroll;
+
+@property (strong, nonatomic) NSDictionary * schedule_work_value;
+@property (strong, nonatomic) NSDictionary * schedule_term_value;
+@property (strong, nonatomic) NSDictionary * absence_hours_value;
+@property (strong, nonatomic) NSDictionary * salary_amount_value;
+@property (strong, nonatomic) NSDictionary *interest_taxes;
+@property (strong, nonatomic) NSDictionary *interest_ins_health;
+@property (strong, nonatomic) NSDictionary *interest_ins_social;
+@property (strong, nonatomic) NSDictionary *interest_pension;
+@property (strong, nonatomic) NSDictionary *relief_payer;
+@property (strong, nonatomic) NSDictionary * relief_child;
+@property (strong, nonatomic) NSDictionary *relief_disability;
+@property (strong, nonatomic) NSDictionary *relief_studying;
+@property (strong, nonatomic) NSDictionary *interest_emp_health;
+@property (strong, nonatomic) NSDictionary *interest_emp_social;
 // Set-up code here.
 @property (strong, nonatomic) PYGPayTagGateway* payrollTags;
 @property (strong, nonatomic) PYGPayConceptGateway* payConcepts;
@@ -89,6 +112,14 @@ typedef enum {
     self.payrollTags = [[PYGPayTagGateway alloc] init];
     self.payConcepts = [[PYGPayConceptGateway alloc] init];
 
+    NSDate * currentDate = [NSDate date];
+    self.period = [PYGPayrollPeriod payrollPeriodWithYear:currentDate.year andMonth:currentDate.month];
+
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setLocale:[NSLocale currentLocale]];
+    [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [self.dateFormatter setDateFormat:@"MMM yyyy"];
+
     self.REF_SCHEDULE_WORK          = TAGS_REF(TAG_SCHEDULE_WORK);
     self.REF_SCHEDULE_TERM          = TAGS_REF(TAG_SCHEDULE_TERM);
     self.REF_HOURS_ABSENCE          = TAGS_REF(TAG_HOURS_ABSENCE);
@@ -116,6 +147,21 @@ typedef enum {
     self.REF_INCOME_GROSS           = TAGS_REF(TAG_INCOME_GROSS);
     self.REF_INCOME_NETTO           = TAGS_REF(TAG_INCOME_NETTO);
 
+    self.schedule_work_value = EMPTY_VALUES;
+    self.schedule_term_value = EMPTY_VALUES;
+    self.absence_hours_value = EMPTY_VALUES;
+    self.salary_amount_value = EMPTY_VALUES;
+    self.interest_taxes      = EMPTY_VALUES;
+    self.interest_ins_health = EMPTY_VALUES;
+    self.interest_ins_social = EMPTY_VALUES;
+    self.interest_pension    = EMPTY_VALUES;
+    self.relief_payer        = EMPTY_VALUES;
+    self.relief_child        = EMPTY_VALUES;
+    self.relief_disability   = EMPTY_VALUES;
+    self.relief_studying     = EMPTY_VALUES;
+    self.interest_emp_health = EMPTY_VALUES;
+    self.interest_emp_social = EMPTY_VALUES;
+
     self.payroll = nil;
     self.resultSection1 = nil;
     self.resultSection2 = nil;
@@ -135,43 +181,50 @@ typedef enum {
 }
 
 - (void)setPayrollValues:(NSDictionary *)values {
-    self.payroll = [PYGPayrollProcess payrollProcessWithPeriodYear:2013 andMonth:1
-                                                              andTags:[self payrollTags] andConcepts:[self payConcepts]];
-    NSDictionary * schedule_work_value = values[self.REF_SCHEDULE_WORK];
-    NSDictionary * schedule_term_value = values[self.REF_SCHEDULE_TERM];
-    NSDictionary * absence_hours_value = values[self.REF_HOURS_ABSENCE];
-    NSDictionary * salary_amount_value = values[self.REF_SALARY_BASE];
-    NSDictionary * interest_value1     = values[self.REF_TAX_INCOME_BASE];
-    NSDictionary * interest_value2     = values[self.REF_INSURANCE_HEALTH_BASE];
-    NSDictionary * interest_value3     = values[self.REF_INSURANCE_SOCIAL_BASE];
-    NSDictionary * interest_value4     = values[self.REF_SAVINGS_PENSIONS];
-    NSDictionary * relief_value1       = values[self.REF_TAX_CLAIM_PAYER];
-    NSDictionary * relief_child        = values[self.REF_TAX_CLAIM_CHILD];
-    NSDictionary * relief_value3       = values[self.REF_TAX_CLAIM_DISABILITY];
-    NSDictionary * relief_value4       = values[self.REF_TAX_CLAIM_STUDYING];
-    NSDictionary * interest_value5     = values[self.REF_TAX_EMPLOYERS_HEALTH];
-    NSDictionary * interest_value6     = values[self.REF_TAX_EMPLOYERS_SOCIAL];
+    self.schedule_work_value = values[self.REF_SCHEDULE_WORK];
+    self.schedule_term_value = values[self.REF_SCHEDULE_TERM];
+    self.absence_hours_value = values[self.REF_HOURS_ABSENCE];
+    self.salary_amount_value = values[self.REF_SALARY_BASE];
+    self.interest_taxes      = values[self.REF_TAX_INCOME_BASE];
+    self.interest_ins_health = values[self.REF_INSURANCE_HEALTH_BASE];
+    self.interest_ins_social = values[self.REF_INSURANCE_SOCIAL_BASE];
+    self.interest_pension    = values[self.REF_SAVINGS_PENSIONS];
+    self.relief_payer        = values[self.REF_TAX_CLAIM_PAYER];
+    self.relief_child        = values[self.REF_TAX_CLAIM_CHILD];
+    self.relief_disability   = values[self.REF_TAX_CLAIM_DISABILITY];
+    self.relief_studying     = values[self.REF_TAX_CLAIM_STUDYING];
+    self.interest_emp_health = values[self.REF_TAX_EMPLOYERS_HEALTH];
+    self.interest_emp_social = values[self.REF_TAX_EMPLOYERS_SOCIAL];
 
-    [self.payroll addTermTagRef:self.REF_SCHEDULE_WORK andValues:schedule_work_value];
-    [self.payroll addTermTagRef:self.REF_SCHEDULE_TERM  andValues:schedule_term_value];
-    [self.payroll addTermTagRef:self.REF_HOURS_ABSENCE andValues:absence_hours_value];
-    [self.payroll addTermTagRef:self.REF_SALARY_BASE andValues:salary_amount_value];
-    [self.payroll addTermTagRef:self.REF_TAX_INCOME_BASE andValues:interest_value1];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_HEALTH_BASE andValues:interest_value2];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_HEALTH andValues:interest_value2];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_SOCIAL_BASE andValues:interest_value3];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_SOCIAL andValues:interest_value3];
-    [self.payroll addTermTagRef:self.REF_SAVINGS_PENSIONS andValues:interest_value4];
-    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_PAYER andValues:relief_value1];
-    NSUInteger count = U_GET_FROM(relief_child, @"relief_code");
+    [self computePayroll];
+
+}
+
+- (void)computePayroll {
+    self.payroll = [PYGPayrollProcess payrollProcessWithPeriodCode:self.period.code
+                                                           andTags:[self payrollTags]
+                                                       andConcepts:[self payConcepts]];
+
+    [self.payroll addTermTagRef:self.REF_SCHEDULE_WORK andValues:self.schedule_work_value];
+    [self.payroll addTermTagRef:self.REF_SCHEDULE_TERM andValues:self.schedule_term_value];
+    [self.payroll addTermTagRef:self.REF_HOURS_ABSENCE andValues:self.absence_hours_value];
+    [self.payroll addTermTagRef:self.REF_SALARY_BASE andValues:self.salary_amount_value];
+    [self.payroll addTermTagRef:self.REF_TAX_INCOME_BASE andValues:self.interest_taxes];
+    [self.payroll addTermTagRef:self.REF_INSURANCE_HEALTH_BASE andValues:self.interest_ins_health];
+    [self.payroll addTermTagRef:self.REF_INSURANCE_HEALTH andValues:self.interest_ins_health];
+    [self.payroll addTermTagRef:self.REF_INSURANCE_SOCIAL_BASE andValues:self.interest_ins_social];
+    [self.payroll addTermTagRef:self.REF_INSURANCE_SOCIAL andValues:self.interest_ins_social];
+    [self.payroll addTermTagRef:self.REF_SAVINGS_PENSIONS andValues:self.interest_pension];
+    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_PAYER andValues:self.relief_payer];
+    NSUInteger count = U_GET_FROM(self.relief_child, @"relief_code");
     NSDictionary * relief_claim = U_MAKE_HASH(@"relief_code", 1);
     for (int i = 0; i < count; i++) {
         [self.payroll addTermTagRef:self.REF_TAX_CLAIM_CHILD andValues:relief_claim];
     }
-    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_DISABILITY andValues:relief_value3];
-    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_STUDYING andValues:relief_value4];
-    [self.payroll addTermTagRef:self.REF_TAX_EMPLOYERS_HEALTH andValues:interest_value5];
-    [self.payroll addTermTagRef:self.REF_TAX_EMPLOYERS_SOCIAL andValues:interest_value6];
+    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_DISABILITY andValues:self.relief_disability];
+    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_STUDYING andValues:self.relief_studying];
+    [self.payroll addTermTagRef:self.REF_TAX_EMPLOYERS_HEALTH andValues:self.interest_emp_health];
+    [self.payroll addTermTagRef:self.REF_TAX_EMPLOYERS_SOCIAL andValues:self.interest_emp_social];
 
     [self.payroll addTermTagRef:self.REF_INCOME_GROSS andValues:EMPTY_VALUES];
     PYGTagRefer  * evResultTermTag = [self.payroll addTermTagRef:self.REF_INCOME_NETTO andValues:EMPTY_VALUES];
@@ -185,6 +238,9 @@ typedef enum {
     self.resultSection4 = [exporter getSourceTaxInsIncomeExport];
     self.resultSection5 = [exporter getSourceTaxInsResultExport];
     self.resultSection6 = [exporter getSourceSummaryExport];
+
+    exporter = nil;
+    self.payroll = nil;
 
     [self.payrollResultView reloadData];
 }
@@ -206,8 +262,23 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    UIButton *periodNavigationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    periodNavigationButton.frame = CGRectMake(0, 0, 200, 30);
+
+    NSDate *periodDate= [self getPeriodDate];
+    NSString * periodText = [self.dateFormatter stringFromDate:periodDate];
+    [periodNavigationButton setTitle:periodText forState:UIControlStateNormal];
+
+    [periodNavigationButton addTarget:self action:@selector(pickPayrollPeriod) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem setTitleView:periodNavigationButton];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+}
+
+- (NSDate *)getPeriodDate {
+    NSDate * periodDate = [NSDate dateWithYear:self.period.year month:self.period.month day:1];
+    return periodDate;
 }
 
 - (void)didReceiveMemoryWarning
@@ -215,6 +286,44 @@ typedef enum {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Pick Payroll Period
+- (void)pickPayrollPeriod {
+    PYGPeriodPickerViewController *pickerViewController = [[PYGPeriodPickerViewController alloc] init];
+    NSDate * selectedPeriod = self.getPeriodDate;
+    [pickerViewController setSelectedDate:selectedPeriod];
+    self.periodPopoverController = [[UIPopoverController alloc] initWithContentViewController:pickerViewController];
+
+    [self.periodPopoverController setDelegate:self];
+
+    [self.periodPopoverController setPopoverContentSize:CGSizeMake(300, 216)];
+
+    UIButton* senderButton = (UIButton*)[self.navigationItem titleView];
+
+    [self.periodPopoverController presentPopoverFromRect:senderButton.bounds inView:senderButton
+                                permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+    return YES;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    UIViewController * contentController = [self.periodPopoverController contentViewController];
+    PYGPeriodPickerViewController *pickerController = (PYGPeriodPickerViewController*)contentController;
+    NSInteger selectedYear = (NSInteger)pickerController.selectedDate.year;
+    NSInteger selectedMonth = (NSInteger)pickerController.selectedDate.month;
+    self.period = [PYGPayrollPeriod payrollPeriodWithYear:selectedYear andMonth:(NSInteger)selectedMonth];
+
+    UIButton* periodNavigationButton = (UIButton*)[self.navigationItem titleView];
+    NSDate *periodDate= [self getPeriodDate];
+    NSString * periodText = [self.dateFormatter stringFromDate:periodDate];
+    [periodNavigationButton setTitle:periodText forState:UIControlStateNormal];
+
+    [self computePayroll];
+    self.periodPopoverController = nil;
+}
+
 
 #pragma mark - Split view
 
