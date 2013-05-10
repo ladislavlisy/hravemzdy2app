@@ -91,6 +91,16 @@
     return memo;
 }
 
+- (NSArray *)injectForArray:(NSArray *)memo sorted:(SEL)comparator with:(NSArrayDictionaryInjectionBlock)block {
+    NSParameterAssert(block != nil);
+
+    for (id key in [self keysSortedByValueUsingSelector:comparator]) {
+        memo = block(memo, key, [self objectForKey:key]);
+    }
+
+    return memo;
+}
+
 - (NSDecimalNumber *)injectForDecimal:(NSDecimalNumber *)memo with:(NSDecimalDictionaryInjectionBlock)block {
     NSParameterAssert(block != nil);
 

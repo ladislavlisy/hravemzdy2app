@@ -76,7 +76,6 @@
     ];
     self.placeholders1 = @[
             @"My happy payroll",
-            @"January 2013",
             @" CZK"
     ];
     self.sectionRows2 = @[

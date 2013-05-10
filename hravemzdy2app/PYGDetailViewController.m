@@ -163,12 +163,12 @@ typedef enum {
     self.interest_emp_social = EMPTY_VALUES;
 
     self.payroll = nil;
-    self.resultSection1 = nil;
-    self.resultSection2 = nil;
-    self.resultSection3 = nil;
-    self.resultSection4 = nil;
-    self.resultSection5 = nil;
-    self.resultSection6 = nil;
+    self.resultSection1 = [self normalizeResult:nil];
+    self.resultSection2 = [self normalizeResult:nil];
+    self.resultSection3 = [self normalizeResult:nil];
+    self.resultSection4 = [self normalizeResult:nil];
+    self.resultSection5 = [self normalizeResult:nil];
+    self.resultSection6 = [self normalizeResult:nil];
 
     //NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
     self.generator = nil; //[PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:pdfFileName];
@@ -242,7 +242,25 @@ typedef enum {
     exporter = nil;
     self.payroll = nil;
 
+    self.resultSection1 = [self normalizeResult:self.resultSection1];
+    self.resultSection2 = [self normalizeResult:self.resultSection2];
+    self.resultSection3 = [self normalizeResult:self.resultSection3];
+    self.resultSection4 = [self normalizeResult:self.resultSection4];
+    self.resultSection5 = [self normalizeResult:self.resultSection5];
+    self.resultSection6 = [self normalizeResult:self.resultSection6];
+
     [self.payrollResultView reloadData];
+}
+
+- (NSArray *)normalizeResult:(NSArray *)result {
+    if (result == nil || result.count == 0)
+    {
+        return @[@{RESULT_TITLE : @"", RESULT_VALUE : @""}];
+    }
+    else
+    {
+        return result;
+    }
 }
 
 #pragma mark - Managing the detail item
@@ -272,6 +290,9 @@ typedef enum {
 
     [periodNavigationButton addTarget:self action:@selector(pickPayrollPeriod) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationItem setTitleView:periodNavigationButton];
+    UIBarButtonItem * sharePaychekButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                         target:self action:@selector(paycheckMenu)];
+    [self.navigationItem setRightBarButtonItem:sharePaychekButton];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }
@@ -426,6 +447,16 @@ titleForHeaderInSection:(NSInteger)section
     return NO;
 }
 
+- (void)paycheckMenu {
+    UIActionSheet * paycheckActions = [[UIActionSheet alloc] initWithTitle:nil
+                                                                  delegate:self
+                                                         cancelButtonTitle:nil
+                                                    destructiveButtonTitle:nil
+                                                         otherButtonTitles:@"Export PDF", @"Export XML", nil];
+    UIBarButtonItem * paycheckButton = [self.navigationItem rightBarButtonItem];
+    [paycheckActions showFromBarButtonItem:paycheckButton animated:YES];
+}
+
 #pragma mark - Pdf file renderer
 - (IBAction)showEmployeePayslip:(id)sender {
     NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
@@ -496,5 +527,15 @@ titleForHeaderInSection:(NSInteger)section
 
     [self.view addSubview:webView];
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"Button PDF");
+    }
+    else if (buttonIndex == 1) {
+        NSLog(@"Button XML");
+    }
+}
+
 
 @end

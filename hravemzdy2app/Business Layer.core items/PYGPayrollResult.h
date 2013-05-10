@@ -18,6 +18,7 @@
 @property(nonatomic, readonly) PYGPayrollConcept* concept;
 
 -(id)initWithTagCode:(NSUInteger)tagCode andConceptCode:(NSUInteger)conceptCode andConcept:(PYGPayrollConcept *)concept;
+-(NSComparisonResult)compare:(PYGPayrollResult *)resultOther;
 
 -(NSDecimalNumber *)getPayment;
 -(NSDecimalNumber *)getDeduction;

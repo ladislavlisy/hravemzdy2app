@@ -90,7 +90,7 @@
 
 - (NSArray *)getResultExport:(NSString *)grpPosition {
     NSString * exportPosition = grpPosition;
-    return [_payrollResult injectForArray:@[] with:^NSArray * (NSArray * agr, id key, id obj) {
+    return [_payrollResult injectForArray:@[] sorted:@selector(compare:) with:^NSArray * (NSArray * agr, id key, id obj) {
         PYGTagRefer * tagResult = (PYGTagRefer *)key;
         PYGPayrollResult * valResult = (PYGPayrollResult *)obj;
         return [agr arrayByAddingObjectsFromArray:[self itemExport:exportPosition

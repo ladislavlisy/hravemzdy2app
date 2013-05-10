@@ -23,5 +23,6 @@ typedef id(^NSDictionaryMergeBlock)(id key, id itemLft, id itemRht);
 -(NSDictionary *) injectForDict:(NSDictionary *)memo with:(NSDictionaryInjectionBlock)block;
 -(NSDictionary *) injectForDict:(NSDictionary *)memo sorted:(SEL)comparator with:(NSDictionaryInjectionBlock)block;
 -(NSArray *) injectForArray:(NSArray *)memo with:(NSArrayDictionaryInjectionBlock)block;
+-(NSArray *) injectForArray:(NSArray *)memo sorted:(SEL)comparator with:(NSArrayDictionaryInjectionBlock)block;
 -(NSDecimalNumber *)injectForDecimal:(NSDecimalNumber *)memo with:(NSDecimalDictionaryInjectionBlock)block;
 @end

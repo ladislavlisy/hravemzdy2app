@@ -55,10 +55,18 @@
     return @"";
 }
 
+- (NSComparisonResult) compare:(PYGPayrollResult *) resultOther
+{
+    return [self compareUInt:[self tagCode] withUInt:[resultOther tagCode]];
+}
+
 - (NSDictionary *)exportTitleValueForTagRefer:(PYGTagRefer *)tagRefer andTagName:(PYGPayrollName*)tagName
                                andTagItem:(PYGPayrollTag *)tagItem andConcept:(PYGPayrollConcept *)tagConcept {
     return @{EXP_TITLE : tagName.title, EXP_VALUE : [self exportValueResult]};
 }
 
+- (NSComparisonResult)compareUInt:(NSUInteger) lhs withUInt:(NSUInteger) rhs {
+    return lhs < rhs ? NSOrderedAscending : lhs > rhs ? NSOrderedDescending : NSOrderedSame;
+}
 
 @end
