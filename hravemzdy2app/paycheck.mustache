@@ -1,170 +1,378 @@
 <html>
-    <head>
-        <style>
-            body
-            {
-                font-family: Verdana, Verdana, Geneva, sans-serif;
-            }
-            
-            .header
-            {
-                clear:both;
-                overflow: hidden;
-                padding: 20px;
-            }
-            
-            .header img
-            {
-                width: 100px;
-                height: 100px;
-                float: left;
-                
-                margin-right: 10px;
-            }
-            
-            .header .myCompany
-            {
-                float: left;
-                font-size: smaller;
-                margin-top: -20px;
-            }
-            
-            .header .otherCompany
-            {
-            	float: right;
-            	padding: 15px;
-            	border: 1px solid lightgray;
-            	background-color: #fafafa;
-                font-size: smaller;
-            }
-            
-            .content
-            {
-                margin-top: 20px;
-                padding: 30px;
-                border: 1px solid lightgray;
-                background: #fcfcfc;
-                border-radius: 3px;
-            }
-            
-            table
-            {
-                width: 100%;
-                font-size: smaller;
-            }
-            
-            tr:nth-child(even)
-            {
-                background-color: #f0f0f0;
-            }
-            
-            tr th
-            {
-                color: gray;        
-                border-bottom: 1px solid lightgray;
-            }
-            
-            tr th, tr td
-            {
-                font-weight: normal;
-                padding: 5px;
-                margin: 0;
-                width: 20%;
-                text-align: center;
-            }
-            
-            td
-            {
-                font-size: smaller;
-            }
-            
-            .footer
-            {
-                font-size: 12px;
-                padding: 20px;
-                margin: 0;
-                text-align: right;
-                
-            }
-        </style>
-        <meta name="viewport" id="view" content="width=320px, minimum-scale=1.0, maximum-scale=1.0">
-    </head>
-    <body>   
-        {{#documentHeader}}
-        Non so
-        {{/documentHeader}}
-
-        {{#pageHeader}}        
-        <div class='header'>
-            <img src='http://www.firebirdsql.org/file/about/ds-firebird-logo-100.png' />
-            
-
-            <div class='myCompany'>
-                <h1>{{companyName}}</h1>
-                {{companyAddress}} <br />
-                {{companyTelephone}} <br />
-                {{companyEmail}}
+<body style="background:#b8bcc3;padding:10px;font-family:helvetica,arial,sans-serif;">
+    {{#documentHeader}}
+    Non so
+    {{/documentHeader}}
+    {{#pageContent}}
+    {{#pageHeader}}
+    <div class='header'>
+        <!-- >
+        <img src='http://www.firebirdsql.org/file/about/ds-firebird-logo-100.png' />
+        </ -->
+    </div>
+    {{/pageHeader}}
+    <div class="tableWrapperOuter" id="tableWrapperOuter"
+        style="background: #fff; border-radius: 10px; padding: 15px; box-shadow:0px 1px 3px #666">
+        <div class="tableWrapperInner" id="tableWrapperInner" 
+            style="overflow:auto;padding: 0 0 2px;">
+            <!-- header title -->
+            <h1 style="margin:0;font-size: 24px;font-family:helvetica,arial,sans-serif;font-weight:bold;color:#25255b;">
+            Pay Slip details for {{employeeName}}
+            </h1>
+            <h2 style="margin:0 0 5px;font-size:18px;font-weight:normal;color:#666;font-family:helvetica,arial,sans-serif;">
+            Period {{periodName}}
+            </h2>
+            <br>
+            <!-- header title -->
+            <section id="payslip">
+              <section id="pyg_section_header">
+                <table>
+                  <tr class="pyg_label">
+                    <th  colspan="2" class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2)); 
+                        /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%); 
+                        /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%); 
+                        /* W3C */ border-radius:8px 0 0;">
+                        Personnel number
+                    </th>
+                    <th class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2)); 
+                        /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%); 
+                        /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%); 
+                        /* W3C */">
+                        Person name
+                    </th>
+                    <th class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2)); 
+                        /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%); 
+                        /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%); 
+                        /* W3C */ border-radius:0 8px 0 0;">
+                        Period
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                        border-left:1px solid #ddd;" colspan="2">
+                        {{employee_numb}}
+                    </td>
+                    <td style="padding:5px 10px;text-align:right;white-space:nowrap; 
+                        border-left:1px solid #ddd;">
+                        {{employee_name}}
+                    </td>
+                    <td style="padding:5px 10px;text-align:right;white-space:nowrap; 
+                        border-right:1px solid #ddd;">
+                        {{period_description}}
+                    </td>
+                  </tr>
+                  <tr class="pyg_label">
+                    <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                        border-left:1px solid #ddd; background:#f0f0f0;border-top:1px solid #ddd;
+                        border-bottom:1px solid #ddd;" colspan="2">
+                        Department
+                    </td>
+                    <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                        background:#f0f0f0;border-top:1px solid #ddd;border-bottom:1px solid #ddd; 
+                        border-left:1px solid #ddd;">
+                        Company
+                    </td>
+                    <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                        background:#f0f0f0;border-top:1px solid #ddd;border-bottom:1px solid #ddd; 
+                        border-right:1px solid #ddd;">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                        border-left:1px solid #ddd; border-bottom:1px solid #ddd;padding:5px 10px 10px; 
+                        border-radius:0 0 0 8px;" colspan="2">
+                        {{employee_dept}}
+                    </td>
+                    <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                        border-bottom:1px solid #ddd;padding:5px 10px 10px;">
+                        {{employer_name}}
+                    </td>
+                    <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                        border-bottom:1px solid #ddd;padding:5px 10px 10px; border-right:1px solid #ddd; 
+                        border-radius:0 0 8px 0;">
+                        Paycheck
+                    </td>
+                  </tr>
+                </table>
+              </section>
+              <section>
+                  <section id="pyg_section_left1" style="width: 48%;float: left;">
+                    <!-- table -->
+                    <table title="Paycheck details" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <th colspan="2" class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:8px 0 0;">
+                                Title
+                            </th>
+                            <th class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:0 8px 0 0;">
+                                Payment
+                            </th>
+                            {{#result_details_1}}
+                            <!-- liché řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd;" colspan="2">
+                                    Income Accounts (LEFT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                               </td>
+                            </tr>
+                            <!-- liché řádky -->
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; background:#f0f0f0;border-top:1px solid #ddd;
+                                    border-bottom:1px solid #ddd;" colspan="2">
+                                    Income Accounts (LEFT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    background:#f0f0f0;border-top:1px solid #ddd;border-bottom:1px solid #ddd; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; border-bottom:1px solid #ddd;padding:5px 10px 10px; 
+                                    border-radius:0 0 0 8px;" colspan="2">
+                                    Profit / (Loss)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    border-bottom:1px solid #ddd;padding:5px 10px 10px; border-right:1px solid #ddd; 
+                                    border-radius:0 0 8px 0;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                            {{/result_details_1}}
+                        </tbody>
+                    </table>
+                    <!-- table -->
+                  </section>
+                  <section id="pyg_section_right1" style="width: 48%;float: right;">
+                    <!-- table -->
+                    <table title="Pay Slip details"  cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <th colspan="2" class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:8px 0 0;">
+                                Title
+                            </th>
+                            <th class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:0 8px 0 0;">
+                                Payment
+                            </th>
+                            {{#result_details_2}}
+                             <!-- liché řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd;" colspan="2">
+                                    Income Accounts (RIGHT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                               </td>
+                            </tr>
+                            <!-- liché řádky -->
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; background:#f0f0f0;border-top:1px solid #ddd;
+                                    border-bottom:1px solid #ddd;" colspan="2">
+                                    Income Accounts (RIGHT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    background:#f0f0f0;border-top:1px solid #ddd;border-bottom:1px solid #ddd; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; border-bottom:1px solid #ddd;padding:5px 10px 10px; 
+                                    border-radius:0 0 0 8px;" colspan="2">
+                                    Profit / (Loss)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    border-bottom:1px solid #ddd;padding:5px 10px 10px; border-right:1px solid #ddd; 
+                                    border-radius:0 0 8px 0;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                            {{/result_details_2}}
+                        </tbody>
+                    </table>
+                    <!-- table -->
+                  </section>
+              </section>
+              <section id="pyg_section_middle" style="width: 100%; clear: both;">
+              </section>
+              <section>
+                  <section id="pyg_section_left2" style="width: 48%;float: left;">
+                    <!-- table -->
+                    <table title="Pay Slip details">
+                        <tbody>
+                            <th colspan="2" class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:8px 0 0;">
+                                Title
+                            </th>
+                            <th class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:0 8px 0 0;">
+                                Payment
+                            </th>
+                            {{#result_details_3}}
+                             <!-- liché řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd;" colspan="2">
+                                    Income Accounts (LEFT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                               </td>
+                            </tr>
+                            <!-- liché řádky -->
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; background:#f0f0f0;border-top:1px solid #ddd;
+                                    border-bottom:1px solid #ddd;" colspan="2">
+                                    Income Accounts (LEFT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    background:#f0f0f0;border-top:1px solid #ddd;border-bottom:1px solid #ddd; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; border-bottom:1px solid #ddd;padding:5px 10px 10px; 
+                                    border-radius:0 0 0 8px;" colspan="2">
+                                    Profit / (Loss)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    border-bottom:1px solid #ddd;padding:5px 10px 10px; border-right:1px solid #ddd; 
+                                    border-radius:0 0 8px 0;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                        {{/result_details_3}}
+                        </tbody>
+                    </table>
+                    <!-- table -->
+                  </section>
+                  <section id="pyg_section_right2" style="width: 48%;float: right;">
+                    <!-- table -->
+                    <table title="Pay Slip details"  cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <th colspan="2" class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:8px 0 0;">
+                                Title
+                            </th>
+                            <th class="headingsTop" style="background:#d1d3d7;font-size:14px;padding:10px 10px 5px;
+                                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8e9ed), color-stop(100%,#dcdee2));
+                                    /* Chrome,Safari4+ */ background-image: -webkit-linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* Chrome10+,Safari5.1+ */ background-image: linear-gradient(top, #e8e9ed 0%,#dcdee2 100%);
+                                    /* W3C */ border-radius:0 8px 0 0;">
+                                Payment
+                            </th>
+                            {{#result_details_4}}
+                            <!-- liché řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd;" colspan="2">
+                                    Income Accounts (RIGHT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                               </td>
+                            </tr>
+                            <!-- liché řádky -->
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; background:#f0f0f0;border-top:1px solid #ddd;
+                                    border-bottom:1px solid #ddd;" colspan="2">
+                                    Income Accounts (RIGHT)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    background:#f0f0f0;border-top:1px solid #ddd;border-bottom:1px solid #ddd; 
+                                    border-right:1px solid #ddd;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                            <!-- sudé řádky -->
+                            <tr>
+                                <td style="padding:5px 10px;text-align:left;white-space:nowrap; 
+                                    border-left:1px solid #ddd; border-bottom:1px solid #ddd;padding:5px 10px 10px; 
+                                    border-radius:0 0 0 8px;" colspan="2">
+                                    Profit / (Loss)
+                                </td>
+                                <td style="padding:5px 10px;text-align:right;white-space:nowrap; font-weight:bold; 
+                                    border-bottom:1px solid #ddd;padding:5px 10px 10px; border-right:1px solid #ddd; 
+                                    border-radius:0 0 8px 0;">
+                                    <span cellvalue="0">0.00&nbsp;</span>
+                                </td>
+                            </tr>
+                        {{/result_details_4}}
+                        </tbody>
+                    </table>
+                    <!-- table -->
+                  </section>
+              </section>
+            </section>
+            <section id="pyg_section_footer" style="width: 100%; clear: both;">
+            <!-- footnote -->
+            <br>
+            <hr>
+            <h1 style="margin:0;font-size: 24px;font-family:helvetica,arial,sans-serif;font-weight:bold;color:#25255b;">Notes</h1>
+            <p>Pay Slip details was calculated by Hrave Mzdy - simple online payroll agenda</p>
+            <br>
+            <div style="margin:0 0 5px;font-size:12px;font-weight:normal;color:#666;font-family:helvetica,arial,sans-serif;">
+            Prepared on 27 Apr 2013 14:48:39
             </div>
-            
-            <div class='otherCompany'>
-            	<b>Spett.le {{otherCompanyName}}, </b><br />
-            	Via da definire, 1 <br />
-            	70100 Bari (BA)
-            </div>
+            <!-- footnote -->
+            </section>
         </div>
-        {{/pageHeader}}
-        
-        {{#pageContent}}  
-        <div class='content' style='padding: 5px;'>
-        <table cellspacing='0'>
-        	<tr>
-        		<td><b>Codice Cliente:</b> 5</td>
-        		<td><b>Telefono:</b> 3339998887</td>
-        		<td><b>Agente:</b> Mario Verdi</td>
-                <td><b>Data Stampa:</b> 09/11/2012</td>
-        	</tr>
-        </table>
-        </div>
-             
+    </div>
+{{/pageContent}}
 
-        <div class='content'>
-            <table cellspacing='0'>
-                <tr>
-                    <th>Numero Doc.</th>
-                    <th>Data Doc.</th>
-                    <th>Data Scad.</th>
-                    <th>Note Incasso</th>
-                    <th>Importo Originario</th>
-                    <th>Importo Effettivo</th>
-                    <th>Importo Incassato</th>
-                </tr>
-                
-                {{#articles}}
-                <tr>
-                    <td>{{number}}</td>
-                    <td>{{date}}</td>
-                    <td>{{due}}</td>
-                    <td>{{notes}}</td>
-                    <td>€ {{originalTotal}}</td>
-                    <td>€ {{effectiveTotal}}</td>
-                    <td>€ {{receivedTotal}}</td>
-                </tr>
-                {{/articles}}
-            </table>
-        </div>
-        
-        <div class='content' style='width: 250px; float: right; font-size: smaller'>
-            <b>Saldo totale: </b>{{total}}
-        </div>
-        {{/pageContent}}
-
-        {{#pageFooter}}
-        <div class='footer'>
-            Pagina {{pageNumber}}
-        </div>    
-        {{/pageFooter}}      
-        
-        
-        
-    </body>
+{{#pageFooter}}
+<div class='footer'>
+    Page {{pageNumber}}
+</div>
+{{/pageFooter}}
+</body>
 </html>

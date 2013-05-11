@@ -53,7 +53,7 @@
 @property (strong, nonatomic) NSArray* placeholders1;
 @property (strong, nonatomic) NSArray* placeholders2;
 @property (strong, nonatomic) NSArray* placeholders6;
-
+@property (strong, nonatomic) NSNumberFormatter* currencyFormatter;
 @end
 
 @implementation PYGMasterViewController
@@ -117,6 +117,12 @@
             @"MyPayroll Best",
             @"pyarollee@my-company.com"
     ];
+    self.currencyFormatter = [[NSNumberFormatter alloc] init];
+    [self.currencyFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [self.currencyFormatter setMaximumFractionDigits:2];
+    [self.currencyFormatter setLocale:[NSLocale currentLocale]];
+
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     return self;
@@ -133,7 +139,7 @@
     self.employeeName      = @"" ;
     self.employeeNumb      = @"" ;
     self.department        = @"" ;
-    self.salaryMoney       = @"";
+    self.salaryMoney       = DECIMAL_ZERO;
     self.taxDeclaration    = @YES;
     self.taxPayerClaim     = @YES;
     self.taxStudyClaim     = @NO;
@@ -193,6 +199,18 @@ titleForHeaderInSection:(NSInteger)section
     return tf;
 }
 
+- (UITextField *)createSection1CellWithNumberField:(UITableViewCell *)cell andValue:(NSDecimalNumber *) decimalValue inRow:(NSUInteger)row {
+    UITextField *tf;
+    cell.textLabel.text = self.sectionRows1[row] ;
+    NSString * textFieldValue = [self.currencyFormatter stringFromNumber:decimalValue];
+    tf = [self makeTextField:textFieldValue placeholder:self.placeholders1[row]];
+    [tf setTextAlignment:NSTextAlignmentRight];
+    [tf setKeyboardType:UIKeyboardTypeNumberPad];
+    [cell addSubview:tf];
+    [self setNumberFieldDimensionAndAction:tf];
+    return tf;
+}
+
 - (UITextField *)createSection2CellWithTextField:(UITableViewCell *)cell andValue:(NSString*) textFieldValue inRow:(NSUInteger)row {
     UITextField *tf;
     cell.textLabel.text = self.sectionRows2[row] ;
@@ -249,7 +267,7 @@ titleForHeaderInSection:(NSInteger)section
             break ;
         }
         case 1: {
-            self.salaryMoneyField = [self createSection1CellWithTextField:cell andValue:self.salaryMoney inRow:row];
+            self.salaryMoneyField = [self createSection1CellWithNumberField:cell andValue:self.salaryMoney inRow:row];
             break ;
         }
         default:
@@ -399,6 +417,19 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
+- (void)setNumberFieldDimensionAndAction:(UITextField*)tf {
+    // TextField dimensions
+    if (tf != nil) {
+        tf.frame = CGRectMake(150, 12, 140, 30);
+        // Workaround to dismiss keyboard when Done/Return is tapped
+        [tf addTarget:self action:@selector(numberFieldEditStarted:) forControlEvents:UIControlEventEditingDidBegin];
+        [tf addTarget:self action:@selector(numberFieldFinished:) forControlEvents:UIControlEventEditingDidEnd];
+
+        // We want to handle textFieldDidEndEditing
+        tf.delegate = self ;
+    }
+}
+
 - (void)setSwitchFieldDimensionAndAction:(UISwitch*)sf {
     // Switch dimensions
     if (sf != nil) {
@@ -489,13 +520,27 @@ titleForHeaderInSection:(NSInteger)section
     // [sender resignFirstResponder];
 }
 
+// Workaround to hide keyboard when Done is tapped
+- (IBAction)numberFieldEditStarted:(id)sender {
+    UITextField * textField = (UITextField *)sender;
+    NSString * stringValue = [textField text];
+    NSDecimalNumber * decimalValue = [self.currencyFormatter numberFromString:stringValue];
+    [textField setText:[decimalValue stringValue]];
+}
+
+- (IBAction)numberFieldFinished:(id)sender {
+    UITextField * textField = (UITextField *)sender;
+    NSDecimalNumber * decimalValue = [self getDecimalNumberOrZeroFromString:[textField text]];
+    [textField setText:[self.currencyFormatter stringFromNumber:decimalValue]];
+}
+
 // TextField value changed, store the new value.
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ( textField == self.descriptionField ) {
         self.description = textField.text ;
     }
     else if ( textField == self.salaryMoneyField ) {
-        self.salaryMoney = textField.text;
+        self.salaryMoney = [self.currencyFormatter numberFromString:[textField text]];
     }
     else if ( textField == self.employerNameField ) {
         self.employerName = textField.text ;
@@ -587,6 +632,14 @@ titleForHeaderInSection:(NSInteger)section
     return payroll_titles;
 }
 
+- (NSDecimalNumber *)getDecimalNumberOrZeroFromString:(NSString *)formattedValue {
+    NSDecimalNumber * decimalValue = [NSDecimalNumber decimalNumberWithString:formattedValue];
+    if (isnormal(decimalValue.doubleValue)) {
+        return decimalValue ;
+    }
+    return DECIMAL_ZERO;
+}
+
 - (NSDictionary *)collectPayrollValues {
     PYGCodeNameRefer * REF_SCHEDULE_WORK         = TAGS_REF(TAG_SCHEDULE_WORK);
     PYGCodeNameRefer * REF_SCHEDULE_TERM         = TAGS_REF(TAG_SCHEDULE_TERM);
@@ -617,7 +670,7 @@ titleForHeaderInSection:(NSInteger)section
                     I_MAKE_PAIR(@"hours", DEFAULT_ABSENCE)
             },
             REF_SALARY_BASE : @{
-                    D_MAKE_PAIR(@"amount_monthly", [NSDecimalNumber decimalNumberWithString:self.salaryMoney])
+                    D_MAKE_PAIR(@"amount_monthly", self.salaryMoney)
             },
             REF_TAX_INCOME_BASE : @{
                     U_MAKE_PAIR(@"interest_code", DEFAULT_TAX_PAYER),

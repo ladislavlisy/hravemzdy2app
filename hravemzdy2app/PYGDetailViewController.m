@@ -33,6 +33,7 @@ typedef enum {
 @property (strong, nonatomic) UIPopoverController *periodPopoverController;
 @property (strong, nonatomic) NSArray* sections;
 
+@property (strong, nonatomic) NSString* pdfFileName;
 @property (strong, nonatomic) PdfPaycheckGenerator* generator;
 @property (strong, nonatomic) NSDateFormatter* dateFormatter;
 
@@ -170,8 +171,8 @@ typedef enum {
     self.resultSection5 = [self normalizeResult:nil];
     self.resultSection6 = [self normalizeResult:nil];
 
-    //NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
-    self.generator = nil; //[PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:pdfFileName];
+    self.pdfFileName = [self getPdfFileName:@"invoice.pdf"];
+    self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:self.pdfFileName];
 
     return self;
 }
@@ -295,6 +296,7 @@ typedef enum {
     [self.navigationItem setRightBarButtonItem:sharePaychekButton];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    [self computePayroll];
 }
 
 - (NSDate *)getPeriodDate {
@@ -459,11 +461,9 @@ titleForHeaderInSection:(NSInteger)section
 
 #pragma mark - Pdf file renderer
 - (IBAction)showEmployeePayslip:(id)sender {
-    NSString *pdfFileName = [self getPdfFileName:@"paycheck2.pdf"];
-
-    //[self drawPDF:pdfFileName];
-    [self drawInvoicePDF:pdfFileName];
-    [self showPdfFile:pdfFileName];
+    //[self drawPDF:self.pdfFileName];
+    [self drawInvoicePDF:self.pdfFileName];
+    [self showPdfFile:self.pdfFileName];
 }
 
 - (NSString*)getPdfFileName:(NSString *)pdfName
@@ -530,7 +530,9 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        NSLog(@"Button PDF");
+        //[self drawPDF:self.pdfFileName];
+        [self drawInvoicePDF:self.pdfFileName];
+        [self showPdfFile:self.pdfFileName];
     }
     else if (buttonIndex == 1) {
         NSLog(@"Button XML");

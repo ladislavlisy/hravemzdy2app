@@ -14,14 +14,16 @@
 }
 
 // Handles UIControlEventEditingDidEndOnExit
+- (IBAction)numberFieldEditStarted:(id)sender ;
 - (IBAction)textFieldFinished:(id)sender ;
+- (IBAction)numberFieldFinished:(id)sender ;
 
 @property (nonatomic,copy) NSString* description;
 @property (nonatomic,copy) NSString* employerName;
 @property (nonatomic,copy) NSString* employeeName;
 @property (nonatomic,copy) NSString* employeeNumb;
 @property (nonatomic,copy) NSString* department;
-@property (nonatomic,copy) NSString* salaryMoney;
+@property (nonatomic,copy) NSDecimalNumber* salaryMoney;
 @property (nonatomic,copy) NSNumber* taxDeclaration;
 @property (nonatomic,copy) NSNumber* taxPayerClaim;
 @property (nonatomic,copy) NSNumber* taxStudyClaim;

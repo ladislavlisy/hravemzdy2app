@@ -57,8 +57,8 @@
     };
 
     NSError * error;
-    NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"paycheck" ofType:@"mustache"];
-    [[PRKGenerator sharedGenerator] createReportWithName:@"paycheck" templateURLString:templatePath itemsPerPage:20 totalItems:articles.count
+    NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"invoice" ofType:@"mustache"];
+    [[PRKGenerator sharedGenerator] createReportWithName:@"invoice" templateURLString:templatePath itemsPerPage:20 totalItems:articles.count
                                          pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
 }
 
