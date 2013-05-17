@@ -9,12 +9,12 @@
 #import "PYGResultExporter.h"
 
 
-@interface PYGPdfResultExporter : PYGResultExporter
+@interface PYGXmlResultExporter : PYGResultExporter
 
 -(id)initWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
-+(id)pdfResultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
++(id)xmlResultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
 
-- (bool)exportPdf:(NSString *)fileName forCompany:(NSString *)company andDepartment:(NSString *)department
+- (bool)exportXml:(NSString *)fileName forCompany:(NSString *)company andDepartment:(NSString *)department
     andPersonName:(NSString *)personName andPersonNumber:(NSString *)personNumber;
 
 @end

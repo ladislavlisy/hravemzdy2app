@@ -52,6 +52,12 @@
     return [self getResultExport:VPAYGRP_PAYMENTS];
 }
 
+- (NSArray *)getSourceEarningsExport {
+    NSArray * partTime = [self getResultExport:VPAYGRP_SCHEDULE];
+    NSArray * partPays = [self getResultExport:VPAYGRP_PAYMENTS];
+    return [partTime arrayByAddingObjectsFromArray:partPays];
+}
+
 - (NSArray *)getSourceTaxSourceExport {
     return [self getResultExport:VPAYGRP_TAX_SOURCE];
 }

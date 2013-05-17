@@ -18,7 +18,7 @@
 - (id)initWithFileName:(NSString *)pdfFileName;
 + (id)pdfPaycheckGeneratorWithFileName:(NSString *)pdfFileName;
 
-- (void)generateReport;
+- (void)generateReportFor:(NSArray *)results andPeriod:(NSString *)periodName;
 - (id)reportsGenerator:(PRKGenerator *)generator dataForReport:(NSString *)reportName withTag:(NSString *)tagName forPage:(NSUInteger)pageNumber;
 - (void)reportsGenerator:(PRKGenerator *)generator didFinishRenderingWithData:(NSData *)data;
 

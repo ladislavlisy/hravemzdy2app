@@ -16,6 +16,7 @@
 
 -(NSArray *)getSourceScheduleExport;
 -(NSArray *)getSourcePaymentsExport;
+-(NSArray *)getSourceEarningsExport;
 -(NSArray *)getSourceTaxSourceExport;
 -(NSArray *)getSourceTaxInsIncomeExport;
 -(NSArray *)getSourceTaxIncomeExport;

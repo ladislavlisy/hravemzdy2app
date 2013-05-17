@@ -38,6 +38,7 @@
 		32B0A23CE546233341BA4B7A /* PYGTermEffectResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AF5CE8C2E6F76F20D011 /* PYGTermEffectResult.m */; };
 		32B0A254E51D36D1041AA957 /* PYGDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A30D59BCC7CBD94ED659 /* PYGDetailTableViewCell.xib */; };
 		32B0A273B29CA344EF0625B9 /* paycheck.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A3752CC5096ABC4E29D6 /* paycheck.mustache */; };
+		32B0A28F93126BBBAE981DFC /* PYGXmlResultExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A91C06176E463754D5EC /* PYGXmlResultExporter.m */; };
 		32B0A2B8A1158D2148AFD666 /* PYGIncomeGrossConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A591A782B5E8DB22E257 /* PYGIncomeGrossConcept.m */; };
 		32B0A2C3EFF7713460CB64FB /* PYGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */; };
 		32B0A2CE9557E83FFEA65CC1 /* PYGTaxClaimChildName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A27FEEE7629441A4A538 /* PYGTaxClaimChildName.m */; };
@@ -124,6 +125,7 @@
 		32B0AB1134A097E93E341B60 /* PYGTaxClaimChildTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A6BBD8746DFCC3464192 /* PYGTaxClaimChildTag.m */; };
 		32B0AB1E120036DBABA82B48 /* PayrollProcessSetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A313B8A3F8C5199C7F5E /* PayrollProcessSetupTests.m */; };
 		32B0AB412A7B913B35F32438 /* PYGScheduleWeeklyConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AD76CEA6737EC9285C8B /* PYGScheduleWeeklyConcept.m */; };
+		32B0AB4756FBB39EF8993BE4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A22A6326CC62BE98E9EB /* libxml2.dylib */; };
 		32B0AB4D2EB22F6BD1760C39 /* NSDictionary+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A3C50620822E9F23B6D4 /* NSDictionary+Func.m */; };
 		32B0AB57220E7F68D88684AB /* PYGTermHoursResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A641B4FCE8A36DF46219 /* PYGTermHoursResult.m */; };
 		32B0AB5750C8D749DAEF9B44 /* PdfPaycheckGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A293B3C120747BBCD01F /* PdfPaycheckGenerator.m */; };
@@ -246,6 +248,7 @@
 		32B0A2097049022694D202B0 /* PYGTaxClaimChildConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxClaimChildConcept.m; sourceTree = "<group>"; };
 		32B0A217F1B17FD67C5EB244 /* libGRMustache6-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache6-iOS.a"; path = "GRMustache/lib/libGRMustache6-iOS.a"; sourceTree = "<group>"; };
 		32B0A2278884351BDB18080C /* PYGIncomeBaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGIncomeBaseResult.m; sourceTree = "<group>"; };
+		32B0A22A6326CC62BE98E9EB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		32B0A24A3B98E39653A16694 /* PYGPayrollResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGPayrollResult.h; sourceTree = "<group>"; };
 		32B0A24D46A5A15B7819932C /* PYGTagRefer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTagRefer.h; sourceTree = "<group>"; };
 		32B0A25784F83E7403A49627 /* PYGPayrollProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGPayrollProcess.h; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 		32B0A900F71EB8AA48B0B9DA /* PYGTaxBonusChildName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxBonusChildName.h; sourceTree = "<group>"; };
 		32B0A90D9C7AC07E26DCC32D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32B0A9193504F36DAB661A91 /* PYGScheduleWorkTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGScheduleWorkTag.h; sourceTree = "<group>"; };
+		32B0A91C06176E463754D5EC /* PYGXmlResultExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGXmlResultExporter.m; sourceTree = "<group>"; };
 		32B0A91DA7DDDBA48F3A2DAF /* PYGTaxBonusChildName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxBonusChildName.m; sourceTree = "<group>"; };
 		32B0A96EFEF6412EA1608C64 /* PYGDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PYGDetailViewController.m; sourceTree = "<group>"; };
 		32B0A985FFE3D77831A3BC49 /* PYGMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PYGMasterViewController.m; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 		32B0ABEC3503670695AB03AC /* PayrollCalcTaxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollCalcTaxTests.m; path = hravemzdylibTest/PayrollCalcTaxTests.m; sourceTree = SOURCE_ROOT; };
 		32B0ABFF6A07DBBEFB6A0F6E /* PYGTaxAdvanceFinalConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxAdvanceFinalConcept.h; sourceTree = "<group>"; };
 		32B0AC0095DE2BFB8FDC13D7 /* PayrollCalcSalaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollCalcSalaryTests.m; path = hravemzdylibTest/PayrollCalcSalaryTests.m; sourceTree = SOURCE_ROOT; };
+		32B0AC24D2991D45ED64F407 /* PYGXmlResultExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGXmlResultExporter.h; sourceTree = "<group>"; };
 		32B0AC376090DA162107016E /* PRKFakeRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PRKFakeRenderer.m; path = PdfReportKit/PRKFakeRenderer.m; sourceTree = SOURCE_ROOT; };
 		32B0AC4AEFCDB3AAE0CC41ED /* PYGPayNameGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGPayNameGateway.h; sourceTree = "<group>"; };
 		32B0AC4BF9FEE4189A12C690 /* PYGHoursAbsenceConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGHoursAbsenceConcept.m; sourceTree = "<group>"; };
@@ -526,6 +531,7 @@
 				32B0A5C8F016E4BFE845EB3C /* CoreGraphics.framework in Frameworks */,
 				32B0A5C01FB479FD654B12B6 /* libGRMustache6-iOS.a in Frameworks */,
 				32B0A121FD680FDB38F5FF4F /* CoreText.framework in Frameworks */,
+				32B0AB4756FBB39EF8993BE4 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +604,7 @@
 				32B0A1DEAD62B5B838334282 /* SenTestingKit.framework */,
 				32B0A217F1B17FD67C5EB244 /* libGRMustache6-iOS.a */,
 				32B0A9C052A6DA70C972F5F0 /* CoreText.framework */,
+				32B0A22A6326CC62BE98E9EB /* libxml2.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -984,6 +991,8 @@
 				32B0A0F3A7585C3CD53E30C5 /* PYGResultExporter.m */,
 				32B0AFCCCA3398303E0437DF /* PYGPdfResultExporter.h */,
 				32B0ABE65EDAC452C6A79FDA /* PYGPdfResultExporter.m */,
+				32B0AC24D2991D45ED64F407 /* PYGXmlResultExporter.h */,
+				32B0A91C06176E463754D5EC /* PYGXmlResultExporter.m */,
 			);
 			name = "Business Layer.export";
 			path = "hravemzdy2app/Business Layer.export";
@@ -1302,6 +1311,7 @@
 				32B0A8347679A718B47F8511 /* InvoiceItem.m in Sources */,
 				32B0A779E0CBAA58587F9516 /* UIMonthYearPicker.m in Sources */,
 				32B0AF641BD407C0B370294C /* PYGPeriodPickerViewController.m in Sources */,
+				32B0A28F93126BBBAE981DFC /* PYGXmlResultExporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1374,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+				);
 				INFOPLIST_FILE = "hravemzdy2app/hravemzdy2app-Info.plist";
 				LIBRARY_SEARCH_PATHS = "\"${PROJECT_DIR}/GRMustache/lib\"/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1468,6 +1481,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+				);
 				INFOPLIST_FILE = "hravemzdy2app/hravemzdy2app-Info.plist";
 				LIBRARY_SEARCH_PATHS = "\"${PROJECT_DIR}/GRMustache/lib\"/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -19,6 +19,7 @@
 #import "NSDate+PYGDateOnly.h"
 #import "PYGPeriodPickerViewController.h"
 #import "PYGTagRefer.h"
+#import "PYGXmlResultExporter.h"
 
 typedef enum {
     DetailTitleCell = 1,
@@ -33,64 +34,76 @@ typedef enum {
 @property (strong, nonatomic) UIPopoverController *periodPopoverController;
 @property (strong, nonatomic) NSArray* sections;
 
-@property (strong, nonatomic) NSString* pdfFileName;
-@property (strong, nonatomic) PdfPaycheckGenerator* generator;
 @property (strong, nonatomic) NSDateFormatter* dateFormatter;
 
 @property (strong, nonatomic) PYGPayrollPeriod * period;
 @property (strong, nonatomic) PYGPayrollProcess* payroll;
 
-@property (strong, nonatomic) NSDictionary * schedule_work_value;
-@property (strong, nonatomic) NSDictionary * schedule_term_value;
-@property (strong, nonatomic) NSDictionary * absence_hours_value;
-@property (strong, nonatomic) NSDictionary * salary_amount_value;
+@property (strong, nonatomic) NSString *payrollDesc;
+@property (strong, nonatomic) NSString *employerName;
+@property (strong, nonatomic) NSString *payrolleeCn;
+@property (strong, nonatomic) NSString *payrolleeEm;
+@property (strong, nonatomic) NSString *companyName;
+@property (strong, nonatomic) NSString *department;
+@property (strong, nonatomic) NSString *employeeName;
+@property (strong, nonatomic) NSString *employeeNumb;
+
+@property (strong, nonatomic) NSDictionary *schedule_work_value;
+@property (strong, nonatomic) NSDictionary *schedule_term_value;
+@property (strong, nonatomic) NSDictionary *absence_hours_value;
+@property (strong, nonatomic) NSDictionary *salary_amount_value;
 @property (strong, nonatomic) NSDictionary *interest_taxes;
 @property (strong, nonatomic) NSDictionary *interest_ins_health;
 @property (strong, nonatomic) NSDictionary *interest_ins_social;
 @property (strong, nonatomic) NSDictionary *interest_pension;
 @property (strong, nonatomic) NSDictionary *relief_payer;
-@property (strong, nonatomic) NSDictionary * relief_child;
+@property (strong, nonatomic) NSDictionary *relief_child;
 @property (strong, nonatomic) NSDictionary *relief_disability;
 @property (strong, nonatomic) NSDictionary *relief_studying;
 @property (strong, nonatomic) NSDictionary *interest_emp_health;
 @property (strong, nonatomic) NSDictionary *interest_emp_social;
 // Set-up code here.
-@property (strong, nonatomic) PYGPayTagGateway* payrollTags;
-@property (strong, nonatomic) PYGPayConceptGateway* payConcepts;
+@property (strong, nonatomic) PYGPayTagGateway *payrollTags;
+@property (strong, nonatomic) PYGPayConceptGateway *payConcepts;
 
-@property (strong, nonatomic) PYGCodeNameRefer * REF_SCHEDULE_WORK         ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_SCHEDULE_TERM         ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_HOURS_ABSENCE         ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_SALARY_BASE           ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_INCOME_BASE       ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_INSURANCE_HEALTH_BASE ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_INSURANCE_HEALTH      ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_INSURANCE_SOCIAL_BASE ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_INSURANCE_SOCIAL      ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_SAVINGS_PENSIONS      ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_CLAIM_PAYER       ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_CLAIM_CHILD       ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_CLAIM_DISABILITY  ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_CLAIM_STUDYING    ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_EMPLOYERS_HEALTH  ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_EMPLOYERS_SOCIAL  ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_ADVANCE_BASE      ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_ADVANCE           ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_WITHHOLD_BASE     ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_WITHHOLD          ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_RELIEF_PAYER      ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_ADVANCE_FINAL     ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_RELIEF_CHILD      ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_TAX_BONUS_CHILD       ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_INCOME_GROSS          ;
-@property (strong, nonatomic) PYGCodeNameRefer * REF_INCOME_NETTO          ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_SCHEDULE_WORK         ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_SCHEDULE_TERM         ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_HOURS_ABSENCE         ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_SALARY_BASE           ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_INCOME_BASE       ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_INSURANCE_HEALTH_BASE ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_INSURANCE_HEALTH      ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_INSURANCE_SOCIAL_BASE ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_INSURANCE_SOCIAL      ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_SAVINGS_PENSIONS      ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_CLAIM_PAYER       ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_CLAIM_CHILD       ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_CLAIM_DISABILITY  ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_CLAIM_STUDYING    ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_EMPLOYERS_HEALTH  ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_EMPLOYERS_SOCIAL  ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_ADVANCE_BASE      ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_ADVANCE           ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_WITHHOLD_BASE     ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_WITHHOLD          ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_RELIEF_PAYER      ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_ADVANCE_FINAL     ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_RELIEF_CHILD      ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_TAX_BONUS_CHILD       ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_INCOME_GROSS          ;
+@property (strong, nonatomic) PYGCodeNameRefer *REF_INCOME_NETTO          ;
 
+@property (strong, nonatomic) NSArray * resultSection0;
 @property (strong, nonatomic) NSArray * resultSection1;
 @property (strong, nonatomic) NSArray * resultSection2;
 @property (strong, nonatomic) NSArray * resultSection3;
 @property (strong, nonatomic) NSArray * resultSection4;
 @property (strong, nonatomic) NSArray * resultSection5;
 @property (strong, nonatomic) NSArray * resultSection6;
+
+@property (strong, nonatomic) NSString* pdfFileName;
+@property (strong, nonatomic) PdfPaycheckGenerator* generator;
+@property (strong, nonatomic) NSString* xmlFileName;
 
 - (void)configureView;
 @end
@@ -164,6 +177,7 @@ typedef enum {
     self.interest_emp_social = EMPTY_VALUES;
 
     self.payroll = nil;
+    self.resultSection0 = [self normalizeResult:nil];
     self.resultSection1 = [self normalizeResult:nil];
     self.resultSection2 = [self normalizeResult:nil];
     self.resultSection3 = [self normalizeResult:nil];
@@ -171,14 +185,47 @@ typedef enum {
     self.resultSection5 = [self normalizeResult:nil];
     self.resultSection6 = [self normalizeResult:nil];
 
-    self.pdfFileName = [self getPdfFileName:@"invoice.pdf"];
+    self.pdfFileName = [self getPdfFileName:@"paycheck.pdf"];
+    self.xmlFileName = [self getXmlFileName:@"paycheck.xml"];
     self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:self.pdfFileName];
 
     return self;
 }
 
 - (void)setPayrollTitles:(NSDictionary *)values {
-    //descriptionField.text = description;
+    self.payrollDesc  = values[@"description"];
+    self.employerName = values[@"employer"];
+    self.payrolleeCn  = values[@"payrollee"];
+    self.payrolleeEm  = values[@"email"];
+    self.companyName  = values[@"company"];
+    self.department   = values[@"department"];
+    self.employeeName = values[@"employee"];
+    self.employeeNumb = values[@"personnel"];
+
+    if ([self.payrollDesc isEqualToString:@""]) {
+        self.payrollDesc = @"description";
+    }
+    if ([self.companyName isEqualToString:@""]) {
+        self.companyName = @"company name";
+    }
+    if ([self.employerName isEqualToString:@""]) {
+        self.employerName = @"employer name";
+    }
+    if ([self.employeeName isEqualToString:@""]) {
+        self.employeeName = @"employee name";
+    }
+    if ([self.employeeNumb isEqualToString:@""]) {
+        self.employeeNumb = @"0010";
+    }
+    if ([self.department isEqualToString:@""]) {
+        self.department = @"department name";
+    }
+    if ([self.payrolleeCn isEqualToString:@""]) {
+        self.payrolleeCn = @"payrollee name";
+    }
+    if ([self.payrolleeEm isEqualToString:@""]) {
+        self.payrolleeEm = @"payrollee email";
+    }
 }
 
 - (void)setPayrollValues:(NSDictionary *)values {
@@ -201,38 +248,44 @@ typedef enum {
 
 }
 
-- (void)computePayroll {
-    self.payroll = [PYGPayrollProcess payrollProcessWithPeriodCode:self.period.code
+- (PYGPayrollProcess *)createPayrollProcess {
+    PYGPayrollProcess *payroll = [PYGPayrollProcess payrollProcessWithPeriodCode:self.period.code
                                                            andTags:[self payrollTags]
                                                        andConcepts:[self payConcepts]];
 
-    [self.payroll addTermTagRef:self.REF_SCHEDULE_WORK andValues:self.schedule_work_value];
-    [self.payroll addTermTagRef:self.REF_SCHEDULE_TERM andValues:self.schedule_term_value];
-    [self.payroll addTermTagRef:self.REF_HOURS_ABSENCE andValues:self.absence_hours_value];
-    [self.payroll addTermTagRef:self.REF_SALARY_BASE andValues:self.salary_amount_value];
-    [self.payroll addTermTagRef:self.REF_TAX_INCOME_BASE andValues:self.interest_taxes];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_HEALTH_BASE andValues:self.interest_ins_health];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_HEALTH andValues:self.interest_ins_health];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_SOCIAL_BASE andValues:self.interest_ins_social];
-    [self.payroll addTermTagRef:self.REF_INSURANCE_SOCIAL andValues:self.interest_ins_social];
-    [self.payroll addTermTagRef:self.REF_SAVINGS_PENSIONS andValues:self.interest_pension];
-    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_PAYER andValues:self.relief_payer];
+    [payroll addTermTagRef:self.REF_SCHEDULE_WORK andValues:self.schedule_work_value];
+    [payroll addTermTagRef:self.REF_SCHEDULE_TERM andValues:self.schedule_term_value];
+    [payroll addTermTagRef:self.REF_HOURS_ABSENCE andValues:self.absence_hours_value];
+    [payroll addTermTagRef:self.REF_SALARY_BASE andValues:self.salary_amount_value];
+    [payroll addTermTagRef:self.REF_TAX_INCOME_BASE andValues:self.interest_taxes];
+    [payroll addTermTagRef:self.REF_INSURANCE_HEALTH_BASE andValues:self.interest_ins_health];
+    [payroll addTermTagRef:self.REF_INSURANCE_HEALTH andValues:self.interest_ins_health];
+    [payroll addTermTagRef:self.REF_INSURANCE_SOCIAL_BASE andValues:self.interest_ins_social];
+    [payroll addTermTagRef:self.REF_INSURANCE_SOCIAL andValues:self.interest_ins_social];
+    [payroll addTermTagRef:self.REF_SAVINGS_PENSIONS andValues:self.interest_pension];
+    [payroll addTermTagRef:self.REF_TAX_CLAIM_PAYER andValues:self.relief_payer];
     NSUInteger count = U_GET_FROM(self.relief_child, @"relief_code");
     NSDictionary * relief_claim = U_MAKE_HASH(@"relief_code", 1);
     for (int i = 0; i < count; i++) {
-        [self.payroll addTermTagRef:self.REF_TAX_CLAIM_CHILD andValues:relief_claim];
+        [payroll addTermTagRef:self.REF_TAX_CLAIM_CHILD andValues:relief_claim];
     }
-    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_DISABILITY andValues:self.relief_disability];
-    [self.payroll addTermTagRef:self.REF_TAX_CLAIM_STUDYING andValues:self.relief_studying];
-    [self.payroll addTermTagRef:self.REF_TAX_EMPLOYERS_HEALTH andValues:self.interest_emp_health];
-    [self.payroll addTermTagRef:self.REF_TAX_EMPLOYERS_SOCIAL andValues:self.interest_emp_social];
+    [payroll addTermTagRef:self.REF_TAX_CLAIM_DISABILITY andValues:self.relief_disability];
+    [payroll addTermTagRef:self.REF_TAX_CLAIM_STUDYING andValues:self.relief_studying];
+    [payroll addTermTagRef:self.REF_TAX_EMPLOYERS_HEALTH andValues:self.interest_emp_health];
+    [payroll addTermTagRef:self.REF_TAX_EMPLOYERS_SOCIAL andValues:self.interest_emp_social];
 
-    [self.payroll addTermTagRef:self.REF_INCOME_GROSS andValues:EMPTY_VALUES];
-    PYGTagRefer  * evResultTermTag = [self.payroll addTermTagRef:self.REF_INCOME_NETTO andValues:EMPTY_VALUES];
-    NSDictionary * evResultDictVal = [self.payroll evaluate:evResultTermTag];
+    [payroll addTermTagRef:self.REF_INCOME_GROSS andValues:EMPTY_VALUES];
+    PYGTagRefer  * evResultTermTag = [payroll addTermTagRef:self.REF_INCOME_NETTO andValues:EMPTY_VALUES];
+    NSDictionary * evResultDictVal = [payroll evaluate:evResultTermTag];
+    return payroll;
+}
+
+- (void)computePayroll {
+    self.payroll = [self createPayrollProcess];
 
     PYGResultExporter * exporter = [PYGResultExporter resultExporterWithPayrollConfig:self.payroll];
 
+    self.resultSection0 = [exporter getSourceEarningsExport];
     self.resultSection1 = [exporter getSourceScheduleExport];
     self.resultSection2 = [exporter getSourcePaymentsExport];
     self.resultSection3 = [exporter getSourceTaxSourceExport];
@@ -243,6 +296,7 @@ typedef enum {
     exporter = nil;
     self.payroll = nil;
 
+    self.resultSection0 = [self normalizeResult:self.resultSection0];
     self.resultSection1 = [self normalizeResult:self.resultSection1];
     self.resultSection2 = [self normalizeResult:self.resultSection2];
     self.resultSection3 = [self normalizeResult:self.resultSection3];
@@ -462,7 +516,7 @@ titleForHeaderInSection:(NSInteger)section
 #pragma mark - Pdf file renderer
 - (IBAction)showEmployeePayslip:(id)sender {
     //[self drawPDF:self.pdfFileName];
-    [self drawInvoicePDF:self.pdfFileName];
+    [self drawPaycheckPDF:self.pdfFileName];
     [self showPdfFile:self.pdfFileName];
 }
 
@@ -481,9 +535,44 @@ titleForHeaderInSection:(NSInteger)section
     return pdfFileName;
 }
 
-- (void)drawInvoicePDF:(NSString*)fileNameWithPath
+- (NSString*)getXmlFileName:(NSString *)xmlName
 {
-    [self.generator generateReport];
+    NSString* fileName = xmlName;
+
+    NSArray *arrayPaths =
+            NSSearchPathForDirectoriesInDomains(
+                    NSDocumentDirectory,
+                    NSUserDomainMask,
+                    YES);
+    NSString *path = [arrayPaths objectAtIndex:0];
+    NSString* xmlFileName = [path stringByAppendingPathComponent:fileName];
+
+    return xmlFileName;
+}
+
+- (void)drawPaycheckPDF:(NSString*)fileNameWithPath
+{
+    NSDate *periodDate= [self getPeriodDate];
+    NSString * periodText = [self.dateFormatter stringFromDate:periodDate];
+
+    [self.generator generateReportFor:@[
+            self.resultSection0, self.resultSection3,
+            self.resultSection4, self.resultSection5,
+            self.resultSection6]
+    andPeriod:periodText];
+}
+
+- (void)exportPaycheckXML:(NSString*)fileNameWithPath
+{
+    self.payroll = [self createPayrollProcess];
+
+    PYGXmlResultExporter * exporter = [PYGXmlResultExporter resultExporterWithPayrollConfig:self.payroll];
+
+    [exporter exportXml:self.xmlFileName forCompany:self.companyName andDepartment:self.department
+          andPersonName:self.employeeName andPersonNumber:self.employeeNumb];
+
+    exporter = nil;
+    self.payroll = nil;
 }
 
 - (void)drawPDF:(NSString*)fileNameWithPath
@@ -531,11 +620,11 @@ titleForHeaderInSection:(NSInteger)section
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         //[self drawPDF:self.pdfFileName];
-        [self drawInvoicePDF:self.pdfFileName];
+        [self drawPaycheckPDF:self.pdfFileName];
         [self showPdfFile:self.pdfFileName];
     }
     else if (buttonIndex == 1) {
-        NSLog(@"Button XML");
+        [self exportPaycheckXML:self.xmlFileName];
     }
 }
 
