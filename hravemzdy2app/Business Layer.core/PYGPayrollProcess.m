@@ -65,6 +65,14 @@
     return [self addTermToHash:terms periodBase:tagBase tagRef:tagCodeRef andValues:values];
 }
 
+//TODO: addTermTagRef: andValues: asTimes:
+- (void)addTermTagRef:(PYGCodeNameRefer *)tagCodeRef andValues:(NSDictionary *)values asTimes:(NSUInteger)count{
+    NSUInteger tagBase = PERIOD_NOW;
+    for (int i = 0; i < count; i++) {
+        [self addTermToHash:terms periodBase:tagBase tagRef:tagCodeRef andValues:values];
+    }
+}
+
 - (NSDictionary *)getTerm:(PYGTagRefer *)payTag {
     PYGTagRefer * compTag = payTag;
     NSDictionary * selTerms = [terms selectWithBlock:^BOOL(id key, id obj) {
@@ -105,13 +113,13 @@
 - (PYGTagRefer*)insTermToHash:(NSMutableDictionary*)termHash periodBase:(NSUInteger)tagBase tagRef:(PYGCodeNameRefer *)tagCodeRef tagOrder:(NSUInteger)tagCodeOrder andValues:(NSDictionary *)values {
     NSDictionary * termToInsert = [self newTermPairWithPeriodBase:tagBase tagRef:tagCodeRef tagOrder:tagCodeOrder andValues:values];
     [termHash addEntriesFromDictionary:termToInsert];
-    return [termToInsert allKeys][0];
+    return [self getFirstFromKeyFromTerms:termToInsert];
 }
 
 - (PYGTagRefer*)addTermToHash:(NSMutableDictionary*)termHash periodBase:(NSUInteger)tagBase tagRef:(PYGCodeNameRefer *)tagCodeRef andValues:(NSDictionary *)values {
     NSDictionary * termToAdd = [self newTermPairWithTermHash:termHash andPeriodBase:tagBase tagRef:tagCodeRef andValues:values];
     [termHash addEntriesFromDictionary:termToAdd];
-    return [termToAdd allKeys][0];
+    return [self getFirstFromKeyFromTerms:termToAdd];
 }
 
 - (NSDictionary*)newTermPairWithTermHash:(NSMutableDictionary*)termHash andPeriodBase:(NSUInteger)tagBase tagRef:(PYGCodeNameRefer *)tagCodeRef andValues:(NSDictionary *)values {
@@ -186,6 +194,13 @@
         firstCodeOrder = U_UNBOX(ordersSorted[0]);
     }
     return firstCodeOrder;
+}
+
+- (PYGTagRefer*)getFirstFromKeyFromTerms:(NSDictionary *)termsAdded {
+    if (termsAdded.count == 0) {
+        return nil;
+    }
+    return [termsAdded allKeys][0];
 }
 
 - (PYGPayrollConcept*) newTermConcept:(PYGCodeNameRefer *)tagCodeRef andValues:(NSDictionary *)values {

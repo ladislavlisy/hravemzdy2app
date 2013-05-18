@@ -14,7 +14,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
-- (NSString*)getPdfFileName:(NSString *)pdfName;
 - (void)setPayrollTitles:(NSDictionary *)values;
 - (void)setPayrollValues:(NSDictionary *)values;
 @end

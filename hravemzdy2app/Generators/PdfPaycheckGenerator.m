@@ -9,6 +9,8 @@
 #import "PdfPaycheckGenerator.h"
 #import "InvoiceItem.h"
 #import "PRKGenerator.h"
+#import "NSArray+Func.h"
+#import "PYGPaycheckItem.h"
 
 
 @implementation PdfPaycheckGenerator {
@@ -18,7 +20,6 @@
     NSArray * resultValues3;
     NSArray * resultValues4;
     NSArray * resultValues5;
-    NSArray * resultValues6;
     NSString * reportFileName;
 }
 - (id)initWithFileName:(NSString*)pdfFileName {
@@ -32,18 +33,33 @@
 }
 
 - (void)generateReportFor:(NSArray *)results andPeriod:(NSString *)periodName {
-    resultValues1 = results[0];
-    resultValues2 = results[1];
-    resultValues3 = results[2];
-    resultValues4 = results[3];
-    resultValues5 = results[4];
-
+    resultValues1 = [results[0] map:^id (id tag) {
+        NSDictionary * dictionaryValues = (NSDictionary *)tag;
+        return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
+    }];
+    resultValues2 = [results[1] map:^id (id tag) {
+        NSDictionary * dictionaryValues = (NSDictionary *)tag;
+        return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
+    }];
+    resultValues3 = [results[2] map:^id (id tag) {
+        NSDictionary * dictionaryValues = (NSDictionary *)tag;
+        return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
+    }];
+    resultValues4 = [results[3] map:^id (id tag) {
+        NSDictionary * dictionaryValues = (NSDictionary *)tag;
+        return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
+    }];
+    resultValues5 = [results[4] map:^id (id tag) {
+        NSDictionary * dictionaryValues = (NSDictionary *)tag;
+        return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
+    }];
     defaultValues = @{
-            @"employee_name" : @"Ladislav Lisý",
-            @"period_name"   : [NSString stringWithString:periodName],
-            @"employee_numb" : @"00010",
-            @"employee_dept" : @"IT Crowd",
-            @"employer_name" : @"Hravé Mzdy s.r.o."
+            @"payrollee_name" : @"Payroll Happiness",
+            @"employee_name"  : @"Ladislav Lisy",
+            @"period_name"    : [NSString stringWithString:periodName],
+            @"employee_numb"  : @"00010",
+            @"employee_dept"  : @"IT Crowd",
+            @"employer_name"  : @"Hrave Mzdy s.r.o."
     };
 
     NSError * error;
@@ -79,6 +95,10 @@
 - (void)reportsGenerator:(PRKGenerator *)generator didFinishRenderingWithData:(NSData *)data
 {
     [data writeToFile:reportFileName atomically:YES];
+}
+
+- (void)dealloc {
+    NSLog(@"PdfPaycheckGenerator dealloc");
 }
 
 @end

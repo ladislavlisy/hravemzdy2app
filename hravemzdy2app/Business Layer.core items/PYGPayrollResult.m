@@ -69,4 +69,54 @@
     return lhs < rhs ? NSOrderedAscending : lhs > rhs ? NSOrderedDescending : NSOrderedSame;
 }
 
+/*
+  def export_xml_result(xml_element)
+    attributes = {}
+    attributes[:month_schedule] = @month_schedule
+    xml_element.value(xml_value, attributes)
+  end
+
+  def xml_value
+    sum_hours = month_schedule.inject (0) {|agr, item|  agr+item }
+    "#{sum_hours} hours"
+  end
+
+---------------------------------------------------------------
+  def export_xml_tag_refer(tag_refer, xml_builder)
+    attributes = {}
+    attributes[:period_base] = tag_refer.period_base
+    attributes[:code]        = tag_refer.code
+    attributes[:code_order]  = tag_refer.code_order
+    xml_builder.reference(attributes)
+  end
+
+  def export_xml_concept(xml_builder)
+    @concept.export_xml(xml_builder)
+  end
+
+  def export_xml_result(xml_builder)
+  end
+
+  def export_value_result
+  end
+
+  def export_xml_names(tag_name, tag_item, tag_concept, xml_element)
+    attributes = {}
+    attributes[:tag_name] = tag_item.name
+    attributes[:category] = tag_concept.name
+
+    xml_element.item(attributes) do |xml_item|
+      xml_item.title tag_name.title
+      xml_item.description tag_name.description
+      xml_item.group(tag_name.get_groups)
+      export_xml_concept(xml_item)
+      export_xml_result(xml_item)
+    end
+  end
+
+  def export_xml(tag_refer, tag_name, tag_item, tag_concept, xml_element)
+    export_xml_tag_refer(tag_refer, xml_element)
+    export_xml_names(tag_name, tag_item, tag_concept, xml_element)
+  end
+*/
 @end

@@ -34,6 +34,8 @@
 -(NSDictionary *)getResult:(PYGTagRefer *)payTag;
 -(NSDictionary *)evaluate:(PYGTagRefer *)payTag;
 
+-(void)addTermTagRef:(PYGCodeNameRefer *)tagCodeRef andValues:(NSDictionary *)values asTimes:(NSUInteger)count;
+
 -(PYGPayrollTag *)findTag:(NSUInteger)tagCode;
 -(PYGPayrollConcept *)findConcept:(NSUInteger)conceptCode;
 -(NSDictionary *)getResults;

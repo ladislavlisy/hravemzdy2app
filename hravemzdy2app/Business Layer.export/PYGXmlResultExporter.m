@@ -143,19 +143,33 @@
         return done;
     }
 
-    /* Start an element named "result" as child of results. */
-    rc = xmlTextWriterStartElement(writer, BAD_CAST "result");
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-        return done;
-    }
+    // foreach result in results do start and end element
 
-    /* Close the element named result. */
-    rc = xmlTextWriterEndElement(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-        return done;
-    }
+    // payroll_result.each do |payroll_result|
+    //    tag_result = payroll_result.first
+    //    val_result = payroll_result.last
+    //    xml_results.result do |xml_result|
+    //      item_export_xml(payroll_config, payroll_names, tag_result, val_result, xml_result)
+    //    end
+    //  end
+
+        /* Start an element named "result" as child of results. */
+        rc = xmlTextWriterStartElement(writer, BAD_CAST "result");
+        if (rc < 0) {
+            NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
+            return done;
+        }
+
+        // call exportXml from result
+
+        /* Close the element named result. */
+        rc = xmlTextWriterEndElement(writer);
+        if (rc < 0) {
+            NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
+            return done;
+        }
+
+    // end of foreach result in results do start and end element
 
     /* Close the element named results. */
     rc = xmlTextWriterEndElement(writer);

@@ -86,21 +86,26 @@ static NSArray * reportDefaultTags = nil;
         NSMutableString * wellFormedHeader = [NSMutableString stringWithString:renderedHtml];
         NSMutableString * wellFormedContent = [NSMutableString stringWithString:renderedHtml];
         NSMutableString * wellFormedFooter = [NSMutableString stringWithString:renderedHtml];
-        
-        
+
+        NSUInteger resultCount = 0;
+        NSString *contentToFind = [renderedTags objectForKey:@"pageContent"];
+        NSString *footersToFind = [renderedTags objectForKey:@"pageFooter"];
+        NSString *headersToFind = [renderedTags objectForKey:@"pageHeader"];
+        NSString *docHeadToFind = [renderedTags objectForKey:@"documentHeader"];
+
         // Trim content and footer to get header
-        [wellFormedHeader replaceOccurrencesOfString:[renderedTags objectForKey:@"pageContent"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedHeader.length)];
-        [wellFormedHeader replaceOccurrencesOfString:[renderedTags objectForKey:@"pageFooter"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedHeader.length)];
+        resultCount = [wellFormedHeader replaceOccurrencesOfString:contentToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
+        resultCount = [wellFormedHeader replaceOccurrencesOfString:footersToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedHeader.length)];
         
         // Trim header and footer to get content
-        [wellFormedContent replaceOccurrencesOfString:[renderedTags objectForKey:@"documentHeader"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
-        [wellFormedContent replaceOccurrencesOfString:[renderedTags objectForKey:@"pageHeader"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
-        [wellFormedContent replaceOccurrencesOfString:[renderedTags objectForKey:@"pageFooter"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
+        resultCount = [wellFormedContent replaceOccurrencesOfString:docHeadToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
+        resultCount = [wellFormedContent replaceOccurrencesOfString:headersToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
+        resultCount = [wellFormedContent replaceOccurrencesOfString:footersToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedContent.length)];
         
         // Trim content and header to get footer
-        [wellFormedFooter replaceOccurrencesOfString:[renderedTags objectForKey:@"documentHeader"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
-        [wellFormedFooter replaceOccurrencesOfString:[renderedTags objectForKey:@"pageHeader"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
-        [wellFormedFooter replaceOccurrencesOfString:[renderedTags objectForKey:@"pageContent"] withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
+        resultCount = [wellFormedFooter replaceOccurrencesOfString:docHeadToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
+        resultCount = [wellFormedFooter replaceOccurrencesOfString:headersToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
+        resultCount = [wellFormedFooter replaceOccurrencesOfString:contentToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
         
         PRKRenderHtmlOperation * headerOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedHeader andSectionType:PRKSectionTypeHeader];
         headerOperation.delegate = self;
