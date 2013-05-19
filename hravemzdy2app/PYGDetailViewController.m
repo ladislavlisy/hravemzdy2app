@@ -148,8 +148,7 @@ typedef enum {
     UIButton *periodNavigationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     periodNavigationButton.frame = CGRectMake(0, 0, 200, 30);
 
-    NSDate *periodDate= [self getPeriodDate];
-    NSString * periodText = [self.dateFormatter stringFromDate:periodDate];
+    NSString * periodText = [self getPeriodTitle];
     [periodNavigationButton setTitle:periodText forState:UIControlStateNormal];
 
     [periodNavigationButton addTarget:self action:@selector(pickPayrollPeriod) forControlEvents:UIControlEventTouchUpInside];

@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGTermEffectResult.h"
 #import "PYGPayrollConcept.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTermEffectResult {
@@ -36,6 +37,15 @@
     NSParameterAssert(values != nil);
     _dayOrdFrom = I_SAFE_VALUES(@"day_ord_from");
     _dayOrdEnd  = I_SAFE_VALUES(@"day_ord_end");
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"day_ord_from" : [@(self.dayOrdFrom) stringValue],
+            @"day_ord_to" : [@(self.dayOrdEnd) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

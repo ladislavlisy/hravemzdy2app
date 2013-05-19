@@ -14,6 +14,7 @@
 #import "PYGTimesheetWorkTag.h"
 #import "PYGTimesheetResult.h"
 #import "PYGTermHoursResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGHoursWorkingConcept {
@@ -72,6 +73,18 @@
     NSDictionary * resultValues = I_MAKE_HASH(@"hours", resultHours);
 
     return [PYGTermHoursResult newWithConcept:self andValues:resultValues];
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"hours" : [@(self.hours) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
+}
+
+- (NSString *)xmlValue {
+    return [NSString stringWithFormat:@"%@ hours", @(self.hours)];
 }
 
 @end

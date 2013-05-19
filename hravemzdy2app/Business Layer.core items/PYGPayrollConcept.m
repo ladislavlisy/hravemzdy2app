@@ -11,6 +11,7 @@
 #import "PYGPayrollPeriod.h"
 #import "PYGPayTagGateway.h"
 #import "NSDictionary+Func.h"
+#import "PYGXmlBuilder.h"
 
 @interface PYGPayrollConcept ()
 @property(nonatomic, readwrite) NSArray * tagPendingCodes;
@@ -65,6 +66,10 @@
 
 - (NSUInteger)calcCategory {
     return CALC_CATEGORY_START;
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    return YES;
 }
 
 - (NSComparisonResult) compare:(PYGPayrollConcept *) conceptOther

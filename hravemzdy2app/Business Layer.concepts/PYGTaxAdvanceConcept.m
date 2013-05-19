@@ -14,6 +14,7 @@
 #import "PYGIncomeBaseResult.h"
 #import "PYGPaymentResult.h"
 #import "PYGTaxAdvanceBaseTag.h"
+#import "PYGXmlBuilder.h"
 
  @implementation PYGTaxAdvanceConcept {
 

@@ -15,6 +15,7 @@
 #import "PYGTagRefer.h"
 #import "NSDictionary+Func.h"
 #import "PYGPayrollTag.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGInsuranceSocialBaseConcept {
@@ -154,6 +155,14 @@
     {
         return 0;
     }
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"interest_code" : [@(self.interestCode) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

@@ -16,6 +16,7 @@
 #import "NSArray+Func.h"
 #import "PYGScheduleResult.h"
 #import "PYGTimesheetResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTimesheetPeriodConcept {
@@ -109,4 +110,5 @@
     }
     return arrayOfDays;
 }
+
 @end

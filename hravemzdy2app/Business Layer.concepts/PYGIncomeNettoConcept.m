@@ -19,6 +19,7 @@
 #import "NSDictionary+Func.h"
 #import "PYGTagRefer.h"
 #import "PYGAmountResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGIncomeNettoConcept {

@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGAmountResult.h"
 #import "PYGPayrollConcept.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGAmountResult {
@@ -34,6 +35,14 @@
 - (void)setupValues:(NSDictionary *)values {
     NSParameterAssert(values != nil);
     _amount = D_SAFE_VALUES(@"amount");
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"amount" : [self.amount stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

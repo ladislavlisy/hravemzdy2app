@@ -16,6 +16,7 @@
 #import "PYGIncomeBaseResult.h"
 #import "PYGPaymentResult.h"
 #import "PYGPaymentDeductionResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxWithholdConcept {

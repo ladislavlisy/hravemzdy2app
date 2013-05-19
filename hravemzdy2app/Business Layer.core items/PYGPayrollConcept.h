@@ -11,6 +11,7 @@
 @class PYGPayrollResult;
 @class PYGPayrollPeriod;
 @class PYGPayTagGateway;
+@class PYGXmlBuilder;
 
 typedef NS_ENUM(NSUInteger, CalcCategory)
 {
@@ -46,6 +47,8 @@ typedef NS_ENUM(NSUInteger, TermDayOrder)
 -(NSArray *)pendingCodes;
 -(NSArray *)summaryCodes;
 -(NSUInteger)calcCategory;
+
+- (BOOL)exportXml:(PYGXmlBuilder *)xmlBuilder;
 
 - (NSDecimalNumber*)bigDecimal:(NSNumber*)op1 multiBy:(NSNumber *)op2;
 - (NSDecimalNumber*)bigDecimal:(NSNumber*)op1 divBy:(NSNumber *)op2;

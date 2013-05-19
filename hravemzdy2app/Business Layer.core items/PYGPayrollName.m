@@ -8,8 +8,8 @@
 #import "PYGPayrollName.h"
 #import "NSDictionary+Func.h"
 
-static const NSString * VGRP_POS = @"VGRP_POS";
-static const NSString * HGRP_POS = @"HGRP_POS";
+static const NSString * VGRP_POS = @"vgrp_pos";
+static const NSString * HGRP_POS = @"hgrp_pos";
 
 @implementation PYGPayrollName {
 	NSDictionary *xmlGroups;

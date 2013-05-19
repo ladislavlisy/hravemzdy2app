@@ -15,6 +15,7 @@
 #import "PYGTagRefer.h"
 #import "NSDictionary+Func.h"
 #import "PYGPayrollTag.h"
+#import "PYGXmlBuilder.h"
 
 @implementation PYGIncomeGrossConcept {
 

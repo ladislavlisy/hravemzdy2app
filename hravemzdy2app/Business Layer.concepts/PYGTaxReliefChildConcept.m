@@ -18,6 +18,7 @@
 #import "PYGTaxReliefResult.h"
 #import "NSDictionary+Func.h"
 #import "PYGTagRefer.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxReliefChildConcept {

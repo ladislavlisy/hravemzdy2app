@@ -15,6 +15,7 @@
 #import "NSDictionary+Func.h"
 #import "PYGIncomeBaseResult.h"
 #import "PYGPayrollTag.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGInsuranceHealthBaseConcept {
@@ -227,6 +228,15 @@
     {
         return 3250;
     }
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"interest_code" : [@(self.interestCode) stringValue],
+            @"minimum_asses" : [@(self.minimumAsses) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

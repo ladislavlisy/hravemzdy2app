@@ -16,6 +16,7 @@
 #import "PYGTaxEmployersHealthTag.h"
 #import "PYGIncomeBaseResult.h"
 #import "PYGPaymentResult.h"
+#import "PYGXmlBuilder.h"
 
 
  @implementation PYGTaxAdvanceBaseConcept {

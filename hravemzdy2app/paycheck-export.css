@@ -1,0 +1,85 @@
+TABLE
+{
+	width: 100%;
+	border-right: 1px solid #000000;
+}
+TABLE TD
+{
+	padding: 0;
+	border: 0;
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+TR.pyg_label TD
+{
+	font-size: xx-small;
+	font-style: italic;
+	padding-left: 0;
+}
+TD.pyg_idx_left
+{
+	width: 15%;
+	padding-left: 8px;
+}
+TD.pyg_idx_right
+{
+	width: 18%;
+	padding-left: 8px;
+}
+TD.pyg_idx_center
+{
+	width: 66%;
+	padding-left: 8px;
+}
+TD.pyg_col2_title
+{
+	width: 66%;
+	text-align: left;
+	font-size: medium;
+	padding-left: 8px;
+}
+TD.pyg_col2_value
+{
+	width: 33%;
+	text-align: right;
+	padding-right: 8px;
+}
+DIV#pyg_section_header
+{
+	width: 96%;
+}
+DIV#pyg_section_left1
+{
+	width: 48%;
+	float: left;
+}
+DIV#pyg_section_left2
+{
+	width: 48%;
+	float: left;
+}
+DIV#pyg_section_right1
+{
+	width: 48%;
+	float: right;
+}
+DIV#pyg_section_right2
+{
+	width: 48%;
+	float: right;
+}
+DIV#pyg_section_footer
+{
+	width: 96%;
+	clear: both;
+}
+DIV#pyg_section_left3
+{
+	width: 48%;
+	float: left;
+}
+DIV#pyg_section_right3
+{
+	width: 48%;
+	float: right;
+}

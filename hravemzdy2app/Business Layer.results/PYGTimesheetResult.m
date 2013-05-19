@@ -9,6 +9,7 @@
 #import "PYGTimesheetResult.h"
 #import "PYGPayrollConcept.h"
 #import "NSArray+Func.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTimesheetResult {
@@ -45,6 +46,14 @@
         }];
     }
     return monthHours;
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"month_schedule" : [self.monthSchedule componentsJoinedByString:@","]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

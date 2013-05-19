@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGIncomeBaseResult.h"
 #import "PYGPayrollConcept.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGIncomeBaseResult {
@@ -55,6 +56,19 @@
 
 - (BOOL)isMinimumAssessment {
     return self.minimumAsses!=0;
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+        @"income_base"   : [self.incomeBase stringValue],
+        @"employee_base" : [self.employeeBase stringValue],
+        @"employer_base" : [self.employerBase stringValue],
+        @"declare_code"  : [@(self.declareCode) stringValue],
+        @"interest_code" : [@(self.interestCode) stringValue],
+        @"minimum_asses" : [@(self.minimumAsses) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

@@ -12,6 +12,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGSymbolTags.h"
 #import "PYGTaxClaimResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxClaimDisabilityConcept {
@@ -156,6 +157,16 @@
         reliefAmount = 0;
     }
     return reliefAmount;
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"relief_code_1" : [@(self.reliefCode1) stringValue],
+            @"relief_code_2" : [@(self.reliefCode2) stringValue],
+            @"relief_code_3" : [@(self.reliefCode3) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

@@ -18,6 +18,7 @@
 #import "PYGPaymentResult.h"
 #import "PYGTaxReliefResult.h"
 #import "PYGTaxAdvanceResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxAdvanceFinalConcept {

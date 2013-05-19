@@ -21,6 +21,7 @@
 #import "PYGIncomeBaseResult.h"
 #import "PYGPaymentResult.h"
 #import "PYGTaxAdvanceResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxBonusChildConcept {

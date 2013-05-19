@@ -25,6 +25,9 @@
 @property(nonatomic, readonly) NSString* description;
 
 -(id)initWithCodeRefer:(PYGCodeNameRefer*)tagRefer andTitle:(NSString*)title andDescription:(NSString*)description andVertGroup:(NSString*)vertGroup andHorizGroup:(NSString*)horizGroup;
+
+- (NSDictionary *)getGroups;
+
 -(bool)isMatchVGroup:(NSString *)group_code;
 -(bool)isMatchHGroup:(NSString *)group_code;
 

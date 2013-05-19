@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGTaxAdvanceResult.h"
 #import "PYGPayrollConcept.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxAdvanceResult {
@@ -46,6 +47,16 @@
 
 - (NSDecimalNumber *)getPayment {
     return self.payment;
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"payment" : [self.payment stringValue],
+            @"after_reliefA" : [self.afterReliefA stringValue],
+            @"after_reliefC" : [self.afterReliefC stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

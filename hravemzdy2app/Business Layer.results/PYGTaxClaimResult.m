@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGTaxClaimResult.h"
 #import "PYGPayrollConcept.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxClaimResult {
@@ -34,6 +35,14 @@
 - (void)setupValues:(NSDictionary *)values {
     NSParameterAssert(values != nil);
     _taxRelief = D_SAFE_VALUES(@"tax_relief");
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"tax_relief" : [self.taxRelief stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

@@ -15,6 +15,7 @@
 #import "NSDictionary+Func.h"
 #import "PYGIncomeBaseResult.h"
 #import "PYGPayrollTag.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxIncomeBaseConcept {
@@ -103,6 +104,15 @@
 - (BOOL) isDeclared
 {
     return self.declareCode!=0;
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"interest_code" : [@(self.interestCode) stringValue],
+            @"declare_code" : [@(self.declareCode) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

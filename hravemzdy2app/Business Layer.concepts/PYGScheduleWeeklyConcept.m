@@ -12,6 +12,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGSymbolTags.h"
 #import "PYGScheduleResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGScheduleWeeklyConcept {
@@ -68,4 +69,18 @@
     NSArray * hoursWeek = @[@(daily),@(daily),@(daily),@(daily),@(daily),@0,@0];
     return hoursWeek;
 }
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"hours_weekly" : [@(self.hoursWeekly) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
+    return YES;
+}
+
+- (NSString *)xmlValue {
+    return [NSString stringWithFormat:@"%@ hours", @(self.hoursWeekly)];
+}
+
 @end

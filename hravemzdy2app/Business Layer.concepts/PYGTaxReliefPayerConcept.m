@@ -17,6 +17,7 @@
 #import "PYGTaxClaimStudyingTag.h"
 #import "PYGPaymentResult.h"
 #import "PYGTaxReliefResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxReliefPayerConcept {

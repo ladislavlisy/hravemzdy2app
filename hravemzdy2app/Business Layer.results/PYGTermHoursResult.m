@@ -8,6 +8,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGTermHoursResult.h"
 #import "PYGPayrollConcept.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTermHoursResult {
@@ -34,6 +35,14 @@
 - (void)setupValues:(NSDictionary *)values {
     NSParameterAssert(values != nil);
     _hours = I_SAFE_VALUES(@"hours");
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"hours" : [@(self.hours) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

@@ -15,6 +15,7 @@
 #import "PYGIncomeNettoTag.h"
 #import "PYGPaymentResult.h"
 #import "PYGIncomeBaseResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxEmployersHealthConcept {
@@ -124,6 +125,14 @@
         factor = 13.5;
     }
     return [self bigDecimal:@(factor) divBy:@100];
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"interest_code" : [@(self.interestCode) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

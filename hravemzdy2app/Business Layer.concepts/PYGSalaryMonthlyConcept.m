@@ -21,6 +21,7 @@
 #import "PYGTimesheetResult.h"
 #import "PYGTermHoursResult.h"
 #import "PYGPaymentResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGSalaryMonthlyConcept {
@@ -111,6 +112,18 @@
     NSInteger salariedHours = MAX(0, workingHours-absenceHours);
     NSDecimalNumber * paymentValue = [self bigDecimal:@(salariedHours) multiBy:bigAmount divBy:@(timesheetHours)];
     return paymentValue;
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"amount_monthly" : [self.amountMonthly stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
+}
+
+- (NSString *)xmlValue {
+    return [NSString stringWithFormat:@"%@ CZK", self.amountMonthly];
 }
 
 @end

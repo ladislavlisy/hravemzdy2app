@@ -111,4 +111,16 @@
     return memo;
 }
 
+- (void)enumerateSorted:(SEL)comparator with:(NSDictionaryEnumerateBlock)block {
+    NSParameterAssert(block != nil);
+
+    BOOL stop = NO;
+    for (id key in [self keysSortedByValueUsingSelector:comparator]) {
+        block(key, [self objectForKey:key], &stop);
+        if (stop) {
+            break;
+        }
+    }
+}
+
 @end

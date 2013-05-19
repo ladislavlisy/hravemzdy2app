@@ -16,6 +16,7 @@
 #import "PYGTermEffectResult.h"
 #import "PYGTimesheetResult.h"
 #import "NSArray+Func.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTimesheetWorkConcept {

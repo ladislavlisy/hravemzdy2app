@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^NSDictionaryEnumerateBlock)(id key, id obj, BOOL *stop);
 typedef BOOL(^NSDictionaryLogicalBlock)(id key, id obj);
 typedef NSArray *(^NSArrayDictionaryInjectionBlock)(NSArray * agr, id key, id item);
 typedef NSDictionary *(^NSDictionaryInjectionBlock)(NSDictionary * agr, id key, id item);
@@ -25,4 +26,6 @@ typedef id(^NSDictionaryMergeBlock)(id key, id itemLft, id itemRht);
 -(NSArray *) injectForArray:(NSArray *)memo with:(NSArrayDictionaryInjectionBlock)block;
 -(NSArray *) injectForArray:(NSArray *)memo sorted:(SEL)comparator with:(NSArrayDictionaryInjectionBlock)block;
 -(NSDecimalNumber *)injectForDecimal:(NSDecimalNumber *)memo with:(NSDecimalDictionaryInjectionBlock)block;
+
+- (void)enumerateSorted:(SEL)comparator with:(NSDictionaryEnumerateBlock)block;
 @end

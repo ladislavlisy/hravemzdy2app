@@ -13,20 +13,29 @@
 #import "PYGPayrollResult.h"
 #import "PYGPayrollName.h"
 #import "PYGPayrollTag.h"
+#import "NSDate+PYGDateOnly.h"
+#import "PYGPayrollPeriod.h"
+
+@interface PYGResultExporter ()
+
+@property (nonatomic, strong, readwrite) NSDictionary * results;
+@property (nonatomic, strong, readwrite) PYGPayrollPeriod * period;
+@property (nonatomic, strong, readwrite) PYGPayNameGateway * payrollNames;
+@property (nonatomic, strong, readwrite) PYGPayrollProcess * payrollConfig;
+
+@end
 
 @implementation PYGResultExporter {
     PYGPayNameGateway * _payrollNames;
     PYGPayrollProcess * _payrollConfig;
-    PYGPayrollPeriod  * _payrollPeriod;
-    NSDictionary      * _payrollResult;
 }
 - (id)initWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig {
     self = [super init];
     if (self) {
-        _payrollConfig = pPayrollConfig;
-        _payrollNames = [[PYGPayNameGateway alloc] init];
-        _payrollPeriod = [_payrollConfig period];
-        _payrollResult = [_payrollConfig getResults];
+        self.payrollConfig = pPayrollConfig;
+        self.payrollNames = [[PYGPayNameGateway alloc] init];
+        self.period = [_payrollConfig period];
+        self.results = [_payrollConfig getResults];
     }
     return self;
 }
@@ -96,7 +105,7 @@
 
 - (NSArray *)getResultExport:(NSString *)grpPosition {
     NSString * exportPosition = grpPosition;
-    return [_payrollResult injectForArray:@[] sorted:@selector(compare:) with:^NSArray * (NSArray * agr, id key, id obj) {
+    return [self.results injectForArray:@[] sorted:@selector(compare:) with:^NSArray * (NSArray * agr, id key, id obj) {
         PYGTagRefer * tagResult = (PYGTagRefer *)key;
         PYGPayrollResult * valResult = (PYGPayrollResult *)obj;
         return [agr arrayByAddingObjectsFromArray:[self itemExport:exportPosition
@@ -121,6 +130,16 @@
     {
         return @[];
     }
+}
+
+- (NSString *)getPeriodTitle {
+    NSDateFormatter* periodFormatter = [[NSDateFormatter alloc] init];
+    [periodFormatter setLocale:[NSLocale currentLocale]];
+    [periodFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [periodFormatter setDateFormat:@"MMM yyyy"];
+
+    NSDate * periodDate = [NSDate dateWithYear:self.period.year month:self.period.month day:1];
+    return [periodFormatter stringFromDate:periodDate];
 }
 
 @end

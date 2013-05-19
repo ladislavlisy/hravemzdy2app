@@ -9,6 +9,7 @@
 #import "PYGScheduleResult.h"
 #import "PYGPayrollConcept.h"
 #import "NSArray+Func.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGScheduleResult {
@@ -46,6 +47,14 @@
         }];
     }
     return weekHours;
+}
+
+- (BOOL)exportResultXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"week_schedule" : [self.weekSchedule componentsJoinedByString:@","]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"value" withValue:[self xmlValue] withAttributes:attributes];
+    return done;
 }
 
 - (NSString *)xmlValue {

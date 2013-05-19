@@ -13,6 +13,7 @@
 #import "PYGSymbolTags.h"
 #import "NSDate+PYGDateOnly.h"
 #import "PYGTermEffectResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGScheduleTermConcept {
@@ -76,6 +77,18 @@
     };
 
     return [PYGTermEffectResult newWithConcept:self andValues:resultValues];
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDateFormatter *xmlFormatter = [[NSDateFormatter alloc] init];
+    [xmlFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+
+    NSDictionary *attributes = @{
+            @"date_from" : [xmlBuilder stringFromDate:self.dateFrom],
+            @"date_to" : [xmlBuilder stringFromDate:self.dateEnd]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

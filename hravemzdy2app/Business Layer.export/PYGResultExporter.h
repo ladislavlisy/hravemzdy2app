@@ -8,8 +8,13 @@
 #import <Foundation/Foundation.h>
 
 @class PYGPayrollProcess;
+@class PYGPayNameGateway;
 
 @interface PYGResultExporter : NSObject
+
+@property (nonatomic, strong, readonly) NSDictionary * results;
+@property (nonatomic, strong, readonly) PYGPayNameGateway * payrollNames;
+@property (nonatomic, strong, readonly) PYGPayrollProcess * payrollConfig;
 
 -(id)initWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
 +(id)resultExporterWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig;
@@ -26,4 +31,5 @@
 -(NSArray *)getSourceInsResultExport;
 -(NSArray *)getSourceSummaryExport;
 
+- (NSString *)getPeriodTitle;
 @end

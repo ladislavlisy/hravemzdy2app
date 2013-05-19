@@ -15,11 +15,13 @@
 #import "PYGInsuranceHealthBaseTag.h"
 #import "PYGPaymentDeductionResult.h"
 #import "PYGIncomeBaseResult.h"
+#import "PYGXmlBuilder.h"
 
 
  @implementation PYGInsuranceHealthConcept
 
  @synthesize interestCode = _interestCode;
+ @synthesize minimumAsses = _minimumAsses;
 
  - (id)initWithTagCode:(NSUInteger)tagCode  andValues:(NSDictionary *)values {
     if (!(self=[super initWithCodeName:[PYGSymbolConcepts codeRef:CONCEPT_INSURANCE_HEALTH] andTagCode:tagCode])) return nil;
@@ -44,6 +46,7 @@
 - (void)setupValues:(NSDictionary *)values {
     NSParameterAssert(values != nil);
     _interestCode = U_SAFE_VALUES(@"interest_code");
+    _minimumAsses = U_SAFE_VALUES(@"minimum_asses");
 }
 
 +(PYGInsuranceHealthConcept *)concept
@@ -102,11 +105,11 @@
     return DECIMAL_NUMB(@(contPaymentValue));
 }
 
- - (BOOL)isInterest {
+- (BOOL)isInterest {
      return (self.interestCode!=0);
- }
+}
 
- -(NSDecimalNumber*)healthInsuranceFactor:(NSUInteger)year {
+-(NSDecimalNumber*)healthInsuranceFactor:(NSUInteger)year {
     double factor = 0.0;
     if (year < 1993)
     {
@@ -122,4 +125,14 @@
     }
     return [self bigDecimal:@(factor) divBy:@(100)];
 }
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+     NSDictionary *attributes = @{
+             @"interest_code" : [@(self.interestCode) stringValue],
+             @"minimum_asses" : [@(self.minimumAsses) stringValue]
+     };
+     BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+     return done;
+}
+
 @end

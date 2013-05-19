@@ -12,6 +12,7 @@
 #import "PYGPayrollResult.h"
 #import "PYGSymbolTags.h"
 #import "PYGTaxClaimResult.h"
+#import "PYGXmlBuilder.h"
 
 
 @implementation PYGTaxClaimChildConcept {
@@ -96,6 +97,14 @@
         return 2*reliefAmount;
     }
     return reliefAmount;
+}
+
+- (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
+    NSDictionary *attributes = @{
+            @"relief_code" : [@(self.reliefCode) stringValue]
+    };
+    BOOL done = [xmlBuilder writeXmlElement:@"spec_value" withAttributes:attributes];
+    return done;
 }
 
 @end

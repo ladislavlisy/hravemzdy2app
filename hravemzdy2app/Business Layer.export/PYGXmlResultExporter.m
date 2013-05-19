@@ -7,19 +7,23 @@
 
 #import "PYGXmlResultExporter.h"
 #import "PYGPayrollProcess.h"
+#import "PYGXmlBuilder.h"
+#import "PYGPayrollResult.h"
+#import "PYGPayNameGateway.h"
+#import "PYGTagRefer.h"
+#import "PYGPayrollPeriod.h"
+#import "NSDictionary+Func.h"
 #include <libxml/encoding.h>
 #include <libxml/xmlwriter.h>
 
-#define MY_ENCODING "ISO-8859-2"
-//#define MY_ENCODING "windows-1250"
+#define MY_ENCODING @"ISO-8859-2"
+//#define MY_ENCODING @"windows-1250"
 
 @implementation PYGXmlResultExporter {
 
 }
 - (id)initWithPayrollConfig:(PYGPayrollProcess *)pPayrollConfig {
-    self = [super initWithPayrollConfig:pPayrollConfig];
-    if (self) {
-    }
+    if (!(self = [super initWithPayrollConfig:pPayrollConfig])) return nil;
     return self;
 }
 
@@ -27,186 +31,67 @@
     return [[self alloc] initWithPayrollConfig:pPayrollConfig];
 }
 
-- (bool)exportXml:(NSString *)fileName forCompany:(NSString *)company andDepartment:(NSString *)department
+- (BOOL)exportXml:(NSString *)fileName forCompany:(NSString *)company andDepartment:(NSString *)department
     andPersonName:(NSString *)personName andPersonNumber:(NSString *)personNumber {
 
-    NSStringEncoding stringEncoding = NSISOLatin2StringEncoding;
-    //NSStringEncoding stringEncoding = NSWindowsCP1250StringEncoding;
-    const char *pdfFileNameCStr = [fileName cStringUsingEncoding:stringEncoding];
-    xmlChar *companyCStr        = (xmlChar*)[company UTF8String];
-    xmlChar *departmentCStr     = (xmlChar*)[department UTF8String];
-    xmlChar *personNameCStr     = (xmlChar*)[personName UTF8String];
-    xmlChar *personNumberCStr   = (xmlChar*)[personNumber UTF8String];
+    PYGXmlBuilder *xmlBuilder = [PYGXmlBuilder xmlBuilder];
+
     BOOL done = NO;
 
-    int rc;
-    xmlTextWriterPtr writer;
+    if ([xmlBuilder startDocument:fileName withEncoding:MY_ENCODING]) {
 
-    /* Create a new XmlWriter for uri, with no compression. */
-    writer = xmlNewTextWriterFilename(pdfFileNameCStr, 0);
-    if (writer == NULL) {
-        NSLog(@"testXmlwriterFilename: Error creating the xml writer\n");
-        return done;
-    }
+        if ([xmlBuilder openXmlElement:@"payslips"]) {
+            if ([xmlBuilder openXmlElement:@"payslip"]) {
+                if ([xmlBuilder openXmlElement:@"employee"]) {
+                    [xmlBuilder writeXmlElement:@"personnel_number" withValue:personNumber];
+                    [xmlBuilder writeXmlElement:@"common_name" withValue:personName];
+                    [xmlBuilder writeXmlElement:@"department" withValue:department];
+                    [xmlBuilder closeXmlElement];
+                }
+                if ([xmlBuilder openXmlElement:@"employer"]) {
+                    [xmlBuilder writeXmlElement:@"common_name" withValue:company];
+                    [xmlBuilder closeXmlElement];
+                }
+                if ([xmlBuilder openXmlElement:@"results"]) {
+                    NSString * periodTitle = [self getPeriodTitle];
+                    [xmlBuilder writeXmlElement:@"period" withValue:periodTitle];
 
-    /* Start the document with the xml default for the version,
-     * encoding ISO 8859-1 and the default for the standalone
-     * declaration. */
-    rc = xmlTextWriterStartDocument(writer, NULL, MY_ENCODING, NULL);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartDocument\n");
-        return done;
-    }
+                    [self exportResultsXml:xmlBuilder];
 
-    /* Start an element named "payslips". Since thist is the first
-     * element, this will be the root element of the document. */
-    rc = xmlTextWriterStartElement(writer, BAD_CAST "payslips");
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-        return done;
-    }
+                    [xmlBuilder closeXmlElement];
+                }
 
-    /* Start an element named "payslip" as child of payslips. */
-    rc = xmlTextWriterStartElement(writer, BAD_CAST "payslip");
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-        return done;
-    }
-
-    /* Start an element named "employee" as child of payslip. */
-    rc = xmlTextWriterStartElement(writer, BAD_CAST "employee");
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-        return done;
-    }
-
-    /* Write an element named "personnel_number" as child of employee. */
-    rc = xmlTextWriterWriteElement(writer, BAD_CAST "personnel_number", personNumberCStr);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterWriteFormatElement\n");
-        return done;
-    }
-
-    /* Write an element named "personnel_number" as child of employee. */
-    rc = xmlTextWriterWriteElement(writer, BAD_CAST "common_name", personNameCStr);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterWriteFormatElement\n");
-        return done;
-    }
-
-    /* Write an element named "personnel_number" as child of employee. */
-    rc = xmlTextWriterWriteElement(writer, BAD_CAST "department", departmentCStr);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterWriteFormatElement\n");
-        return done;
-    }
-
-    /* Close the element named employee. */
-    rc = xmlTextWriterEndElement(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-        return done;
-    }
-
-    /* Start an element named "employer" as child of payslip. */
-    rc = xmlTextWriterStartElement(writer, BAD_CAST "employer");
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-        return done;
-    }
-
-    /* Write an element named "common_name" as child of employer. */
-    rc = xmlTextWriterWriteElement(writer, BAD_CAST "common_name", companyCStr);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterWriteFormatElement\n");
-        return done;
-    }
-
-    /* Close the element named employer. */
-    rc = xmlTextWriterEndElement(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-        return done;
-    }
-
-    /* Start an element named "results" as child of payslip. */
-    rc = xmlTextWriterStartElement(writer, BAD_CAST "results");
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-        return done;
-    }
-
-    /* Write an element named "period" as child of results. */
-    rc = xmlTextWriterWriteElement(writer, BAD_CAST "period", personNumberCStr);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterWriteFormatElement\n");
-        return done;
-    }
-
-    // foreach result in results do start and end element
-
-    // payroll_result.each do |payroll_result|
-    //    tag_result = payroll_result.first
-    //    val_result = payroll_result.last
-    //    xml_results.result do |xml_result|
-    //      item_export_xml(payroll_config, payroll_names, tag_result, val_result, xml_result)
-    //    end
-    //  end
-
-        /* Start an element named "result" as child of results. */
-        rc = xmlTextWriterStartElement(writer, BAD_CAST "result");
-        if (rc < 0) {
-            NSLog(@"testXmlwriterFilename: Error at xmlTextWriterStartElement\n");
-            return done;
+                [xmlBuilder closeXmlElement];
+            }
+            [xmlBuilder closeXmlElement];
         }
-
-        // call exportXml from result
-
-        /* Close the element named result. */
-        rc = xmlTextWriterEndElement(writer);
-        if (rc < 0) {
-            NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-            return done;
-        }
-
-    // end of foreach result in results do start and end element
-
-    /* Close the element named results. */
-    rc = xmlTextWriterEndElement(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-        return done;
+        [xmlBuilder closeDocument];
     }
-
-    /* Close the element named payslip. */
-    rc = xmlTextWriterEndElement(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-        return done;
-    }
-
-    /* Close the element named payslips. */
-    rc = xmlTextWriterEndElement(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndElement\n");
-        return done;
-    }
-
-    /* Here we could close the elements ORDER and EXAMPLE using the
-     * function xmlTextWriterEndElement, but since we do not want to
-     * write any other elements, we simply call xmlTextWriterEndDocument,
-     * which will do all the work. */
-    rc = xmlTextWriterEndDocument(writer);
-    if (rc < 0) {
-        NSLog(@"testXmlwriterFilename: Error at xmlTextWriterEndDocument\n");
-        return done;
-    }
-
-    xmlFreeTextWriter(writer);
-
     done = YES;
 
     return done;
+}
+
+- (BOOL)exportResultsXml:(PYGXmlBuilder*)xmlBuilder {
+    [self.results enumerateSorted:@selector(compare:) with:^(id key, id object, BOOL *stop) {
+        PYGTagRefer * tagResult = (PYGTagRefer *)key;
+        PYGPayrollResult * valResult = (PYGPayrollResult *)object;
+
+        if ([xmlBuilder openXmlElement:@"result"]) {
+            [self itemExportXml:xmlBuilder forTag:tagResult andValue:valResult];
+
+            [xmlBuilder closeXmlElement];
+        }
+    }];
+    return YES;
+}
+
+- (BOOL)itemExportXml:(PYGXmlBuilder*)xmlBuilder forTag:(PYGTagRefer *)tagResult andValue:(PYGPayrollResult *)valResult {
+    PYGPayrollTag *tagItem = [self.payrollConfig findTag:valResult.tagCode];
+    PYGPayrollConcept *tagConcept = [self.payrollConfig findConcept:valResult.conceptCode];
+    PYGPayrollName *tagName = [self.payrollNames findName:tagResult.code];
+
+    return [valResult exportXml:xmlBuilder forTag:tagResult andName:tagName withItem:tagItem andConcept:tagConcept];
 }
 
 @end
