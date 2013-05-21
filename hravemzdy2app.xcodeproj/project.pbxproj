@@ -36,6 +36,7 @@
 		32B0A22FC29656F8ABC5BC74 /* XMLWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AF8BBA737E276BB9A36B /* XMLWriter.m */; };
 		32B0A232CE62C76BC792B505 /* PYGTaxReliefChildConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A866E4AB9041D7D7A535 /* PYGTaxReliefChildConcept.m */; };
 		32B0A23CE546233341BA4B7A /* PYGTermEffectResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AF5CE8C2E6F76F20D011 /* PYGTermEffectResult.m */; };
+		32B0A23FE787F08F7217D5F1 /* summaryG.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AE288239496D9BECF4B8 /* summaryG.png */; };
 		32B0A254E51D36D1041AA957 /* PYGDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A30D59BCC7CBD94ED659 /* PYGDetailTableViewCell.xib */; };
 		32B0A273B29CA344EF0625B9 /* paycheck.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A3752CC5096ABC4E29D6 /* paycheck.mustache */; };
 		32B0A28F93126BBBAE981DFC /* PYGXmlResultExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A91C06176E463754D5EC /* PYGXmlResultExporter.m */; };
@@ -51,6 +52,7 @@
 		32B0A37ACB805156CD68EACC /* PayrollCalcScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AEF2891F090AF4C99F16 /* PayrollCalcScheduleTests.m */; };
 		32B0A380AC4F6CAAF7805FB6 /* PYGIncomeBaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A2278884351BDB18080C /* PYGIncomeBaseResult.m */; };
 		32B0A3B5079CEA073FA1A9B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A8A123614D5E6B51D666 /* InfoPlist.strings */; };
+		32B0A3C7C6F156C05F5EEAA5 /* income.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AE516BB2B9C9695BAF90 /* income.png */; };
 		32B0A3EE94406435DBCF5F5C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AED9FFB882A78CD850E5 /* Default@2x.png */; };
 		32B0A3FF899BF6B181BAA444 /* PRKGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A26D973CEF3A33FBD3E4 /* PRKGenerator.m */; };
 		32B0A426F87777453029B803 /* PYGTimesheetWorkConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ADA751798987E63D5ED6 /* PYGTimesheetWorkConcept.m */; };
@@ -74,9 +76,11 @@
 		32B0A5C8F016E4BFE845EB3C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0AFA3EFD769B197FB6EDC /* CoreGraphics.framework */; };
 		32B0A5E24AD973AFB2BC7FC0 /* PYGTaxReliefResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A710A852806622988175 /* PYGTaxReliefResult.m */; };
 		32B0A5F78A092731FA178392 /* PYGPayrollPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A0A37426D8FD721CC634 /* PYGPayrollPeriod.m */; };
+		32B0A604EEF6FDFF92CA5614 /* deduction.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A46AB532EDC0D9FD7E59 /* deduction.png */; };
 		32B0A6170FDA8B9FF3982AD5 /* PYGTaxEmployersSocialName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AB2173A3FAA8FF87F882 /* PYGTaxEmployersSocialName.m */; };
 		32B0A663B46E2EA4974725CF /* PYGTaxAdvanceConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A327A05513E45B43D0E5 /* PYGTaxAdvanceConcept.m */; };
 		32B0A66A1382D697F1C1326E /* PYGCodeNameRefer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A5EA0FEE55D6DDB8C061 /* PYGCodeNameRefer.m */; };
+		32B0A69475CCA218DD30E1A7 /* summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AC7D5AB1B347F233107C /* summary.png */; };
 		32B0A6BF4E93C813B5F91D2E /* PYGTagRefer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AA7AC73F3096C4D23AB1 /* PYGTagRefer.m */; };
 		32B0A6C4C8D0E520DA76CD0D /* PYGMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A985FFE3D77831A3BC49 /* PYGMasterViewController.m */; };
 		32B0A6D4973522C7518162B4 /* NSString+RubyCocoaString.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A5EB23E704FFCF7A3F47 /* NSString+RubyCocoaString.m */; };
@@ -100,6 +104,7 @@
 		32B0A8347679A718B47F8511 /* InvoiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A2043E6EA8E6E7157F07 /* InvoiceItem.m */; };
 		32B0A876EB3ADBB2978D7570 /* PYGScheduleWorkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A6BD9EC157E4A08FB26D /* PYGScheduleWorkName.m */; };
 		32B0A883BAF7B9C940406DE5 /* PYGTaxAdvanceBaseName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A8364B09C32C8536E2EA /* PYGTaxAdvanceBaseName.m */; };
+		32B0A889872D4AAB2D398FAB /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0AD637444A681B59ACA37 /* schedule.png */; };
 		32B0A8B853739BC83EACDCD4 /* PayrollCalcIncomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A1413C8779ED9F0CF248 /* PayrollCalcIncomeTests.m */; };
 		32B0A8D3077778A882FE856A /* PayrollCalcTaxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABEC3503670695AB03AC /* PayrollCalcTaxTests.m */; };
 		32B0A8D6D239CB5A82E0D8B4 /* PYGTimesheetWorkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ADB811832636133EACF3 /* PYGTimesheetWorkName.m */; };
@@ -306,6 +311,7 @@
 		32B0A42492002CC8F3093850 /* PYGPayTagGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPayTagGateway.m; sourceTree = "<group>"; };
 		32B0A42EEFB500FC841AD5FC /* PYGTaxIncomeBaseTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxIncomeBaseTag.h; sourceTree = "<group>"; };
 		32B0A4384B8373F0D3EC4136 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGDetailTableViewCell.xib; sourceTree = "<group>"; };
+		32B0A46AB532EDC0D9FD7E59 /* deduction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deduction.png; sourceTree = "<group>"; };
 		32B0A46CA4BB2BBFE897B6CD /* PYGTaxWithholdBaseTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxWithholdBaseTag.h; sourceTree = "<group>"; };
 		32B0A47978B2375F1BF884DD /* PYGPaymentDeductionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPaymentDeductionResult.m; sourceTree = "<group>"; };
 		32B0A48F92C9BFA38A7EA13A /* PdfPaycheckGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfPaycheckGenerator.m; sourceTree = "<group>"; };
@@ -464,6 +470,7 @@
 		32B0AC5D89311E91AE23A433 /* PYGHoursAbsenceTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGHoursAbsenceTag.h; sourceTree = "<group>"; };
 		32B0AC6A2E3C23629A26D975 /* PYGHoursAbsenceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGHoursAbsenceName.h; sourceTree = "<group>"; };
 		32B0AC7178B7E906DF3826C7 /* PYGTaxReliefPayerTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxReliefPayerTag.h; sourceTree = "<group>"; };
+		32B0AC7D5AB1B347F233107C /* summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary.png; sourceTree = "<group>"; };
 		32B0AC949DA8AAA3F106844C /* PYGTaxAdvanceName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxAdvanceName.m; sourceTree = "<group>"; };
 		32B0ACBD30FE5A4F2A05A172 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PYGDetailViewController.xib; sourceTree = "<group>"; };
 		32B0ACCF6065BDEA4B7721AC /* PYGTaxAdvanceBaseName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxAdvanceBaseName.h; sourceTree = "<group>"; };
@@ -475,6 +482,7 @@
 		32B0AD43A60510CFB1514F9A /* PYGSalaryBaseTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGSalaryBaseTag.h; sourceTree = "<group>"; };
 		32B0AD4C2E610CA75E657A04 /* paycheck-export.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "paycheck-export.css"; sourceTree = "<group>"; };
 		32B0AD517F25F38223C47949 /* PYGDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGDetailTableViewCell.m; sourceTree = "<group>"; };
+		32B0AD637444A681B59ACA37 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
 		32B0AD6E5A8E3687A8BDF64A /* PYGTaxEmployersSocialConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxEmployersSocialConcept.m; sourceTree = "<group>"; };
 		32B0AD76CEA6737EC9285C8B /* PYGScheduleWeeklyConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGScheduleWeeklyConcept.m; sourceTree = "<group>"; };
 		32B0AD80F87F7EABFBFDD48F /* PYGTaxAdvanceResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxAdvanceResult.h; sourceTree = "<group>"; };
@@ -496,8 +504,10 @@
 		32B0AE200F7EED4974636B92 /* PYGCodeNameRefer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGCodeNameRefer.h; sourceTree = "<group>"; };
 		32B0AE25B379776F4ED9B70E /* PYGPayrollPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGPayrollPeriod.h; sourceTree = "<group>"; };
 		32B0AE275B206A1572447FBF /* PRKRenderHtmlOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PRKRenderHtmlOperation.m; path = PdfReportKit/PRKRenderHtmlOperation.m; sourceTree = SOURCE_ROOT; };
+		32B0AE288239496D9BECF4B8 /* summaryG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summaryG.png; sourceTree = "<group>"; };
 		32B0AE33AF4591927B430622 /* PYGIncomeNettoConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGIncomeNettoConcept.m; sourceTree = "<group>"; };
 		32B0AE4A27F58A6E89DCE197 /* PYGTaxReliefChildName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxReliefChildName.h; sourceTree = "<group>"; };
+		32B0AE516BB2B9C9695BAF90 /* income.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = income.png; sourceTree = "<group>"; };
 		32B0AE76A4FB4369BC27262E /* PdfRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfRenderer.m; sourceTree = "<group>"; };
 		32B0AE84B216FA4E48F0D44D /* NSDictionary+Func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Func.h"; sourceTree = "<group>"; };
 		32B0AE888B205771281646CB /* PYGTaxWithholdBaseConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxWithholdBaseConcept.m; sourceTree = "<group>"; };
@@ -593,6 +603,18 @@
 				32B0A292E0615CF7B536FEC4 /* Templates */,
 			);
 			path = hravemzdy.library;
+			sourceTree = "<group>";
+		};
+		32B0A112E1609C276C74B629 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				32B0A46AB532EDC0D9FD7E59 /* deduction.png */,
+				32B0AE516BB2B9C9695BAF90 /* income.png */,
+				32B0AD637444A681B59ACA37 /* schedule.png */,
+				32B0AC7D5AB1B347F233107C /* summary.png */,
+				32B0AE288239496D9BECF4B8 /* summaryG.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		32B0A16A7CBE9416E2C301EC /* Business Layer.libs */ = {
@@ -778,6 +800,7 @@
 				32B0AD4C2E610CA75E657A04 /* paycheck-export.css */,
 				32B0ABF8CBB78692FF614E88 /* paycheck-export.xslt */,
 				32B0A64E293235461CB6609D /* paycheck-export.html */,
+				32B0A112E1609C276C74B629 /* Assets */,
 			);
 			path = hravemzdy2app;
 			sourceTree = "<group>";
@@ -1222,6 +1245,11 @@
 				4EFEE61A174B99EF0093EAC5 /* Icon@2x.png in Resources */,
 				4EFEE61C174B9A100093EAC5 /* Icon-72.png in Resources */,
 				4EFEE61E174B9A1D0093EAC5 /* Icon-72@2x.png in Resources */,
+				32B0A604EEF6FDFF92CA5614 /* deduction.png in Resources */,
+				32B0A3C7C6F156C05F5EEAA5 /* income.png in Resources */,
+				32B0A889872D4AAB2D398FAB /* schedule.png in Resources */,
+				32B0A69475CCA218DD30E1A7 /* summary.png in Resources */,
+				32B0A23FE787F08F7217D5F1 /* summaryG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
