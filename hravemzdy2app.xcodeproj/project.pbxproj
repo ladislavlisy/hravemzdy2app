@@ -186,6 +186,17 @@
 		32B0AFD00C640AD8C4BBB3F8 /* PYGPayrollTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A635C19FAC128114AAFA /* PYGPayrollTag.m */; };
 		32B0AFE9A4B2AAF22D999AE1 /* PYGTaxBonusChildConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A4FADEB28D3261897749 /* PYGTaxBonusChildConcept.m */; };
 		4E9904B5172D36CC00B70A01 /* apple-touch-full.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9904B4172D36CC00B70A01 /* apple-touch-full.png */; };
+		4EFEE612174B99EF0093EAC5 /* apple-touch-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE609174B99EF0093EAC5 /* apple-touch-72.png */; };
+		4EFEE613174B99EF0093EAC5 /* apple-touch-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60A174B99EF0093EAC5 /* apple-touch-72@2x.png */; };
+		4EFEE614174B99EF0093EAC5 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60B174B99EF0093EAC5 /* Icon-72.png */; };
+		4EFEE615174B99EF0093EAC5 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */; };
+		4EFEE616174B99EF0093EAC5 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */; };
+		4EFEE617174B99EF0093EAC5 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60E174B99EF0093EAC5 /* Icon-Small.png */; };
+		4EFEE618174B99EF0093EAC5 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60F174B99EF0093EAC5 /* Icon-Small@2x.png */; };
+		4EFEE619174B99EF0093EAC5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE610174B99EF0093EAC5 /* Icon.png */; };
+		4EFEE61A174B99EF0093EAC5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE611174B99EF0093EAC5 /* Icon@2x.png */; };
+		4EFEE61C174B9A100093EAC5 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE61B174B9A100093EAC5 /* Icon-72.png */; };
+		4EFEE61E174B9A1D0093EAC5 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE61D174B9A1D0093EAC5 /* Icon-72@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -526,6 +537,17 @@
 		32B0AFE72A7F6EAA1D72B888 /* PayrollRoundingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollRoundingTests.m; path = hravemzdylibTest/PayrollRoundingTests.m; sourceTree = SOURCE_ROOT; };
 		32B0AFEA3EBE5F75C3273E78 /* PYGTimesheetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTimesheetResult.m; sourceTree = "<group>"; };
 		4E9904B4172D36CC00B70A01 /* apple-touch-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-full.png"; sourceTree = "<group>"; };
+		4EFEE609174B99EF0093EAC5 /* apple-touch-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-72.png"; sourceTree = "<group>"; };
+		4EFEE60A174B99EF0093EAC5 /* apple-touch-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-72@2x.png"; sourceTree = "<group>"; };
+		4EFEE60B174B99EF0093EAC5 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		4EFEE60E174B99EF0093EAC5 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		4EFEE60F174B99EF0093EAC5 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		4EFEE610174B99EF0093EAC5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4EFEE611174B99EF0093EAC5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		4EFEE61B174B9A100093EAC5 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4EFEE61D174B9A1D0093EAC5 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -715,6 +737,15 @@
 		32B0A58B73CB1FFBB675A0C4 /* hravemzdy2app */ = {
 			isa = PBXGroup;
 			children = (
+				4EFEE609174B99EF0093EAC5 /* apple-touch-72.png */,
+				4EFEE60A174B99EF0093EAC5 /* apple-touch-72@2x.png */,
+				4EFEE60B174B99EF0093EAC5 /* Icon-72.png */,
+				4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */,
+				4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */,
+				4EFEE60E174B99EF0093EAC5 /* Icon-Small.png */,
+				4EFEE60F174B99EF0093EAC5 /* Icon-Small@2x.png */,
+				4EFEE610174B99EF0093EAC5 /* Icon.png */,
+				4EFEE611174B99EF0093EAC5 /* Icon@2x.png */,
 				32B0A7408F15EE017E799E05 /* Supporting Files */,
 				32B0A1A186858C41708B8FA7 /* PYGAppDelegate.h */,
 				32B0A72171D4457D46CD9DB6 /* PYGAppDelegate.m */,
@@ -852,6 +883,8 @@
 		32B0A9672113D37D9F93776A = {
 			isa = PBXGroup;
 			children = (
+				4EFEE61D174B9A1D0093EAC5 /* Icon-72@2x.png */,
+				4EFEE61B174B9A100093EAC5 /* Icon-72.png */,
 				4E9904B4172D36CC00B70A01 /* apple-touch-full.png */,
 				32B0A75025B507B867D9EB6E /* Products */,
 				32B0A1CD92CC06DA1A914189 /* Frameworks */,
@@ -1178,6 +1211,17 @@
 				32B0AB862462D148241F96D2 /* paycheck-export.css in Resources */,
 				32B0AC828DCE70B5EDD47711 /* paycheck-export.xslt in Resources */,
 				32B0A5411F0DFBFE56D40764 /* paycheck-export.html in Resources */,
+				4EFEE612174B99EF0093EAC5 /* apple-touch-72.png in Resources */,
+				4EFEE613174B99EF0093EAC5 /* apple-touch-72@2x.png in Resources */,
+				4EFEE614174B99EF0093EAC5 /* Icon-72.png in Resources */,
+				4EFEE615174B99EF0093EAC5 /* Icon-72@2x.png in Resources */,
+				4EFEE616174B99EF0093EAC5 /* Icon-Small-50.png in Resources */,
+				4EFEE617174B99EF0093EAC5 /* Icon-Small.png in Resources */,
+				4EFEE618174B99EF0093EAC5 /* Icon-Small@2x.png in Resources */,
+				4EFEE619174B99EF0093EAC5 /* Icon.png in Resources */,
+				4EFEE61A174B99EF0093EAC5 /* Icon@2x.png in Resources */,
+				4EFEE61C174B9A100093EAC5 /* Icon-72.png in Resources */,
+				4EFEE61E174B9A1D0093EAC5 /* Icon-72@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1424,9 +1468,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SDKROOT)/usr/include/libxml2\"",
-				);
+				HEADER_SEARCH_PATHS = "\"$(SDKROOT)/usr/include/libxml2\"";
 				INFOPLIST_FILE = "hravemzdy2app/hravemzdy2app-Info.plist";
 				LIBRARY_SEARCH_PATHS = "\"${PROJECT_DIR}/GRMustache/lib\"/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1531,9 +1573,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hravemzdy2app/hravemzdy2app-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SDKROOT)/usr/include/libxml2\"",
-				);
+				HEADER_SEARCH_PATHS = "\"$(SDKROOT)/usr/include/libxml2\"";
 				INFOPLIST_FILE = "hravemzdy2app/hravemzdy2app-Info.plist";
 				LIBRARY_SEARCH_PATHS = "\"${PROJECT_DIR}/GRMustache/lib\"/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
