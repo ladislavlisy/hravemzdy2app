@@ -66,6 +66,10 @@
     return CALC_CATEGORY_NETTO;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SUMMARY;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     PYGPaymentResult * advanceBaseValue = (PYGPaymentResult *) [self getResult:results byTagCode:TAG_TAX_ADVANCE];
     PYGTaxReliefResult * reliefClaimPayer = (PYGTaxReliefResult *) [self getResult:results byTagCode:TAG_TAX_CLAIM_PAYER];

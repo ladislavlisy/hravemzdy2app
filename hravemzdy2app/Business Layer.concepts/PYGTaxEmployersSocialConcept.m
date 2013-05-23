@@ -69,6 +69,10 @@
     return CALC_CATEGORY_NETTO;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SUMMARY;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     NSDecimalNumber * paymentIncome = DECIMAL_ZERO;
     if (self.isInterest == NO) {

@@ -70,7 +70,11 @@
     return CALC_CATEGORY_NETTO;
 }
 
-- (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
+ - (NSUInteger)typeOfResult {
+     return TYPE_RESULT_DEDUCTION;
+ }
+
+ - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     NSDecimalNumber * employerIncome = DECIMAL_ZERO;
     NSDecimalNumber * employeeIncome = DECIMAL_ZERO;
     if (self.isInterest==NO)

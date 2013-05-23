@@ -54,6 +54,7 @@
 @property (strong, nonatomic) NSArray* placeholders2;
 @property (strong, nonatomic) NSArray* placeholders6;
 @property (strong, nonatomic) NSNumberFormatter* currencyFormatter;
+@property (strong, nonatomic) NSLocale* currencyLocaleCZ;
 @end
 
 @implementation PYGMasterViewController
@@ -64,10 +65,10 @@
     self.title = NSLocalizedString(@"Payroll specs", @"Payroll specs");
     self.sections = @[
             @"Payroll details",
-            @"Payslip details",
             @"Tax payer declaration",
             @"Tax disability benefit",
             @"Tax child benefit",
+            @"Payslip details",
             @"Contact for results"
     ];
     self.sectionRows1 = @[
@@ -117,15 +118,22 @@
             @"MyPayroll Best",
             @"pyarollee@my-company.com"
     ];
-    self.currencyFormatter = [[NSNumberFormatter alloc] init];
-    [self.currencyFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [self.currencyFormatter setMaximumFractionDigits:2];
-    [self.currencyFormatter setLocale:[NSLocale currentLocale]];
+    [self setupCurrencyFormatter];
 
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     return self;
+}
+
+- (void)setupCurrencyFormatter {
+    self.currencyLocaleCZ = [[NSLocale alloc] initWithLocaleIdentifier:@"cz_CZ"];
+    self.currencyFormatter = [[NSNumberFormatter alloc] init];
+
+    [self.currencyFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [self.currencyFormatter setMaximumFractionDigits:2];
+    [self.currencyFormatter setGeneratesDecimalNumbers:YES];
+    [self.currencyFormatter setLocale:self.currencyLocaleCZ];
 }
 
 - (void)viewDidLoad
@@ -174,10 +182,10 @@
 {
     switch (section) {
         case 0: return self.sectionRows1.count; break;
-        case 1: return self.sectionRows2.count; break;
-        case 2: return self.sectionRows3.count; break;
-        case 3: return self.sectionRows4.count; break;
-        case 4: return self.sectionRows5.count; break;
+        case 1: return self.sectionRows3.count; break;
+        case 2: return self.sectionRows4.count; break;
+        case 3: return self.sectionRows5.count; break;
+        case 4: return self.sectionRows2.count; break;
         case 5: return self.sectionRows6.count; break;
         default: break;
     }
@@ -202,7 +210,7 @@ titleForHeaderInSection:(NSInteger)section
 - (UITextField *)createSection1CellWithNumberField:(UITableViewCell *)cell andValue:(NSDecimalNumber *) decimalValue inRow:(NSUInteger)row {
     UITextField *tf;
     cell.textLabel.text = self.sectionRows1[row] ;
-    NSString * textFieldValue = [self.currencyFormatter stringFromNumber:decimalValue];
+    NSString * textFieldValue = [self formatCurrencyString:decimalValue];
     tf = [self makeTextField:textFieldValue placeholder:self.placeholders1[row]];
     [tf setTextAlignment:NSTextAlignmentRight];
     [tf setKeyboardType:UIKeyboardTypeNumberPad];
@@ -453,19 +461,19 @@ titleForHeaderInSection:(NSInteger)section
             break;
         }
         case 1: {
-            [self createCellInSectionPayslipDetails:cell forRow:(NSUInteger)indexPath.row];
-            break;
-        }
-        case 2: {
             [self createCellInSectionTaxDeclaration:cell forRow:(NSUInteger)indexPath.row];
             break;
         }
-        case 3: {
+        case 2: {
             [self createCellInSectionDisabilityBenefit:cell forRow:(NSUInteger)indexPath.row];
             break;
         }
-        case 4: {
+        case 3: {
             [self createCellInSectionChildBenefit:cell forRow:(NSUInteger)indexPath.row];
+            break;
+        }
+        case 4: {
+            [self createCellInSectionPayslipDetails:cell forRow:(NSUInteger)indexPath.row];
             break;
         }
         case 5: {
@@ -524,14 +532,17 @@ titleForHeaderInSection:(NSInteger)section
 - (IBAction)numberFieldEditStarted:(id)sender {
     UITextField * textField = (UITextField *)sender;
     NSString * stringValue = [textField text];
-    NSDecimalNumber * decimalValue = [self.currencyFormatter numberFromString:stringValue];
-    [textField setText:[decimalValue stringValue]];
+
+    NSDecimalNumber * decimalValue = [self getDecimalNumberOrZeroFromCurrencyString:stringValue];
+    [textField setText:[self formatString:decimalValue]];
 }
 
 - (IBAction)numberFieldFinished:(id)sender {
     UITextField * textField = (UITextField *)sender;
-    NSDecimalNumber * decimalValue = [self getDecimalNumberOrZeroFromString:[textField text]];
-    [textField setText:[self.currencyFormatter stringFromNumber:decimalValue]];
+    NSString * stringValue = [textField text];
+
+    NSDecimalNumber * decimalValue = [self getDecimalNumberOrZeroFromString:stringValue];
+    [textField setText:[self formatCurrencyString:decimalValue]];
 }
 
 // TextField value changed, store the new value.
@@ -540,7 +551,7 @@ titleForHeaderInSection:(NSInteger)section
         self.description = textField.text ;
     }
     else if ( textField == self.salaryMoneyField ) {
-        self.salaryMoney = [self.currencyFormatter numberFromString:[textField text]];
+        self.salaryMoney = [self getDecimalNumberOrZeroFromCurrencyString:textField.text];
     }
     else if ( textField == self.employerNameField ) {
         self.employerName = textField.text ;
@@ -632,9 +643,37 @@ titleForHeaderInSection:(NSInteger)section
     return payroll_titles;
 }
 
+- (NSString *)formatString:(NSDecimalNumber *)decimalValue {
+    if (isnan(decimalValue.doubleValue) || [decimalValue isEqual:DECIMAL_ZERO]) {
+        return  @"";
+    }
+    return [decimalValue stringValue];
+}
+
+- (NSString *)formatCurrencyString:(NSDecimalNumber *)decimalValue {
+    return [self.currencyFormatter stringFromNumber:decimalValue];
+}
+
 - (NSDecimalNumber *)getDecimalNumberOrZeroFromString:(NSString *)formattedValue {
     NSDecimalNumber * decimalValue = [NSDecimalNumber decimalNumberWithString:formattedValue];
     if (isnormal(decimalValue.doubleValue)) {
+        return decimalValue ;
+    }
+    return DECIMAL_ZERO;
+}
+
+- (NSDecimalNumber *)getDecimalNumberOrZeroFromCurrencyString:(NSString *)formattedValue {
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(CZK )"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    // create the new string by replacing the matching of the regex pattern with the template pattern(whitespace)
+    NSString * formattedAmount = [regex stringByReplacingMatchesInString:formattedValue options:0
+                                                                range:NSMakeRange(0, [formattedValue length])
+                                                         withTemplate:@"CZK\u00A0"];
+    NSNumber *numberValue = [self.currencyFormatter numberFromString:formattedAmount];
+    NSDecimalNumber *decimalValue = [NSDecimalNumber decimalNumberWithDecimal:[numberValue decimalValue]];
+    if (!isnan(decimalValue.doubleValue)) {
         return decimalValue ;
     }
     return DECIMAL_ZERO;

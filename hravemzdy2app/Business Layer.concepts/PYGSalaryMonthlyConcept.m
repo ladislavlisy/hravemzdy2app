@@ -80,6 +80,10 @@
     return CALC_CATEGORY_AMOUNT;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_INCOME;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     NSDictionary * evaluateResults =  results;
     PYGTimesheetResult * resultTimesheet = (PYGTimesheetResult *)[self getResult:evaluateResults byTagCode:TAG_TIMESHEET_PERIOD];

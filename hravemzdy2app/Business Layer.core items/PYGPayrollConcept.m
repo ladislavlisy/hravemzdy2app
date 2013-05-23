@@ -68,6 +68,10 @@
     return CALC_CATEGORY_START;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_NULL;
+}
+
 - (BOOL)exportXml:(PYGXmlBuilder*)xmlBuilder {
     return YES;
 }

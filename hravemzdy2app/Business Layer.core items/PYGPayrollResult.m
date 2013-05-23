@@ -15,6 +15,7 @@
 
 #define EXP_TITLE @"title"
 #define EXP_VALUE @"value"
+#define EXP_IMAGE @"image"
 
 @implementation PYGPayrollResult {
 
@@ -48,11 +49,39 @@
     return nil;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_NULL;
+}
+
 - (NSString *)xmlValue {
     return @"";
 }
 
 - (NSString *)exportValueResult {
+    return @"";
+}
+
+- (NSString *)exportImageFromTag:(PYGPayrollTag *)tagItem andConcept:(PYGPayrollConcept *)tagConcept {
+    NSUInteger typeOfResult = TYPE_RESULT_SUMMARY;
+    if ([tagItem typeOfResult] != 0) {
+        typeOfResult = [tagItem typeOfResult];
+    }
+    else if ([tagConcept typeOfResult] != 0) {
+        typeOfResult = [tagConcept typeOfResult];
+    }
+    else if ([self typeOfResult] != 0) {
+        typeOfResult = [self typeOfResult];
+    }
+    switch (typeOfResult) {
+        case TYPE_RESULT_SUMMARY:
+            return @"summaryG";
+        case TYPE_RESULT_SCHEDULE:
+            return @"schedule";
+        case TYPE_RESULT_INCOME:
+            return @"income";
+        case TYPE_RESULT_DEDUCTION:
+            return @"deduction";
+    }
     return @"";
 }
 
@@ -63,7 +92,7 @@
 
 - (NSDictionary *)exportTitleValueForTagRefer:(PYGTagRefer *)tagRefer andTagName:(PYGPayrollName*)tagName
                                andTagItem:(PYGPayrollTag *)tagItem andConcept:(PYGPayrollConcept *)tagConcept {
-    return @{EXP_TITLE : tagName.title, EXP_VALUE : [self exportValueResult]};
+    return @{EXP_TITLE : tagName.title, EXP_VALUE : [self exportValueResult], EXP_IMAGE : [self exportImageFromTag:tagItem andConcept:tagConcept]};
 }
 
 - (NSComparisonResult)compareUInt:(NSUInteger) lhs withUInt:(NSUInteger) rhs {

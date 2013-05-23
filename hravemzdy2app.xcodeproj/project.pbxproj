@@ -95,6 +95,7 @@
 		32B0A763072A8B5FF302A229 /* PYGInsuranceHealthTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A328EA993FCA4F551F43 /* PYGInsuranceHealthTag.m */; };
 		32B0A779E0CBAA58587F9516 /* UIMonthYearPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A173DE93A115B1A62ED9 /* UIMonthYearPicker.m */; };
 		32B0A78278FBF95AC18C5A90 /* PYGIncomeGrossName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A9B475F607FFB79277D8 /* PYGIncomeGrossName.m */; };
+		32B0A7A771656356AE36BF4A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A68C68C53E76A9D056FD /* MessageUI.framework */; };
 		32B0A7B0EA0BD957097AEB52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B0A1983D682FDB1B2FB23C /* Foundation.framework */; };
 		32B0A7B502632BAF08D952B4 /* PYGPdfResultExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABE65EDAC452C6A79FDA /* PYGPdfResultExporter.m */; };
 		32B0A7C594E4FBC8B9047AAB /* PYGPayrollResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A2C65E201BED7CD5070F /* PYGPayrollResult.m */; };
@@ -190,9 +191,6 @@
 		32B0AFB3F2E61E97BC62973F /* PayrollCalcNetIncomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AF45DAB4E5678BC7EFBC /* PayrollCalcNetIncomeTests.m */; };
 		32B0AFD00C640AD8C4BBB3F8 /* PYGPayrollTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A635C19FAC128114AAFA /* PYGPayrollTag.m */; };
 		32B0AFE9A4B2AAF22D999AE1 /* PYGTaxBonusChildConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A4FADEB28D3261897749 /* PYGTaxBonusChildConcept.m */; };
-		4E9904B5172D36CC00B70A01 /* apple-touch-full.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9904B4172D36CC00B70A01 /* apple-touch-full.png */; };
-		4EFEE612174B99EF0093EAC5 /* apple-touch-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE609174B99EF0093EAC5 /* apple-touch-72.png */; };
-		4EFEE613174B99EF0093EAC5 /* apple-touch-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60A174B99EF0093EAC5 /* apple-touch-72@2x.png */; };
 		4EFEE614174B99EF0093EAC5 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60B174B99EF0093EAC5 /* Icon-72.png */; };
 		4EFEE615174B99EF0093EAC5 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */; };
 		4EFEE616174B99EF0093EAC5 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */; };
@@ -200,8 +198,6 @@
 		4EFEE618174B99EF0093EAC5 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60F174B99EF0093EAC5 /* Icon-Small@2x.png */; };
 		4EFEE619174B99EF0093EAC5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE610174B99EF0093EAC5 /* Icon.png */; };
 		4EFEE61A174B99EF0093EAC5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE611174B99EF0093EAC5 /* Icon@2x.png */; };
-		4EFEE61C174B9A100093EAC5 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE61B174B9A100093EAC5 /* Icon-72.png */; };
-		4EFEE61E174B9A1D0093EAC5 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE61D174B9A1D0093EAC5 /* Icon-72@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,6 +344,7 @@
 		32B0A5E87085EADB804F0BFA /* PYGInsuranceSocialConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGInsuranceSocialConcept.h; sourceTree = "<group>"; };
 		32B0A5EA0FEE55D6DDB8C061 /* PYGCodeNameRefer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGCodeNameRefer.m; sourceTree = "<group>"; };
 		32B0A5EB23E704FFCF7A3F47 /* NSString+RubyCocoaString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RubyCocoaString.m"; sourceTree = "<group>"; };
+		32B0A602CBD79FC4FBA74830 /* UiPeriodPopoverControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UiPeriodPopoverControllerDelegate.h; sourceTree = "<group>"; };
 		32B0A60578B1B5EF9A4BBCF9 /* PYGTermEffectResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTermEffectResult.h; sourceTree = "<group>"; };
 		32B0A605B5B3CC7296AB556F /* PYGPayrollName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPayrollName.m; sourceTree = "<group>"; };
 		32B0A608C4E2348C838B2BAD /* PYGInsuranceSocialBaseConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGInsuranceSocialBaseConcept.m; sourceTree = "<group>"; };
@@ -358,6 +355,7 @@
 		32B0A649737DF4ECB4B27C4A /* PYGTaxAdvanceName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxAdvanceName.h; sourceTree = "<group>"; };
 		32B0A64E293235461CB6609D /* paycheck-export.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "paycheck-export.html"; sourceTree = "<group>"; };
 		32B0A67549095306CEB81B6C /* PYGTaxClaimResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTaxClaimResult.h; sourceTree = "<group>"; };
+		32B0A68C68C53E76A9D056FD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		32B0A6B0271AFBD94E184C24 /* PYGTimesheetWorkConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGTimesheetWorkConcept.h; sourceTree = "<group>"; };
 		32B0A6BBD8746DFCC3464192 /* PYGTaxClaimChildTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxClaimChildTag.m; sourceTree = "<group>"; };
 		32B0A6BBF3CD4E8B08B54DA4 /* PYGTaxReliefPayerConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxReliefPayerConcept.m; sourceTree = "<group>"; };
@@ -390,6 +388,7 @@
 		32B0A81E35AA147BC4E40947 /* PYGIncomeNettoTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGIncomeNettoTag.m; sourceTree = "<group>"; };
 		32B0A828D2FECEE0CD915E32 /* PYGTaxClaimDisabilityTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxClaimDisabilityTag.m; sourceTree = "<group>"; };
 		32B0A8364B09C32C8536E2EA /* PYGTaxAdvanceBaseName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxAdvanceBaseName.m; sourceTree = "<group>"; };
+		32B0A83C5012155386509779 /* type_of_results.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type_of_results.h; sourceTree = "<group>"; };
 		32B0A84416237FE2E8FFCFC7 /* PYGPayrollProcessTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGPayrollProcessTestCase.m; sourceTree = "<group>"; };
 		32B0A866E4AB9041D7D7A535 /* PYGTaxReliefChildConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxReliefChildConcept.m; sourceTree = "<group>"; };
 		32B0A86B7ACD80AE80A22505 /* PYGHoursWorkingConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGHoursWorkingConcept.m; sourceTree = "<group>"; };
@@ -546,9 +545,6 @@
 		32B0AFE2245EDF10F1E9B600 /* PYGInsuranceHealthBaseName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGInsuranceHealthBaseName.h; sourceTree = "<group>"; };
 		32B0AFE72A7F6EAA1D72B888 /* PayrollRoundingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollRoundingTests.m; path = hravemzdylibTest/PayrollRoundingTests.m; sourceTree = SOURCE_ROOT; };
 		32B0AFEA3EBE5F75C3273E78 /* PYGTimesheetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTimesheetResult.m; sourceTree = "<group>"; };
-		4E9904B4172D36CC00B70A01 /* apple-touch-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-full.png"; sourceTree = "<group>"; };
-		4EFEE609174B99EF0093EAC5 /* apple-touch-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-72.png"; sourceTree = "<group>"; };
-		4EFEE60A174B99EF0093EAC5 /* apple-touch-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-72@2x.png"; sourceTree = "<group>"; };
 		4EFEE60B174B99EF0093EAC5 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -556,8 +552,6 @@
 		4EFEE60F174B99EF0093EAC5 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		4EFEE610174B99EF0093EAC5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4EFEE611174B99EF0093EAC5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		4EFEE61B174B9A100093EAC5 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		4EFEE61D174B9A1D0093EAC5 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,6 +575,7 @@
 				32B0A5C01FB479FD654B12B6 /* libGRMustache6-iOS.a in Frameworks */,
 				32B0A121FD680FDB38F5FF4F /* CoreText.framework in Frameworks */,
 				32B0AB4756FBB39EF8993BE4 /* libxml2.dylib in Frameworks */,
+				32B0A7A771656356AE36BF4A /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +661,7 @@
 				32B0A217F1B17FD67C5EB244 /* libGRMustache6-iOS.a */,
 				32B0A9C052A6DA70C972F5F0 /* CoreText.framework */,
 				32B0A22A6326CC62BE98E9EB /* libxml2.dylib */,
+				32B0A68C68C53E76A9D056FD /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -759,8 +755,6 @@
 		32B0A58B73CB1FFBB675A0C4 /* hravemzdy2app */ = {
 			isa = PBXGroup;
 			children = (
-				4EFEE609174B99EF0093EAC5 /* apple-touch-72.png */,
-				4EFEE60A174B99EF0093EAC5 /* apple-touch-72@2x.png */,
 				4EFEE60B174B99EF0093EAC5 /* Icon-72.png */,
 				4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */,
 				4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */,
@@ -801,6 +795,7 @@
 				32B0ABF8CBB78692FF614E88 /* paycheck-export.xslt */,
 				32B0A64E293235461CB6609D /* paycheck-export.html */,
 				32B0A112E1609C276C74B629 /* Assets */,
+				32B0A602CBD79FC4FBA74830 /* UiPeriodPopoverControllerDelegate.h */,
 			);
 			path = hravemzdy2app;
 			sourceTree = "<group>";
@@ -840,6 +835,7 @@
 				32B0AF6E626F6CC1B6FF9397 /* Business Layer.results */,
 				32B0A1AEC00110E34398A31D /* Business Layer.symbols */,
 				32B0AB57621F34C0ECF33A38 /* hravemzdylib.h */,
+				32B0A83C5012155386509779 /* type_of_results.h */,
 			);
 			path = hravemzdy.library;
 			sourceTree = "<group>";
@@ -906,9 +902,6 @@
 		32B0A9672113D37D9F93776A = {
 			isa = PBXGroup;
 			children = (
-				4EFEE61D174B9A1D0093EAC5 /* Icon-72@2x.png */,
-				4EFEE61B174B9A100093EAC5 /* Icon-72.png */,
-				4E9904B4172D36CC00B70A01 /* apple-touch-full.png */,
 				32B0A75025B507B867D9EB6E /* Products */,
 				32B0A1CD92CC06DA1A914189 /* Frameworks */,
 				32B0A58B73CB1FFBB675A0C4 /* hravemzdy2app */,
@@ -1223,7 +1216,6 @@
 				32B0A2261C2C80010B2294DC /* PYGMasterViewController.xib in Resources */,
 				32B0AA0EE69575361E5ACEEF /* PYGDetailViewController.xib in Resources */,
 				32B0A254E51D36D1041AA957 /* PYGDetailTableViewCell.xib in Resources */,
-				4E9904B5172D36CC00B70A01 /* apple-touch-full.png in Resources */,
 				32B0AB65E69A6897486232C6 /* PaycheckView.xib in Resources */,
 				32B0ACD123F6B913E554D3E9 /* paycheck_logo.png in Resources */,
 				32B0AC35B39A50C95DA5F983 /* paycheck_text.png in Resources */,
@@ -1234,8 +1226,6 @@
 				32B0AB862462D148241F96D2 /* paycheck-export.css in Resources */,
 				32B0AC828DCE70B5EDD47711 /* paycheck-export.xslt in Resources */,
 				32B0A5411F0DFBFE56D40764 /* paycheck-export.html in Resources */,
-				4EFEE612174B99EF0093EAC5 /* apple-touch-72.png in Resources */,
-				4EFEE613174B99EF0093EAC5 /* apple-touch-72@2x.png in Resources */,
 				4EFEE614174B99EF0093EAC5 /* Icon-72.png in Resources */,
 				4EFEE615174B99EF0093EAC5 /* Icon-72@2x.png in Resources */,
 				4EFEE616174B99EF0093EAC5 /* Icon-Small-50.png in Resources */,
@@ -1243,8 +1233,6 @@
 				4EFEE618174B99EF0093EAC5 /* Icon-Small@2x.png in Resources */,
 				4EFEE619174B99EF0093EAC5 /* Icon.png in Resources */,
 				4EFEE61A174B99EF0093EAC5 /* Icon@2x.png in Resources */,
-				4EFEE61C174B9A100093EAC5 /* Icon-72.png in Resources */,
-				4EFEE61E174B9A1D0093EAC5 /* Icon-72@2x.png in Resources */,
 				32B0A604EEF6FDFF92CA5614 /* deduction.png in Resources */,
 				32B0A3C7C6F156C05F5EEAA5 /* income.png in Resources */,
 				32B0A889872D4AAB2D398FAB /* schedule.png in Resources */,

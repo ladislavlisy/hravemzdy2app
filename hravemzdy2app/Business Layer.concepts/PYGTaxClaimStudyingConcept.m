@@ -44,6 +44,10 @@
     _reliefCode = U_SAFE_VALUES(@"relief_code");
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SUMMARY;
+}
+
 +(PYGTaxClaimStudyingConcept *)concept
 {
     return [[self alloc] initWithTagCode:TAG_UNKNOWN andValues:EMPTY_VALUES];

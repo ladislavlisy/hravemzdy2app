@@ -6,26 +6,13 @@
 //  Copyright (c) 2013 ___HRAVEMZDY___. All rights reserved.
 //
 
-#import <CoreGraphics/CoreGraphics.h>
 #import "PYGDetailViewController.h"
-#import "PdfRenderer.h"
 #import "PdfPaycheckGenerator.h"
-#import "PYGPayrollProcess.h"
-#import "PYGPayConceptGateway.h"
-#import "PYGPayTagGateway.h"
-#import "PYGSymbolTags.h"
-#import "PYGResultExporter.h"
 #import "PYGPayrollPeriod.h"
 #import "NSDate+PYGDateOnly.h"
 #import "PYGPeriodPickerViewController.h"
-#import "PYGTagRefer.h"
-#import "PYGXmlResultExporter.h"
 #import "PYGPayrollModel.h"
-
-typedef enum {
-    DetailTitleCell = 1,
-    DetailValueCell = 2
-} allDetailCells;
+#import "PYGDetailTableViewCell.h"
 
 #define SECTION_0 @0
 #define SECTION_1 @1
@@ -37,6 +24,7 @@ typedef enum {
 
 #define RESULT_TITLE @"title"
 #define RESULT_VALUE @"value"
+#define RESULT_IMAGE @"image"
 
 @interface PYGDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -181,6 +169,7 @@ typedef enum {
 - (void)pickPayrollPeriod {
     PYGPeriodPickerViewController *pickerViewController = [[PYGPeriodPickerViewController alloc] init];
     NSDate * selectedPeriod = self.getPeriodDate;
+    pickerViewController.delegate = self;
     [pickerViewController setSelectedDate:selectedPeriod];
     self.periodPopoverController = [[UIPopoverController alloc] initWithContentViewController:pickerViewController];
 
@@ -199,22 +188,41 @@ typedef enum {
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+
+    self.periodPopoverController = nil;
+}
+
+- (void)dismissPeriodPopoverCanceled {
+    [self.periodPopoverController dismissPopoverAnimated:YES];
+}
+
+- (void)dismissPeriodPopoverFinished {
     UIViewController * contentController = [self.periodPopoverController contentViewController];
     PYGPeriodPickerViewController *pickerController = (PYGPeriodPickerViewController*)contentController;
 
     NSInteger selectedYear = (NSInteger)pickerController.selectedDate.year;
     NSInteger selectedMonth = (NSInteger)pickerController.selectedDate.month;
-    self.period = [PYGPayrollPeriod payrollPeriodWithYear:selectedYear andMonth:(NSInteger)selectedMonth];
+    self.period = [PYGPayrollPeriod payrollPeriodWithYear:(NSUInteger) selectedYear andMonth:(Byte)selectedMonth];
+
+    [self.periodPopoverController dismissPopoverAnimated:YES];
 
     UIButton* periodNavigationButton = (UIButton*)[self.navigationItem titleView];
 
     NSString * periodText = [self getPeriodTitle];
     [periodNavigationButton setTitle:periodText forState:UIControlStateNormal];
 
-    [self.model computePayrollForPeriod:self.period];
-    self.periodPopoverController = nil;
-}
+    NSDictionary *result = [self.model computePayrollForPeriod:self.period];
 
+    self.resultSection0 = [self.model normalizeResult:result[SECTION_0]];
+    self.resultSection1 = [self.model normalizeResult:result[SECTION_1]];
+    self.resultSection2 = [self.model normalizeResult:result[SECTION_2]];
+    self.resultSection3 = [self.model normalizeResult:result[SECTION_3]];
+    self.resultSection4 = [self.model normalizeResult:result[SECTION_4]];
+    self.resultSection5 = [self.model normalizeResult:result[SECTION_5]];
+    self.resultSection6 = [self.model normalizeResult:result[SECTION_6]];
+
+    [self.payrollResultView reloadData];
+}
 
 #pragma mark - Split view
 
@@ -253,12 +261,12 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return self.resultSection6.count; break;
-        case 1: return self.resultSection1.count; break;
-        case 2: return self.resultSection2.count; break;
-        case 3: return self.resultSection3.count; break;
-        case 4: return self.resultSection4.count; break;
-        case 5: return self.resultSection5.count; break;
+        case 0: return self.resultSection6.count;
+        case 1: return self.resultSection1.count;
+        case 2: return self.resultSection2.count;
+        case 3: return self.resultSection3.count;
+        case 4: return self.resultSection4.count;
+        case 5: return self.resultSection5.count;
         default: break;
     }
     return 0;
@@ -267,7 +275,7 @@ typedef enum {
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section
 {
-    return (NSString *)self.sections[section];
+    return (NSString *)self.sections[(NSUInteger)section];
 }
 
 // Customize the appearance of table view cells.
@@ -275,21 +283,23 @@ titleForHeaderInSection:(NSInteger)section
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *DetailCellIdentifier = @"DetailTableCell";
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
+    PYGDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier];
 
     if (cell == nil) {
         NSArray *cellObjects = [[NSBundle mainBundle] loadNibNamed:@"PYGDetailTableViewCell" owner:self options:nil];
-        cell = (UITableViewCell*) [cellObjects objectAtIndex:0];
+        cell = (PYGDetailTableViewCell*) [cellObjects objectAtIndex:0];
     }
     // Make cell unselectable
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     // portrait  = 728.000000 - 710.000000
     // landscape = 663.000000 - 645.000000
-    UILabel * labelTitle = (UILabel *)[cell viewWithTag:DetailTitleCell];
-    UILabel * labelValue = (UILabel *)[cell viewWithTag:DetailValueCell];
-    labelTitle.text = [self getTitleResultForSection:indexPath.section andRow:indexPath.row];
-    labelValue.text = [self getValueResultForSection:indexPath.section andRow:indexPath.row];
+//    UILabel * labelTitle = (UILabel *)[cell viewWithTag:DetailTitleCell];
+//    UILabel * labelValue = (UILabel *)[cell viewWithTag:DetailValueCell];
+//    UIImageView * labelImage = (UIImageView *)[cell viewWithTag:DetailImageCell];
+    cell.labelTitle.text = [self getTitleResultForSection:indexPath.section andRow:indexPath.row];
+    cell.labelValue.text = [self getValueResultForSection:indexPath.section andRow:indexPath.row];
+    cell.labelImage.image = [UIImage imageNamed:[self getImageResultForSection:indexPath.section andRow:indexPath.row]];
 
     return cell;
 }
@@ -297,12 +307,12 @@ titleForHeaderInSection:(NSInteger)section
 - (NSString *)getTitleResultForSection:(NSInteger)section andRow:(NSInteger)row {
     NSUInteger indexRow = (NSUInteger)row;
     switch (section) {
-        case 0: return self.resultSection6[indexRow][RESULT_TITLE]; break;
-        case 1: return self.resultSection1[indexRow][RESULT_TITLE]; break;
-        case 2: return self.resultSection2[indexRow][RESULT_TITLE]; break;
-        case 3: return self.resultSection3[indexRow][RESULT_TITLE]; break;
-        case 4: return self.resultSection4[indexRow][RESULT_TITLE]; break;
-        case 5: return self.resultSection5[indexRow][RESULT_TITLE]; break;
+        case 0: return self.resultSection6[indexRow][RESULT_TITLE];
+        case 1: return self.resultSection1[indexRow][RESULT_TITLE];
+        case 2: return self.resultSection2[indexRow][RESULT_TITLE];
+        case 3: return self.resultSection3[indexRow][RESULT_TITLE];
+        case 4: return self.resultSection4[indexRow][RESULT_TITLE];
+        case 5: return self.resultSection5[indexRow][RESULT_TITLE];
         default: break;
     }
     return @"";
@@ -311,12 +321,26 @@ titleForHeaderInSection:(NSInteger)section
 - (NSString *)getValueResultForSection:(NSInteger)section andRow:(NSInteger)row {
     NSUInteger indexRow = (NSUInteger)row;
     switch (section) {
-        case 0: return self.resultSection6[indexRow][RESULT_VALUE]; break;
-        case 1: return self.resultSection1[indexRow][RESULT_VALUE]; break;
-        case 2: return self.resultSection2[indexRow][RESULT_VALUE]; break;
-        case 3: return self.resultSection3[indexRow][RESULT_VALUE]; break;
-        case 4: return self.resultSection4[indexRow][RESULT_VALUE]; break;
-        case 5: return self.resultSection5[indexRow][RESULT_VALUE]; break;
+        case 0: return self.resultSection6[indexRow][RESULT_VALUE];
+        case 1: return self.resultSection1[indexRow][RESULT_VALUE];
+        case 2: return self.resultSection2[indexRow][RESULT_VALUE];
+        case 3: return self.resultSection3[indexRow][RESULT_VALUE];
+        case 4: return self.resultSection4[indexRow][RESULT_VALUE];
+        case 5: return self.resultSection5[indexRow][RESULT_VALUE];
+        default: break;
+    }
+    return @"";
+}
+
+- (NSString *)getImageResultForSection:(NSInteger)section andRow:(NSInteger)row {
+    NSUInteger indexRow = (NSUInteger)row;
+    switch (section) {
+        case 0: return self.resultSection6[indexRow][RESULT_IMAGE];
+        case 1: return self.resultSection1[indexRow][RESULT_IMAGE];
+        case 2: return self.resultSection2[indexRow][RESULT_IMAGE];
+        case 3: return self.resultSection3[indexRow][RESULT_IMAGE];
+        case 4: return self.resultSection4[indexRow][RESULT_IMAGE];
+        case 5: return self.resultSection5[indexRow][RESULT_IMAGE];
         default: break;
     }
     return @"";
@@ -359,12 +383,49 @@ titleForHeaderInSection:(NSInteger)section
     if (buttonIndex == 0) {
         //[self drawPDF:self.pdfFileName];
         [self exportPaycheckPDF:self.pdfFileName];
+        [self sendExportedPaycheck:self.pdfFileName];
         //[self showPdfFile:self.pdfFileName];
     }
     else if (buttonIndex == 1) {
         [self exportPaycheckXML:self.xmlFileName];
+        [self sendExportedPaycheck:self.xmlFileName];
     }
 }
+
+- (void)sendExportedPaycheck:(NSString *)fileNameWithPath {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+
+        [self composeEmail:fileNameWithPath controller:controller];
+
+        if (controller) {
+            [self presentViewController:controller animated:YES completion:NULL];
+        }
+    } else {
+        // Handle the error
+    }
+}
+
+- (void)composeEmail:(NSString *)fileNameWithPath controller:(MFMailComposeViewController *)controller {
+    controller.mailComposeDelegate = self;
+
+    [controller setSubject:@"Your Paycheck"];
+    [controller setMessageBody:@"Hello, there is file with your paycheck." isHTML:NO];
+
+    NSData *fileData = [NSData dataWithContentsOfFile:fileNameWithPath];
+    [controller addAttachmentData:fileData mimeType:@"application/pdf" fileName:@"Paycheck.pdf"];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 - (void)showPdfFile:(NSString *)fileNameWithPath
 {

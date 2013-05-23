@@ -63,6 +63,10 @@
     return CALC_CATEGORY_TIMES;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SCHEDULE;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     PYGTermEffectResult * resultScheduleTerm = (PYGTermEffectResult *) [self getResult:results byTagCode:TAG_SCHEDULE_TERM];
     PYGTimesheetResult * resultTimesheetPeriod = (PYGTimesheetResult *) [self getResult:results byTagCode:TAG_TIMESHEET_PERIOD];

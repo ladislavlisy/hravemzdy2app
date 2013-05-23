@@ -57,6 +57,10 @@
     return CALC_CATEGORY_GROSS;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SUMMARY;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     PYGPayTagGateway * tagConfig = config;
     NSDictionary * tagResults = results;

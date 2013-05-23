@@ -16,3 +16,4 @@
 #endif
 
 #import "hravemzdylib.h"
+#import "type_of_results.h"

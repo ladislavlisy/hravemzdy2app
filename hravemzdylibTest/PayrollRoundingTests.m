@@ -129,4 +129,97 @@
     STAssertTrue(result2==145, @"Social insurance from base %@ CZK should be round up to %d CZK, NOT %d CZK!", test2, 145, result2);
 }
 
+- (void)testDecimalNumberLocale
+{
+    NSLocale *localeCZ = [[NSLocale alloc] initWithLocaleIdentifier:@"cz_CZ"];
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+    [currencyFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [currencyFormatter setMaximumFractionDigits:2];
+    [currencyFormatter setGeneratesDecimalNumbers:YES];
+    [currencyFormatter setLocale:localeCZ];
+
+    NSString * stringValue = @"CZK 20000.99"; //[currencyFormatter stringFromNumber:@12345.99];
+
+    NSNumber * numberValue = [currencyFormatter numberFromString:stringValue];
+
+    BOOL generatesDecimalNumbers = [currencyFormatter generatesDecimalNumbers];
+
+    NSString * negativeFormat = [currencyFormatter negativeFormat];
+
+    NSDictionary *textAttributesForNegativeValues = [currencyFormatter textAttributesForNegativeValues];
+
+    NSString *positiveFormat = [currencyFormatter positiveFormat];
+
+    NSDictionary *textAttributesForPositiveValues = [currencyFormatter textAttributesForPositiveValues];
+
+    BOOL allowsFloats = [currencyFormatter allowsFloats];
+
+    NSString *decimalSeparator = [currencyFormatter decimalSeparator];
+
+    BOOL alwaysShowsDecimalSeparator = [currencyFormatter alwaysShowsDecimalSeparator];
+
+    NSString *currencyDecimalSeparator = [currencyFormatter currencyDecimalSeparator];
+
+    BOOL usesGroupingSeparator = [currencyFormatter usesGroupingSeparator];
+
+    NSString *groupingSeparator = [currencyFormatter groupingSeparator];
+
+
+    NSString *zeroSymbol = [currencyFormatter zeroSymbol];
+
+    NSDictionary *textAttributesForZero = [currencyFormatter textAttributesForZero];
+
+    NSString *nilSymbol = [currencyFormatter nilSymbol];
+
+    NSDictionary *textAttributesForNil = [currencyFormatter textAttributesForNil];
+
+    NSString *notANumberSymbol = [currencyFormatter notANumberSymbol];
+
+    NSDictionary *textAttributesForNotANumber = [currencyFormatter textAttributesForNotANumber];
+
+    NSString *positiveInfinitySymbol = [currencyFormatter positiveInfinitySymbol];
+
+    NSDictionary *textAttributesForPositiveInfinity = [currencyFormatter textAttributesForPositiveInfinity];
+
+    NSString *negativeInfinitySymbol = [currencyFormatter negativeInfinitySymbol];
+
+    NSDictionary *textAttributesForNegativeInfinity = [currencyFormatter textAttributesForNegativeInfinity];
+
+
+    NSString *positivePrefix = [currencyFormatter positivePrefix];
+
+    NSString *positiveSuffix = [currencyFormatter positiveSuffix];
+
+    NSString *negativePrefix = [currencyFormatter negativePrefix];
+
+    NSString *negativeSuffix = [currencyFormatter negativeSuffix];
+
+    NSString *currencyCode = [currencyFormatter currencyCode];
+
+    NSString *currencySymbol = [currencyFormatter currencySymbol];
+
+    NSString *internationalCurrencySymbol = [currencyFormatter internationalCurrencySymbol];
+
+    NSString *percentSymbol = [currencyFormatter percentSymbol];
+
+    NSString *perMillSymbol = [currencyFormatter perMillSymbol];
+
+    NSString *minusSign = [currencyFormatter minusSign];
+
+    NSString *plusSign = [currencyFormatter plusSign];
+
+    NSString *exponentSymbol = [currencyFormatter exponentSymbol];
+
+
+    NSUInteger groupingSize = [currencyFormatter groupingSize];
+
+    NSUInteger secondaryGroupingSize = [currencyFormatter secondaryGroupingSize];
+
+    NSNumber *multiplier = [currencyFormatter multiplier];
+
+    NSUInteger formatWidth = [currencyFormatter formatWidth];
+
+    NSString *paddingCharacter = [currencyFormatter paddingCharacter];
+}
 @end

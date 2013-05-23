@@ -45,6 +45,10 @@
     _hoursWeekly = I_SAFE_VALUES(@"hours_weekly");
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SCHEDULE;
+}
+
 +(PYGScheduleWeeklyConcept *)concept
 {
     return [[self alloc] initWithTagCode:TAG_UNKNOWN andValues:EMPTY_VALUES];

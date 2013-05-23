@@ -21,6 +21,7 @@
 -(NSString *)description;
 -(NSUInteger)conceptCode;
 -(NSString *)conceptName;
+-(NSUInteger)typeOfResult;
 
 -(BOOL)isInsuranceHealth;
 -(BOOL)isInsuranceSocial;

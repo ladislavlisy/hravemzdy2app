@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import "UiPeriodPopoverControllerDelegate.h"
 
-@interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>
+@interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate, UiPeriodPopoverControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property(nonatomic, strong) IBOutlet UITableView * payrollResultView;
 

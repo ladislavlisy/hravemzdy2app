@@ -13,5 +13,6 @@
 
 @property(nonatomic,strong) IBOutlet UILabel *labelTitle;
 @property(nonatomic,strong) IBOutlet UILabel *labelValue;
+@property(nonatomic,strong) IBOutlet UIImageView *labelImage;
 
 @end

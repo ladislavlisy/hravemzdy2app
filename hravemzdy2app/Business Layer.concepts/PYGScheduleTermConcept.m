@@ -48,6 +48,10 @@
     _dateEnd  = DT_SAFE_VALUES(@"date_end");
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SCHEDULE;
+}
+
 +(PYGScheduleTermConcept *)concept
 {
     return [[self alloc] initWithTagCode:TAG_UNKNOWN andValues:EMPTY_VALUES];

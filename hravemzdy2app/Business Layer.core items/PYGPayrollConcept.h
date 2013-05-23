@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, TermDayOrder)
 -(NSArray *)pendingCodes;
 -(NSArray *)summaryCodes;
 -(NSUInteger)calcCategory;
+-(NSUInteger)typeOfResult;
 
 - (BOOL)exportXml:(PYGXmlBuilder *)xmlBuilder;
 

@@ -64,6 +64,10 @@
     return CALC_CATEGORY_NETTO;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_SUMMARY;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     PYGPaymentResult * healthEmployer = (PYGPaymentResult *) [self getResult:results byTagCode:TAG_TAX_EMPLOYERS_HEALTH];
     PYGPaymentResult * socialEmployer = (PYGPaymentResult *) [self getResult:results byTagCode:TAG_TAX_EMPLOYERS_SOCIAL];

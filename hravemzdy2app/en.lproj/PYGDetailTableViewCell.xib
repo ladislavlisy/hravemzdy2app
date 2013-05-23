@@ -12,6 +12,7 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
+			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUITableViewCell</string>
 		</array>
@@ -39,10 +40,22 @@
 						<reference key="NSNextResponder" ref="41814399"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIImageView" id="798944720">
+								<reference key="NSNextResponder" ref="821563788"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{34, 34}</string>
+								<reference key="NSSuperview" ref="821563788"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="264291225"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUITag">3</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+							</object>
 							<object class="IBUILabel" id="264291225">
 								<reference key="NSNextResponder" ref="821563788"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 0}, {495, 34}}</string>
+								<string key="NSFrame">{{42, 0}, {360, 34}}</string>
 								<reference key="NSSuperview" ref="821563788"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="978345369"/>
@@ -98,7 +111,7 @@
 						<string key="NSFrameSize">{700, 33}</string>
 						<reference key="NSSuperview" ref="41814399"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="264291225"/>
+						<reference key="NSNextKeyView" ref="798944720"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -141,6 +154,14 @@
 					</object>
 					<int key="connectionID">80</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">labelImage</string>
+						<reference key="source" ref="41814399"/>
+						<reference key="destination" ref="798944720"/>
+					</object>
+					<int key="connectionID">82</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -165,8 +186,9 @@
 						<int key="objectID">3</int>
 						<reference key="object" ref="41814399"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="264291225"/>
 							<reference ref="978345369"/>
+							<reference ref="798944720"/>
+							<reference ref="264291225"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -182,6 +204,12 @@
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="41814399"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">81</int>
+						<reference key="object" ref="798944720"/>
+						<reference key="parent" ref="41814399"/>
+						<string key="objectName">LabelI</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -192,12 +220,13 @@
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">80</int>
+			<int key="maxID">82</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -205,10 +234,15 @@
 					<string key="className">PYGDetailTableViewCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="labelImage">UIImageView</string>
 						<string key="labelTitle">UILabel</string>
 						<string key="labelValue">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="labelImage">
+							<string key="name">labelImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="labelTitle">
 							<string key="name">labelTitle</string>
 							<string key="candidateClassName">UILabel</string>

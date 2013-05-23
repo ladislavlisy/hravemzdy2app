@@ -68,6 +68,10 @@
     return CALC_CATEGORY_NETTO;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_DEDUCTION;
+}
+
 - (PYGPayrollResult*)evaluateForPeriod:(PYGPayrollPeriod *)period config:(PYGPayTagGateway *)config results:(NSDictionary *)results {
     PYGIncomeBaseResult * resultIncome = (PYGIncomeBaseResult *) [self getResult:results byTagCode:TAG_TAX_INCOME_BASE];
     PYGIncomeBaseResult * resultAdvance = (PYGIncomeBaseResult *) [self getResult:results byTagCode:TAG_TAX_WITHHOLD_BASE];

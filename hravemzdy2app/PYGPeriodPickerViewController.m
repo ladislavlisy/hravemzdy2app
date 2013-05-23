@@ -8,6 +8,7 @@
 
 #import "PYGPeriodPickerViewController.h"
 #import "NSDate+PYGDateOnly.h"
+#import "UiPeriodPopoverControllerDelegate.h"
 
 
 @implementation PYGPeriodPickerViewController {
@@ -53,5 +54,14 @@
 - (void) pickerView:(UIPickerView *)pickerView didChangeDate:(NSDate *)newDate{
     _selectedDate = newDate;
 }
+
+- (IBAction)editingCanceled:(id)sender {
+    [self.delegate dismissPeriodPopoverCanceled];
+}
+
+- (IBAction)editingFinished:(id)sender {
+    [self.delegate dismissPeriodPopoverFinished];
+}
+
 
 @end

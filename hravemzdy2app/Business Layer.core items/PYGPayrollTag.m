@@ -36,6 +36,10 @@
     return self.name;
 }
 
+- (NSUInteger)typeOfResult {
+    return TYPE_RESULT_NULL;
+}
+
 -(NSUInteger)conceptCode {
     return self.concept.code;
 }
