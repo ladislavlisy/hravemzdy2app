@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "UIMonthYearPicker.h"
 
-@protocol UiPeriodPopoverControllerDelegate;
+@protocol UiPeriodPopoverControllerDelegate <UIPopoverControllerDelegate>
 
+- (void)dismissPeriodPopoverCanceled;
+- (void)dismissPeriodPopoverFinished;
+
+@end
 
 @interface PYGPeriodPickerViewController : UIViewController <UIMonthYearPickerDelegate>
 

@@ -61,7 +61,7 @@
     return @"";
 }
 
-- (NSString *)exportImageFromTag:(PYGPayrollTag *)tagItem andConcept:(PYGPayrollConcept *)tagConcept {
+- (NSNumber *)exportTypeOfResultFromTag:(PYGPayrollTag *)tagItem andConcept:(PYGPayrollConcept *)tagConcept {
     NSUInteger typeOfResult = TYPE_RESULT_SUMMARY;
     if ([tagItem typeOfResult] != 0) {
         typeOfResult = [tagItem typeOfResult];
@@ -72,17 +72,7 @@
     else if ([self typeOfResult] != 0) {
         typeOfResult = [self typeOfResult];
     }
-    switch (typeOfResult) {
-        case TYPE_RESULT_SUMMARY:
-            return @"summaryG";
-        case TYPE_RESULT_SCHEDULE:
-            return @"schedule";
-        case TYPE_RESULT_INCOME:
-            return @"income";
-        case TYPE_RESULT_DEDUCTION:
-            return @"deduction";
-    }
-    return @"";
+    return @(typeOfResult);
 }
 
 - (NSComparisonResult) compare:(PYGPayrollResult *) resultOther
@@ -92,7 +82,7 @@
 
 - (NSDictionary *)exportTitleValueForTagRefer:(PYGTagRefer *)tagRefer andTagName:(PYGPayrollName*)tagName
                                andTagItem:(PYGPayrollTag *)tagItem andConcept:(PYGPayrollConcept *)tagConcept {
-    return @{EXP_TITLE : tagName.title, EXP_VALUE : [self exportValueResult], EXP_IMAGE : [self exportImageFromTag:tagItem andConcept:tagConcept]};
+    return @{EXP_TITLE : tagName.title, EXP_VALUE : [self exportValueResult], EXP_IMAGE : [self exportTypeOfResultFromTag:tagItem andConcept:tagConcept]};
 }
 
 - (NSComparisonResult)compareUInt:(NSUInteger) lhs withUInt:(NSUInteger) rhs {

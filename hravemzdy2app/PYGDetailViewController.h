@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "UiPeriodPopoverControllerDelegate.h"
+#import "PYGPeriodPickerViewController.h"
 
 @interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate, UiPeriodPopoverControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 

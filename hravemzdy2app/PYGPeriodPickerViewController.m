@@ -8,7 +8,6 @@
 
 #import "PYGPeriodPickerViewController.h"
 #import "NSDate+PYGDateOnly.h"
-#import "UiPeriodPopoverControllerDelegate.h"
 
 
 @implementation PYGPeriodPickerViewController {

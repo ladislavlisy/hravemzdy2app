@@ -10,6 +10,7 @@
 
 #import "PYGDetailViewController.h"
 #import "PYGSymbolTags.h"
+#import "PYGMoneyCzech.h"
 
 #define DEFAULT_SCHEDULE 40
 #define DEFAULT_ABSENCE 0
@@ -53,7 +54,6 @@
 @property (strong, nonatomic) NSArray* placeholders1;
 @property (strong, nonatomic) NSArray* placeholders2;
 @property (strong, nonatomic) NSArray* placeholders6;
-@property (strong, nonatomic) NSNumberFormatter* currencyFormatter;
 @property (strong, nonatomic) NSLocale* currencyLocaleCZ;
 @end
 
@@ -127,13 +127,6 @@
 
 - (void)setupCurrencyFormatter {
     self.currencyLocaleCZ = [[NSLocale alloc] initWithLocaleIdentifier:@"cz_CZ"];
-    self.currencyFormatter = [[NSNumberFormatter alloc] init];
-
-    [self.currencyFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [self.currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [self.currencyFormatter setMaximumFractionDigits:2];
-    [self.currencyFormatter setGeneratesDecimalNumbers:YES];
-    [self.currencyFormatter setLocale:self.currencyLocaleCZ];
 }
 
 - (void)viewDidLoad
@@ -210,7 +203,10 @@ titleForHeaderInSection:(NSInteger)section
 - (UITextField *)createSection1CellWithNumberField:(UITableViewCell *)cell andValue:(NSDecimalNumber *) decimalValue inRow:(NSUInteger)row {
     UITextField *tf;
     cell.textLabel.text = self.sectionRows1[row] ;
-    NSString * textFieldValue = [self formatCurrencyString:decimalValue];
+
+    PYGMoneyCzech * moneyCzech = [PYGMoneyCzech moneyCzechWithAmount:decimalValue andLocale:self.currencyLocaleCZ];
+
+    NSString * textFieldValue = [moneyCzech localizedString];
     tf = [self makeTextField:textFieldValue placeholder:self.placeholders1[row]];
     [tf setTextAlignment:NSTextAlignmentRight];
     [tf setKeyboardType:UIKeyboardTypeNumberPad];
@@ -531,18 +527,22 @@ titleForHeaderInSection:(NSInteger)section
 // Workaround to hide keyboard when Done is tapped
 - (IBAction)numberFieldEditStarted:(id)sender {
     UITextField * textField = (UITextField *)sender;
+
     NSString * stringValue = [textField text];
 
-    NSDecimalNumber * decimalValue = [self getDecimalNumberOrZeroFromCurrencyString:stringValue];
-    [textField setText:[self formatString:decimalValue]];
+    PYGMoneyCzech * moneyCzech = [PYGMoneyCzech moneyCzechWithLocalAmount:stringValue andLocale:self.currencyLocaleCZ];
+
+    [textField setText:[moneyCzech generalString]];
 }
 
 - (IBAction)numberFieldFinished:(id)sender {
     UITextField * textField = (UITextField *)sender;
+
     NSString * stringValue = [textField text];
 
-    NSDecimalNumber * decimalValue = [self getDecimalNumberOrZeroFromString:stringValue];
-    [textField setText:[self formatCurrencyString:decimalValue]];
+    PYGMoneyCzech * moneyCzech = [PYGMoneyCzech moneyCzechWithStringAmount:stringValue andLocale:self.currencyLocaleCZ];
+
+    [textField setText:[moneyCzech localizedString]];
 }
 
 // TextField value changed, store the new value.
@@ -551,7 +551,9 @@ titleForHeaderInSection:(NSInteger)section
         self.description = textField.text ;
     }
     else if ( textField == self.salaryMoneyField ) {
-        self.salaryMoney = [self getDecimalNumberOrZeroFromCurrencyString:textField.text];
+        PYGMoneyCzech * moneyCzech = [PYGMoneyCzech moneyCzechWithLocalAmount:textField.text andLocale:self.currencyLocaleCZ];
+
+        self.salaryMoney = moneyCzech.amount;
     }
     else if ( textField == self.employerNameField ) {
         self.employerName = textField.text ;
@@ -641,42 +643,6 @@ titleForHeaderInSection:(NSInteger)section
         @"email" : self.payrolleeEmail
     };
     return payroll_titles;
-}
-
-- (NSString *)formatString:(NSDecimalNumber *)decimalValue {
-    if (isnan(decimalValue.doubleValue) || [decimalValue isEqual:DECIMAL_ZERO]) {
-        return  @"";
-    }
-    return [decimalValue stringValue];
-}
-
-- (NSString *)formatCurrencyString:(NSDecimalNumber *)decimalValue {
-    return [self.currencyFormatter stringFromNumber:decimalValue];
-}
-
-- (NSDecimalNumber *)getDecimalNumberOrZeroFromString:(NSString *)formattedValue {
-    NSDecimalNumber * decimalValue = [NSDecimalNumber decimalNumberWithString:formattedValue];
-    if (isnormal(decimalValue.doubleValue)) {
-        return decimalValue ;
-    }
-    return DECIMAL_ZERO;
-}
-
-- (NSDecimalNumber *)getDecimalNumberOrZeroFromCurrencyString:(NSString *)formattedValue {
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(CZK )"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    // create the new string by replacing the matching of the regex pattern with the template pattern(whitespace)
-    NSString * formattedAmount = [regex stringByReplacingMatchesInString:formattedValue options:0
-                                                                range:NSMakeRange(0, [formattedValue length])
-                                                         withTemplate:@"CZK\u00A0"];
-    NSNumber *numberValue = [self.currencyFormatter numberFromString:formattedAmount];
-    NSDecimalNumber *decimalValue = [NSDecimalNumber decimalNumberWithDecimal:[numberValue decimalValue]];
-    if (!isnan(decimalValue.doubleValue)) {
-        return decimalValue ;
-    }
-    return DECIMAL_ZERO;
 }
 
 - (NSDictionary *)collectPayrollValues {

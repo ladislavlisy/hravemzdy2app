@@ -10,7 +10,6 @@
 #import "PdfPaycheckGenerator.h"
 #import "PYGPayrollPeriod.h"
 #import "NSDate+PYGDateOnly.h"
-#import "PYGPeriodPickerViewController.h"
 #import "PYGPayrollModel.h"
 #import "PYGDetailTableViewCell.h"
 
@@ -49,6 +48,12 @@
 @property (strong, nonatomic) PdfPaycheckGenerator* generator;
 @property (strong, nonatomic) NSString* xmlFileName;
 
+@property (strong, nonatomic) UIImage * cellImageI;
+@property (strong, nonatomic) UIImage * cellImageD;
+@property (strong, nonatomic) UIImage * cellImageS;
+@property (strong, nonatomic) UIImage * cellImageT;
+
+
 - (void)configureView;
 @end
 
@@ -70,6 +75,11 @@
     self.xmlFileName = [self.model getXmlFileName:@"paycheck.xml"];
     self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:self.pdfFileName];
 
+    self.cellImageI = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_INCOME]];
+    self.cellImageD = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_DEDUCTION]];
+    self.cellImageS = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_SUMMARY]];
+    self.cellImageT = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_SCHEDULE]];
+
     self.resultSection0 = [self.model normalizeResult:nil];
     self.resultSection1 = [self.model normalizeResult:nil];
     self.resultSection2 = [self.model normalizeResult:nil];
@@ -83,7 +93,7 @@
 
 - (PYGPayrollPeriod *)setUpPayrollPeriod {
     NSDate * currentDate = [NSDate date];
-    return [PYGPayrollPeriod payrollPeriodWithYear:currentDate.year andMonth:currentDate.month];
+    return [PYGPayrollPeriod payrollPeriodWithYear:(NSUInteger)currentDate.year andMonth:(Byte)currentDate.month];
 
 }
 
@@ -247,9 +257,9 @@
             @"Summary results",
             @"Schedule details",
             @"Payments",
+            @"Tax and insurance",
             @"Tax declaration",
-            @"Tax and Insurance income",
-            @"Tax and insurance"
+            @"Tax and Insurance income"
     ];
 }
 
@@ -264,9 +274,9 @@
         case 0: return self.resultSection6.count;
         case 1: return self.resultSection1.count;
         case 2: return self.resultSection2.count;
-        case 3: return self.resultSection3.count;
-        case 4: return self.resultSection4.count;
-        case 5: return self.resultSection5.count;
+        case 3: return self.resultSection5.count;
+        case 4: return self.resultSection3.count;
+        case 5: return self.resultSection4.count;
         default: break;
     }
     return 0;
@@ -299,7 +309,7 @@ titleForHeaderInSection:(NSInteger)section
 //    UIImageView * labelImage = (UIImageView *)[cell viewWithTag:DetailImageCell];
     cell.labelTitle.text = [self getTitleResultForSection:indexPath.section andRow:indexPath.row];
     cell.labelValue.text = [self getValueResultForSection:indexPath.section andRow:indexPath.row];
-    cell.labelImage.image = [UIImage imageNamed:[self getImageResultForSection:indexPath.section andRow:indexPath.row]];
+    cell.labelImage.image = [self getImageResultForSection:indexPath.section andRow:indexPath.row];
 
     return cell;
 }
@@ -310,9 +320,9 @@ titleForHeaderInSection:(NSInteger)section
         case 0: return self.resultSection6[indexRow][RESULT_TITLE];
         case 1: return self.resultSection1[indexRow][RESULT_TITLE];
         case 2: return self.resultSection2[indexRow][RESULT_TITLE];
-        case 3: return self.resultSection3[indexRow][RESULT_TITLE];
-        case 4: return self.resultSection4[indexRow][RESULT_TITLE];
-        case 5: return self.resultSection5[indexRow][RESULT_TITLE];
+        case 3: return self.resultSection5[indexRow][RESULT_TITLE];
+        case 4: return self.resultSection3[indexRow][RESULT_TITLE];
+        case 5: return self.resultSection4[indexRow][RESULT_TITLE];
         default: break;
     }
     return @"";
@@ -324,26 +334,56 @@ titleForHeaderInSection:(NSInteger)section
         case 0: return self.resultSection6[indexRow][RESULT_VALUE];
         case 1: return self.resultSection1[indexRow][RESULT_VALUE];
         case 2: return self.resultSection2[indexRow][RESULT_VALUE];
-        case 3: return self.resultSection3[indexRow][RESULT_VALUE];
-        case 4: return self.resultSection4[indexRow][RESULT_VALUE];
-        case 5: return self.resultSection5[indexRow][RESULT_VALUE];
+        case 3: return self.resultSection5[indexRow][RESULT_VALUE];
+        case 4: return self.resultSection3[indexRow][RESULT_VALUE];
+        case 5: return self.resultSection4[indexRow][RESULT_VALUE];
         default: break;
     }
     return @"";
 }
 
-- (NSString *)getImageResultForSection:(NSInteger)section andRow:(NSInteger)row {
-    NSUInteger indexRow = (NSUInteger)row;
-    switch (section) {
-        case 0: return self.resultSection6[indexRow][RESULT_IMAGE];
-        case 1: return self.resultSection1[indexRow][RESULT_IMAGE];
-        case 2: return self.resultSection2[indexRow][RESULT_IMAGE];
-        case 3: return self.resultSection3[indexRow][RESULT_IMAGE];
-        case 4: return self.resultSection4[indexRow][RESULT_IMAGE];
-        case 5: return self.resultSection5[indexRow][RESULT_IMAGE];
-        default: break;
+- (NSString *)getImageNameForTypeOfResult:(NSUInteger)typeOfResult {
+    switch (typeOfResult) {
+        case TYPE_RESULT_SUMMARY:
+            return @"summaryG";
+        case TYPE_RESULT_SCHEDULE:
+            return @"schedule";
+        case TYPE_RESULT_INCOME:
+            return @"income";
+        case TYPE_RESULT_DEDUCTION:
+            return @"deduction";
     }
     return @"";
+}
+
+- (UIImage *)getImageResultForTypeOfResult:(NSUInteger)typeOfResult {
+    switch (typeOfResult) {
+        case TYPE_RESULT_SUMMARY:
+            return self.cellImageS;
+        case TYPE_RESULT_SCHEDULE:
+            return self.cellImageT;
+        case TYPE_RESULT_INCOME:
+            return self.cellImageI;
+        case TYPE_RESULT_DEDUCTION:
+            return self.cellImageD;
+    }
+    return nil;
+}
+
+
+- (UIImage *)getImageResultForSection:(NSInteger)section andRow:(NSInteger)row {
+    NSUInteger indexRow = (NSUInteger)row;
+    NSNumber * typeOfResult = nil;
+    switch (section) {
+        case 0: typeOfResult = self.resultSection6[indexRow][RESULT_IMAGE]; break;
+        case 1: typeOfResult = self.resultSection1[indexRow][RESULT_IMAGE]; break;
+        case 2: typeOfResult = self.resultSection2[indexRow][RESULT_IMAGE]; break;
+        case 3: typeOfResult = self.resultSection5[indexRow][RESULT_IMAGE]; break;
+        case 4: typeOfResult = self.resultSection3[indexRow][RESULT_IMAGE]; break;
+        case 5: typeOfResult = self.resultSection4[indexRow][RESULT_IMAGE]; break;
+        default: break;
+    }
+    return [self getImageResultForTypeOfResult:typeOfResult.unsignedIntegerValue];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
