@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_TAX_CLAIM_CHILD]
-                               andTitle:@"Tax benefit claim - child" andDescription:@"Tax benefit claim - child"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_TAX_CLAIM_CHILD", @"Tax benefit claim - child")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_TAX_CLAIM_CHILD", @"Tax benefit claim - child")
                            andVertGroup:VPAYGRP_TAX_SOURCE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

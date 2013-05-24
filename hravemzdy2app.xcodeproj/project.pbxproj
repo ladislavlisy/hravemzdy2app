@@ -93,6 +93,7 @@
 		32B0A714904CD1B1181C4C25 /* PdfRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AE76A4FB4369BC27262E /* PdfRenderer.m */; };
 		32B0A718C7C556021F9A69D2 /* PYGInsuranceSocialTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC4ECA868DD2F3ECD2A4 /* PYGInsuranceSocialTag.m */; };
 		32B0A71CA5CCA20B195576A4 /* PYGPaymentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A1494EC5E270C895D15A /* PYGPaymentResult.m */; };
+		32B0A73841E957F2951542F8 /* brand_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A32FF0A3EBCA30544830 /* brand_logo.png */; };
 		32B0A763072A8B5FF302A229 /* PYGInsuranceHealthTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A328EA993FCA4F551F43 /* PYGInsuranceHealthTag.m */; };
 		32B0A779E0CBAA58587F9516 /* UIMonthYearPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A173DE93A115B1A62ED9 /* UIMonthYearPicker.m */; };
 		32B0A78278FBF95AC18C5A90 /* PYGIncomeGrossName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A9B475F607FFB79277D8 /* PYGIncomeGrossName.m */; };
@@ -171,6 +172,7 @@
 		32B0ADCB2208776127A46CE0 /* PYGTaxIncomeBaseName.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A4F21C7C738176045BE6 /* PYGTaxIncomeBaseName.m */; };
 		32B0ADCB3789513B68F8615A /* PYGSalaryMonthlyConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A02C25A7D5E2A9E0A84E /* PYGSalaryMonthlyConcept.m */; };
 		32B0ADE4EB79FBC7F3437942 /* PYGTaxClaimChildConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A2097049022694D202B0 /* PYGTaxClaimChildConcept.m */; };
+		32B0ADE664D4AEB17D507095 /* brand_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B0A31C6D481183A9AA926E /* brand_text.png */; };
 		32B0ADF71E2E2D9DDB8D1A7E /* PYGHoursWorkingTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A2CED90DF73F1623EEDE /* PYGHoursWorkingTag.m */; };
 		32B0AE1A6B1354F8B9FFD8E8 /* PayrollRoundingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AFE72A7F6EAA1D72B888 /* PayrollRoundingTests.m */; };
 		32B0AE1EAB7F4ECAFC6E297B /* PYGTaxEmployersSocialTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A2BA403FC8E351A33750 /* PYGTaxEmployersSocialTag.m */; };
@@ -192,6 +194,7 @@
 		32B0AFB3F2E61E97BC62973F /* PayrollCalcNetIncomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AF45DAB4E5678BC7EFBC /* PayrollCalcNetIncomeTests.m */; };
 		32B0AFD00C640AD8C4BBB3F8 /* PYGPayrollTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A635C19FAC128114AAFA /* PYGPayrollTag.m */; };
 		32B0AFE9A4B2AAF22D999AE1 /* PYGTaxBonusChildConcept.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0A4FADEB28D3261897749 /* PYGTaxBonusChildConcept.m */; };
+		4E99F795174FA64F00BB64F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E99F797174FA64F00BB64F6 /* Localizable.strings */; };
 		4EFEE614174B99EF0093EAC5 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60B174B99EF0093EAC5 /* Icon-72.png */; };
 		4EFEE615174B99EF0093EAC5 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */; };
 		4EFEE616174B99EF0093EAC5 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */; };
@@ -288,8 +291,10 @@
 		32B0A313B8A3F8C5199C7F5E /* PayrollProcessSetupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollProcessSetupTests.m; path = hravemzdylibTest/PayrollProcessSetupTests.m; sourceTree = SOURCE_ROOT; };
 		32B0A31882BDC8F6968C6B63 /* PYGSalaryMonthlyConcept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGSalaryMonthlyConcept.h; sourceTree = "<group>"; };
 		32B0A319CFA80E8B1133DBBD /* PYGUnknownTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGUnknownTag.h; sourceTree = "<group>"; };
+		32B0A31C6D481183A9AA926E /* brand_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brand_text.png; sourceTree = "<group>"; };
 		32B0A327A05513E45B43D0E5 /* PYGTaxAdvanceConcept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTaxAdvanceConcept.m; sourceTree = "<group>"; };
 		32B0A328EA993FCA4F551F43 /* PYGInsuranceHealthTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGInsuranceHealthTag.m; sourceTree = "<group>"; };
+		32B0A32FF0A3EBCA30544830 /* brand_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brand_logo.png; sourceTree = "<group>"; };
 		32B0A36A5EC3CDAE041B7C2A /* paycheck_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paycheck_text.png; sourceTree = "<group>"; };
 		32B0A3752CC5096ABC4E29D6 /* paycheck.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.mustache; path = paycheck.mustache; sourceTree = "<group>"; };
 		32B0A386DBF56C82047FD285 /* PYGPayrollProcessTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGPayrollProcessTestCase.h; sourceTree = "<group>"; };
@@ -547,6 +552,10 @@
 		32B0AFE2245EDF10F1E9B600 /* PYGInsuranceHealthBaseName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYGInsuranceHealthBaseName.h; sourceTree = "<group>"; };
 		32B0AFE72A7F6EAA1D72B888 /* PayrollRoundingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayrollRoundingTests.m; path = hravemzdylibTest/PayrollRoundingTests.m; sourceTree = SOURCE_ROOT; };
 		32B0AFEA3EBE5F75C3273E78 /* PYGTimesheetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYGTimesheetResult.m; sourceTree = "<group>"; };
+		4E99F796174FA64F00BB64F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4EB6A99C174FABF600279C1D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4EB6A99D174FABF600279C1D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4EB6A99E174FABF700279C1D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4EFEE60B174B99EF0093EAC5 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		4EFEE60C174B99EF0093EAC5 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		4EFEE60D174B99EF0093EAC5 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -610,6 +619,8 @@
 				32B0AD637444A681B59ACA37 /* schedule.png */,
 				32B0AC7D5AB1B347F233107C /* summary.png */,
 				32B0AE288239496D9BECF4B8 /* summaryG.png */,
+				32B0A32FF0A3EBCA30544830 /* brand_logo.png */,
+				32B0A31C6D481183A9AA926E /* brand_text.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -797,6 +808,7 @@
 				32B0ABF8CBB78692FF614E88 /* paycheck-export.xslt */,
 				32B0A64E293235461CB6609D /* paycheck-export.html */,
 				32B0A112E1609C276C74B629 /* Assets */,
+				4E99F797174FA64F00BB64F6 /* Localizable.strings */,
 			);
 			path = hravemzdy2app;
 			sourceTree = "<group>";
@@ -1187,6 +1199,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				cs,
 			);
 			mainGroup = 32B0A9672113D37D9F93776A;
 			productRefGroup = 32B0A75025B507B867D9EB6E /* Products */;
@@ -1241,6 +1254,9 @@
 				32B0A889872D4AAB2D398FAB /* schedule.png in Resources */,
 				32B0A69475CCA218DD30E1A7 /* summary.png in Resources */,
 				32B0A23FE787F08F7217D5F1 /* summaryG.png in Resources */,
+				32B0A73841E957F2951542F8 /* brand_logo.png in Resources */,
+				32B0ADE664D4AEB17D507095 /* brand_text.png in Resources */,
+				4E99F795174FA64F00BB64F6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1468,6 +1484,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				32B0AF21F994A79F9C143FF5 /* en */,
+				4EB6A99C174FABF600279C1D /* cs */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1476,8 +1493,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				32B0AB9C096B092D4A8D8E2C /* en */,
+				4EB6A99E174FABF700279C1D /* cs */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4E99F797174FA64F00BB64F6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E99F796174FA64F00BB64F6 /* en */,
+				4EB6A99D174FABF600279C1D /* cs */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

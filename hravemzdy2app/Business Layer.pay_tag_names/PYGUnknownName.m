@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_UNKNOWN]
-                               andTitle:@"Unknown" andDescription:@"Unknown"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_UNKNOWN", @"Unknown")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_UNKNOWN", @"Unknown")
                            andVertGroup:VPAYGRP_UNKNOWN andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

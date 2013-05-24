@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_INCOME_NETTO]
-                               andTitle:@"Net income" andDescription:@"Net income"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_INCOME_NETTO", @"Net income")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_INCOME_NETTO", @"Net income")
                            andVertGroup:VPAYGRP_SUMMARY andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

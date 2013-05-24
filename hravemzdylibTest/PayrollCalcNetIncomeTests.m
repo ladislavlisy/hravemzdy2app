@@ -47,20 +47,20 @@
     _payrollSpecs = [NSMutableDictionary dictionaryWithDictionary:@{
         S_MAKE_PAIR(@"name"                  , STRTYPE(values[ 0])),
         U_MAKE_PAIR(@"period"                , U_UNBOX(values[ 1])), // Given Payroll process for payroll period 01 2013
-        I_MAKE_PAIR(@"schedule"              , I_UNBOX(values[ 2])), // And   Employee works in Weekly schedule 40 hours
-        I_MAKE_PAIR(@"absence"               , I_UNBOX(values[ 3])), // And   Employee has 0 hours of absence
-        D_MAKE_PAIR(@"salary"                , NUMTYPE(values[ 4])), // And   Employee Salary is CZK 15000 monthly
-        U_MAKE_PAIR(@"tax payer"             , U_UNBOX(values[ 5])), // And   YES Employee is Regular Tax payer
-        U_MAKE_PAIR(@"health payer"          , U_UNBOX(values[ 6])), // And   YES Employee is Regular Health insurance payer
+        I_MAKE_PAIR(@"schedule"              , I_UNBOX(values[ 2])), // And   LABELED_EMPLOYEE works in Weekly schedule 40 hours
+        I_MAKE_PAIR(@"absence"               , I_UNBOX(values[ 3])), // And   LABELED_EMPLOYEE has 0 hours of absence
+        D_MAKE_PAIR(@"salary"                , NUMTYPE(values[ 4])), // And   LABELED_EMPLOYEE Salary is CZK 15000 monthly
+        U_MAKE_PAIR(@"tax payer"             , U_UNBOX(values[ 5])), // And   YES LABELED_EMPLOYEE is Regular Tax payer
+        U_MAKE_PAIR(@"health payer"          , U_UNBOX(values[ 6])), // And   YES LABELED_EMPLOYEE is Regular Health insurance payer
         U_MAKE_PAIR(@"health minim"          , U_UNBOX(values[ 7])),
-        U_MAKE_PAIR(@"social payer"          , U_UNBOX(values[ 8])), // And   YES Employee is Regular Social insurance payer
-        U_MAKE_PAIR(@"pension payer"         , U_UNBOX(values[ 9])), // And   NO Employee is Regular Pension savings payer
-        U_MAKE_PAIR(@"tax payer benefit"     , U_UNBOX(values[10])), // And   YES Employee claims tax benefit on tax payer
-        U_MAKE_PAIR(@"tax child benefit"     , U_UNBOX(values[11])), // And   Employee claims tax benefit on 0 child
-        U_MAKE_PAIR(@"tax disability benefit", values3I),            // And   NO:NO:NO Employee claims tax benefit on disability
-        U_MAKE_PAIR(@"tax studying benefit"  , U_UNBOX(values[15])), // And   NO Employee claims tax benefit on preparing by studying
-        U_MAKE_PAIR(@"health employer"       , U_UNBOX(values[16])), // And   YES Employee is Employer contribution for Health insurance payer
-        U_MAKE_PAIR(@"social employer"       , U_UNBOX(values[17]))  // And   YES Employee is Employer contribution for Social insurance payer
+        U_MAKE_PAIR(@"social payer"          , U_UNBOX(values[ 8])), // And   YES LABELED_EMPLOYEE is Regular Social insurance payer
+        U_MAKE_PAIR(@"pension payer"         , U_UNBOX(values[ 9])), // And   NO LABELED_EMPLOYEE is Regular Pension savings payer
+        U_MAKE_PAIR(@"tax payer benefit"     , U_UNBOX(values[10])), // And   YES LABELED_EMPLOYEE claims tax benefit on tax payer
+        U_MAKE_PAIR(@"tax child benefit"     , U_UNBOX(values[11])), // And   LABELED_EMPLOYEE claims tax benefit on 0 child
+        U_MAKE_PAIR(@"tax disability benefit", values3I),            // And   NO:NO:NO LABELED_EMPLOYEE claims tax benefit on disability
+        U_MAKE_PAIR(@"tax studying benefit"  , U_UNBOX(values[15])), // And   NO LABELED_EMPLOYEE claims tax benefit on preparing by studying
+        U_MAKE_PAIR(@"health employer"       , U_UNBOX(values[16])), // And   YES LABELED_EMPLOYEE is LABELED_EMPLOYER contribution for Health insurance payer
+        U_MAKE_PAIR(@"social employer"       , U_UNBOX(values[17]))  // And   YES LABELED_EMPLOYEE is LABELED_EMPLOYER contribution for Social insurance payer
     }];
 }
 
@@ -859,7 +859,7 @@
     [self testPayrollProcessWithSpec:self.payrollSpecs andResults:self.payrollResults];
 }
 
-//Examples: Employment with Absence hours
+//Examples: Employment with TAG_TITLE_HOURS_ABSENCE
 //TODO: MINIMUM BASE FOR HEALTH INSURANCE, AS ADDED RECORD
 - (void)test11_PP_Mzda_DanPoj_Neodpr184
 {

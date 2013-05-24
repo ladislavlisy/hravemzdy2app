@@ -62,7 +62,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) return nil;
-    self.title = NSLocalizedString(@"Payroll results", @"Payroll results");
+    self.title = NSLocalizedString(@"VIEW_RESULTS", @"Payroll results");
 
     self.sections = [self createTableSections];
     self.period = [self setUpPayrollPeriod];
@@ -71,8 +71,8 @@
     // Set-up code here.
     self.model = [PYGPayrollModel payrollModel];
 
-    self.pdfFileName = [self.model getPdfFileName:@"paycheck.pdf"];
-    self.xmlFileName = [self.model getXmlFileName:@"paycheck.xml"];
+    self.pdfFileName = [self.model getPdfFileName:NSLocalizedString(@"EMAIL_PDFATTACHMENT_PAYCHECK", @"Paycheck.pdf")];
+    self.xmlFileName = [self.model getXmlFileName:NSLocalizedString(@"EMAIL_XMLATTACHMENT_PAYCHECK", @"Paycheck.pdf")];
     self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:self.pdfFileName];
 
     self.cellImageI = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_INCOME]];
@@ -238,7 +238,7 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Payroll specs", @"Payroll specs");
+    barButtonItem.title = NSLocalizedString(@"VIEW_OPTIONS", @"Payroll specs");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
@@ -254,12 +254,12 @@
 
 - (NSArray *)createTableSections {
     return @[
-            @"Summary results",
-            @"Schedule details",
-            @"Payments",
-            @"Tax and insurance",
-            @"Tax declaration",
-            @"Tax and Insurance income"
+            NSLocalizedString(@"SECTION_SUMMARY", @"Summary results"),
+            NSLocalizedString(@"SECTION_SCHEDULE",@"Schedule details"),
+            NSLocalizedString(@"SECTION_PAYMENTS",@"Payments"),
+            NSLocalizedString(@"SECTION_TAX_PAYMENT",@"Tax and insurance"),
+            NSLocalizedString(@"SECTION_TAX_DECL",@"Tax declaration"),
+            NSLocalizedString(@"SECTION_TAX_INCOME", @"Tax and Insurance income")
     ];
 }
 
@@ -449,11 +449,11 @@ titleForHeaderInSection:(NSInteger)section
 - (void)composeEmail:(NSString *)fileNameWithPath controller:(MFMailComposeViewController *)controller {
     controller.mailComposeDelegate = self;
 
-    [controller setSubject:@"Your Paycheck"];
-    [controller setMessageBody:@"Hello, there is file with your paycheck." isHTML:NO];
+    [controller setSubject:NSLocalizedString(@"EMAIL_SUBJECT_PAYCHECK", @"Your Paycheck")];
+    [controller setMessageBody:NSLocalizedString(@"EMAIL_BODY_PAYCHECK",@"Hello, there is file with your paycheck.") isHTML:NO];
 
     NSData *fileData = [NSData dataWithContentsOfFile:fileNameWithPath];
-    [controller addAttachmentData:fileData mimeType:@"application/pdf" fileName:@"Paycheck.pdf"];
+    [controller addAttachmentData:fileData mimeType:@"application/pdf" fileName:NSLocalizedString(@"EMAIL_PDFATTACHMENT_PAYCHECK", @"Paycheck.pdf")];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller

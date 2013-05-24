@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_TAX_WITHHOLD_BASE]
-                               andTitle:@"Withholding Tax base" andDescription:@"Withholding Tax base"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_TAX_WITHHOLD_BASE", @"Withholding Tax base")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_TAX_WITHHOLD_BASE", @"Withholding Tax base")
                            andVertGroup:VPAYGRP_TAX_INCOME andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

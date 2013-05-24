@@ -20,6 +20,7 @@
 {
     PRKSectionType      htmlSectionType;
     NSString            * htmlSource;
+    NSString            * furlSource;
     UIWebView           * renderingWebView;
     
     BOOL executing;
@@ -29,6 +30,6 @@
 
 @property (nonatomic, weak) id<PRKRenderHtmlOperationDelegate> delegate;
 
-- (id) initWithHtmlContent: (NSString *)html andSectionType: (PRKSectionType)sectionType;
+- (id) initWithHtmlContent: (NSString *)html andSectionType: (PRKSectionType)sectionType andBaseURL:(NSString *)bundleURL;
 
 @end

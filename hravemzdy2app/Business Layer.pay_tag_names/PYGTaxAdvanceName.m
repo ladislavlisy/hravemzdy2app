@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_TAX_ADVANCE]
-                               andTitle:@"Tax advance" andDescription:@"Tax advance"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_TAX_ADVANCE", @"Tax advance")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_TAX_ADVANCE", @"Tax advance")
                            andVertGroup:VPAYGRP_TAX_SOURCE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_TAX_INCOME_BASE]
-                               andTitle:@"Taxable income" andDescription:@"Taxable income"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_TAX_INCOME_BASE", @"Taxable income")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_TAX_INCOME_BASE", @"Taxable income")
                            andVertGroup:VPAYGRP_TAX_INCOME andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

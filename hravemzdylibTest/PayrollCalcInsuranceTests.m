@@ -167,7 +167,7 @@
     NSDecimalNumber * employer_base = [self get_result_payment:REF_TAX_EMPLOYERS_HEALTH];
     NSInteger employer_base_number  = employer_base.integerValue;
 
-    STAssertTrue(employer_base_number==1350,  @"Employer Tax Base should return %d, NOT %d!", 1350, employer_base_number);
+    STAssertTrue(employer_base_number==1350,  @"LABELED_EMPLOYER Tax Base should return %d, NOT %d!", 1350, employer_base_number);
 }
 
 - (void)testSalaryBase15_000CZK_ShouldReturn_EmployerSocialTaxBaseAmount3_750CZK
@@ -194,7 +194,7 @@
     NSDecimalNumber * employer_base = [self get_result_payment:REF_TAX_EMPLOYERS_SOCIAL];
     NSInteger employer_base_number  = employer_base.integerValue;
 
-    STAssertTrue(employer_base_number==3750,  @"Employer Tax Base should return %d, NOT %d!", 3750, employer_base_number);
+    STAssertTrue(employer_base_number==3750,  @"LABELED_EMPLOYER Tax Base should return %d, NOT %d!", 3750, employer_base_number);
 }
 
 @end

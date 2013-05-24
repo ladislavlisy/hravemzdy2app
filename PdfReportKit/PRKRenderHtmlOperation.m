@@ -17,12 +17,13 @@
 
 @implementation PRKRenderHtmlOperation
 
-- (id)initWithHtmlContent:(NSString *)html andSectionType: (PRKSectionType)sectionType
+- (id)initWithHtmlContent:(NSString *)html andSectionType: (PRKSectionType)sectionType andBaseURL:(NSString *)bundleURL
 {
     self = [super init];
     if (self)
     {        
         htmlSource = html;
+        furlSource = bundleURL;
         htmlSectionType = sectionType;
         
         renderingWebView = [[UIWebView alloc] init];
@@ -38,7 +39,7 @@
     executing = YES;
     [self didChangeValueForKey:@"isExecuting"];
     
-    [renderingWebView loadHTMLString:htmlSource baseURL:[NSURL URLWithString:@"http://localhost"]];
+    [renderingWebView loadHTMLString:htmlSource baseURL:[NSURL URLWithString:furlSource]];
 }
 
 - (BOOL)isConcurrent

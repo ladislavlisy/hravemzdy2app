@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_SAVINGS_PENSIONS]
-                               andTitle:@"Pension savings" andDescription:@"Pension savings contribution"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_SAVINGS_PENSIONS", @"Pension savings contribution")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_SAVINGS_PENSIONS", @"Pension savings contribution")
                            andVertGroup:VPAYGRP_INS_RESULT andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

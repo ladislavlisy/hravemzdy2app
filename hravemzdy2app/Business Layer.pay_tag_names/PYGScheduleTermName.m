@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_SCHEDULE_TERM]
-                               andTitle:@"Working Schedule Terms" andDescription:@"Working Schedule Terms"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_SCHEDULE_TERM", @"Working Schedule Terms")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_SCHEDULE_TERM", @"Working Schedule Terms")
                            andVertGroup:VPAYGRP_SCHEDULE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

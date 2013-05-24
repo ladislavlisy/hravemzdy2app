@@ -56,7 +56,12 @@ static NSArray * reportDefaultTags = nil;
     return self;
 }
 
-- (void)createReportWithName:(NSString *)reportName templateURLString:(NSString *)templatePath itemsPerPage:(NSUInteger)itemsPerPage totalItems:(NSUInteger)totalItems pageOrientation:(PRKPageOrientation)orientation dataSource: (id<PRKGeneratorDataSource>)dataSource delegate: (id<PRKGeneratorDelegate>)delegate error:(NSError *__autoreleasing *)error;
+- (void)createReportWithName:(NSString *)reportName templateURLString:(NSString *)templatePath
+               baseURLString:(NSString *)baseURLPath
+                itemsPerPage:(NSUInteger)itemsPerPage totalItems:(NSUInteger)totalItems
+             pageOrientation:(PRKPageOrientation)orientation
+                  dataSource: (id<PRKGeneratorDataSource>)dataSource
+                    delegate: (id<PRKGeneratorDelegate>)delegate error:(NSError *__autoreleasing *)error;
 {
     // TODO: replace and add report processing to queue
     if (self.renderingQueue.operationCount > 0)
@@ -107,11 +112,11 @@ static NSArray * reportDefaultTags = nil;
         resultCount = [wellFormedFooter replaceOccurrencesOfString:headersToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
         resultCount = [wellFormedFooter replaceOccurrencesOfString:contentToFind withString:@"" options:NSLiteralSearch range:NSMakeRange(0, wellFormedFooter.length)];
         
-        PRKRenderHtmlOperation * headerOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedHeader andSectionType:PRKSectionTypeHeader];
+        PRKRenderHtmlOperation * headerOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedHeader andSectionType:PRKSectionTypeHeader andBaseURL:baseURLPath];
         headerOperation.delegate = self;
-        PRKRenderHtmlOperation * contentOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedContent andSectionType:PRKSectionTypeContent];
+        PRKRenderHtmlOperation * contentOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedContent andSectionType:PRKSectionTypeContent andBaseURL:baseURLPath];
         contentOperation.delegate = self;
-        PRKRenderHtmlOperation * footerOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedFooter andSectionType:PRKSectionTypeFooter];
+        PRKRenderHtmlOperation * footerOperation = [[PRKRenderHtmlOperation alloc] initWithHtmlContent:wellFormedFooter andSectionType:PRKSectionTypeFooter andBaseURL:baseURLPath];
         footerOperation.delegate = self;
         
         NSInvocationOperation * renderToPdf = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(renderPage) object:[NSNumber numberWithInteger:i]];

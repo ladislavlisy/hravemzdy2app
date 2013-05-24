@@ -537,7 +537,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="659850168"/>
-						<string key="objectName">Label - Company</string>
+						<string key="objectName">Label - LABELED_COMPANY</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
@@ -605,7 +605,7 @@
 						<reference key="object" ref="465032284"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="659850168"/>
-						<string key="objectName">Label - Employee</string>
+						<string key="objectName">Label - LABELED_EMPLOYEE</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>

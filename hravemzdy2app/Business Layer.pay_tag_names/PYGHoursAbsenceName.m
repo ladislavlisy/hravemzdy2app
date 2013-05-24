@@ -14,7 +14,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_HOURS_ABSENCE]
-                               andTitle:@"Absence hours" andDescription:@"Absence hours"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_HOURS_ABSENCE", @"Absence hours")
+                               andDescription:NSLocalizedString(@"TAG_DESCRIPT_HOURS_ABSENCE", @"Absence hours")
                            andVertGroup:VPAYGRP_SCHEDULE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

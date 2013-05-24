@@ -62,61 +62,61 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) return nil;
-    self.title = NSLocalizedString(@"Payroll specs", @"Payroll specs");
+    self.title = NSLocalizedString(@"VIEW_OPTIONS", @"Payroll specs");
     self.sections = @[
-            @"Payroll details",
-            @"Tax payer declaration",
-            @"Tax disability benefit",
-            @"Tax child benefit",
-            @"Payslip details",
-            @"Contact for results"
+            NSLocalizedString(@"SECTION_PAYROLL",        @"Payroll details"),
+            NSLocalizedString(@"SECTION_TAX_DECLARATION",  @"Tax payer declaration"),
+            NSLocalizedString(@"SECTION_TAX_DISABILITY", @"Tax disability benefit"),
+            NSLocalizedString(@"SECTION_TAX_CHILD",      @"Tax child benefit"),
+            NSLocalizedString(@"SECTION_PAYCHECK",       @"Paycheck details"),
+            NSLocalizedString(@"SECTION_CONTACT",    @"Contact for results")
     ];
     self.sectionRows1 = @[
-            @"Description",
-            @"Salary"
+            NSLocalizedString(@"Description", @"Description"),
+            NSLocalizedString(@"Salary",      @"Salary")
     ];
     self.placeholders1 = @[
-            @"My happy payroll",
-            @" CZK"
+            NSLocalizedString(@"PLACEHOLDER_DESCRIPTION", @"My happy payroll"),
+            NSLocalizedString(@"PLACEHOLDER_CURRENCY_CZK", @" CZK")
     ];
     self.sectionRows2 = @[
-            @"Employee",
-            @"Employer",
-            @"Department",
-            @"Personnel"
+            NSLocalizedString(@"LABELED_EMPLOYEE",   @"Employee"),
+            NSLocalizedString(@"LABELED_EMPLOYER",   @"Employer"),
+            NSLocalizedString(@"LABELED_DEPARTMENT", @"Department"),
+            NSLocalizedString(@"LABELED_PERSONNEL",  @"Personnel")
     ];
     self.placeholders2 = @[
-            @"Jája Pája",
-            @"Employer name",
-            @"Work department",
-            @"Number"
+            NSLocalizedString(@"PLACEHOLDER_EMPLOYEE",   @"Jája Pája"),
+            NSLocalizedString(@"PLACEHOLDER_EMPLOYER",   @"Employer name"),
+            NSLocalizedString(@"PLACEHOLDER_DEPARTMENT", @"Work department"),
+            NSLocalizedString(@"PLACEHOLDER_PERSONNEL",  @"Number")
     ];
     self.sectionRows3 = @[
-            @"Tax declaration",
-            @"Tax payer claim",
-            @"Tax studying claim"
+            NSLocalizedString(@"LABELED_TAX_DECLARATION",     @"Tax declaration"),
+            NSLocalizedString(@"LABELED_TAX_PAYER",     @"Tax payer claim"),
+            NSLocalizedString(@"LABELED_STUDYING",  @"Tax studying claim")
     ];
     self.sectionRows4 = @[
-            @"claim level 1",
-            @"claim level 2",
-            @"claim level 3"
+            NSLocalizedString(@"LABELED_CLAIM_LEVEL1",  @"claim level 1"),
+            NSLocalizedString(@"LABELED_CLAIM_LEVEL2",  @"claim level 2"),
+            NSLocalizedString(@"LABELED_CLAIM_LEVEL3",  @"claim level 3")
     ];
     self.sectionRows5 = @[
-            @"claim 1. child",
-            @"claim 2. child",
-            @"claim 3. child",
-            @"claim 4. child",
-            @"claim 5. child"
+            NSLocalizedString(@"LABELED_CLAIM_CHILD1",    @"claim 1. child"),
+            NSLocalizedString(@"LABELED_CLAIM_CHILD2",    @"claim 2. child"),
+            NSLocalizedString(@"LABELED_CLAIM_CHILD3",    @"claim 3. child"),
+            NSLocalizedString(@"LABELED_CLAIM_CHILD4",    @"claim 4. child"),
+            NSLocalizedString(@"LABELED_CLAIM_CHILD5",    @"claim 5. child")
     ];
     self.sectionRows6 = @[
-            @"Company",
-            @"Payrollee",
-            @"Email"
+            NSLocalizedString(@"LABELED_COMPANY",  @"Company"),
+            NSLocalizedString(@"LABELED_PAYROLLEE",@"Payrollee"),
+            NSLocalizedString(@"LABELED_EMAIL",    @"Email")
     ];
     self.placeholders6 = @[
-            @"My Company Inc.",
-            @"MyPayroll Best",
-            @"pyarollee@my-company.com"
+            NSLocalizedString(@"PLACEHOLDER_COMPANY", @"My Company Inc."),
+            NSLocalizedString(@"PLACEHOLDER_PAYROLLEE", @"MyPayroll Best"),
+            NSLocalizedString(@"PLACEHOLDER_EMAIL", @"pyarollee@my-company.com")
     ];
     [self setupCurrencyFormatter];
 
@@ -260,7 +260,7 @@ titleForHeaderInSection:(NSInteger)section
     return tf;
 }
 
-//Payroll details
+//SECTION_PAYROLL
 //  description
 //  payroll period
 //  salary
@@ -279,7 +279,7 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
-//Payslip details
+//SECTION_PAYCHECK
 //  employer name
 //  employee name
 //  department
@@ -307,7 +307,7 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
-//Tax payer declaration
+//SECTION_TAX_DECLARATION
 //  tax declaration
 //  claim tax payer benefit
 //  claim studying benefit
@@ -330,7 +330,7 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
-//Tax disability benefit
+//SECTION_TAX_DISABILITY
 //  claim disability benefit 1
 //  claim disability benefit 2
 //  claim disability benefit 3
@@ -353,12 +353,12 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
-//Tax child benefit
-//  claim 1. child benefit
-//  claim 2. child benefit
-//  claim 3. child benefit
-//  claim 4. child benefit
-//  claim 5. child benefit
+//SECTION_TAX_CHILD
+//  LABELED_CLAIM_CHILD1 benefit
+//  LABELED_CLAIM_CHILD2 benefit
+//  LABELED_CLAIM_CHILD3 benefit
+//  LABELED_CLAIM_CHILD4 benefit
+//  LABELED_CLAIM_CHILD5 benefit
 - (void)createCellInSectionChildBenefit:(UITableViewCell *)cell forRow:(NSUInteger)row {
     switch ( row ) {
         case 0: {
@@ -386,7 +386,7 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
-//Contact for results
+//SECTION_CONTACT
 //  company name
 //  payrollee name
 //  payrollee email

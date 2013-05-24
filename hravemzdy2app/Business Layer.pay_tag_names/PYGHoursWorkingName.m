@@ -13,8 +13,9 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_HOURS_WORKING]
-                               andTitle:@"Working hours" andDescription:@"Working hours"
-                           andVertGroup:VPAYGRP_SCHEDULE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
+                                andTitle:NSLocalizedString(@"TAG_TITLE_HOURS_WORKING", @"Working hours")
+                          andDescription:NSLocalizedString(@"TAG_DESCRIPT_HOURS_WORKING", @"Working hours")
+                            andVertGroup:VPAYGRP_SCHEDULE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }
 

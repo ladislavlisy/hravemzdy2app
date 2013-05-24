@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_SALARY_BASE]
-                               andTitle:@"Base Salary" andDescription:@"Base Salary"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_SALARY_BASE", @"Base Salary")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_SALARY_BASE", @"Base Salary")
                            andVertGroup:VPAYGRP_PAYMENTS andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

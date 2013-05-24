@@ -33,6 +33,8 @@
 }
 
 - (void)generateReportFor:(NSArray *)results andPeriod:(NSString *)periodName {
+    NSString *bundleName = [[NSBundle mainBundle] bundlePath];
+    NSString *bundleFURL = [[NSURL fileURLWithPath:bundleName] absoluteString];
     resultValues1 = [results[0] map:^id (id tag) {
         NSDictionary * dictionaryValues = (NSDictionary *)tag;
         return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
@@ -54,6 +56,7 @@
         return [PYGPaycheckItem paycheckItemWithValues:dictionaryValues];
     }];
     defaultValues = @{
+            @"bundle_folder"  : [NSString stringWithString:bundleFURL],
             @"payrollee_name" : @"Payroll Happiness",
             @"employee_name"  : @"Ladislav Lisy",
             @"period_name"    : [NSString stringWithString:periodName],
@@ -64,8 +67,9 @@
 
     NSError * error;
     NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"paycheck" ofType:@"mustache"];
-    [[PRKGenerator sharedGenerator] createReportWithName:@"paycheck" templateURLString:templatePath itemsPerPage:1 totalItems:1
-                                         pageOrientation:PRKPortraitPage dataSource:self delegate:self error:&error];
+    [[PRKGenerator sharedGenerator] createReportWithName:@"paycheck" templateURLString:templatePath baseURLString:bundleFURL
+                                            itemsPerPage:1 totalItems:1 pageOrientation:PRKPortraitPage
+                                              dataSource:self delegate:self error:&error];
 }
 
 - (id)reportsGenerator:(PRKGenerator *)generator dataForReport:(NSString *)reportName withTag:(NSString *)tagName forPage:(NSUInteger)pageNumber
@@ -87,6 +91,10 @@
     }
     else if ([tagName isEqualToString:@"result_details_4"]) {
         return resultValues4;
+    }
+    else if ([tagName isEqualToString:@"bundle_folder"]) {
+        NSString *tagValue = [defaultValues valueForKey:tagName];
+        return tagValue;
     }
 
     return [defaultValues valueForKey:tagName];

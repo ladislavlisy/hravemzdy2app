@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_INSURANCE_SOCIAL]
-                               andTitle:@"Social insurance" andDescription:@"Social insurance contribution"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_INSURANCE_SOCIAL", @"Social insurance contribution")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_INSURANCE_SOCIAL", @"Social insurance contribution")
                            andVertGroup:VPAYGRP_INS_RESULT andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

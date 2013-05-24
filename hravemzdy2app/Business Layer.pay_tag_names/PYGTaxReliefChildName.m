@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_TAX_RELIEF_CHILD]
-                               andTitle:@"Tax relief - child" andDescription:@"Tax relief - child (§ 35c)"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_TAX_RELIEF_CHILD", @"Tax relief - child (§ 35c)")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_TAX_RELIEF_CHILD", @"Tax relief - child (§ 35c)")
                            andVertGroup:VPAYGRP_TAX_SOURCE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

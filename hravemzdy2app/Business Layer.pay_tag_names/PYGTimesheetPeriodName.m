@@ -13,7 +13,8 @@
 }
 - (id)init {
     if (!(self=[super initWithCodeRefer:[PYGSymbolTags codeRef:TAG_TIMESHEET_PERIOD]
-                               andTitle:@"Job Timesheet hours" andDescription:@"Job Timesheet hours"
+                               andTitle:NSLocalizedString(@"TAG_TITLE_TIMESHEET_PERIOD", @"Job Timesheet hours")
+                         andDescription:NSLocalizedString(@"TAG_DESCRIPT_TIMESHEET_PERIOD", @"Job Timesheet hours")
                            andVertGroup:VPAYGRP_SCHEDULE andHorizGroup:HPAYGRP_UNKNOWN])) return nil;
     return self;
 }

@@ -8,7 +8,7 @@ xmlns:exslt="http://exslt.org/common">
   <xsl:template match="/">
     <html>
       <head>
-        <title>Employee payslip</title>
+        <title>LABELED_EMPLOYEE payslip</title>
       </head>
 
       <body>
@@ -52,7 +52,7 @@ xmlns:exslt="http://exslt.org/common">
     <div>
 	    <table>
 	      <tr>
-          <td>Personnel number</td>
+          <td>LABELED_PERSONNEL number</td>
  	        <td>Person name</td>
           <td>Period</td>
         </tr>
@@ -68,8 +68,8 @@ xmlns:exslt="http://exslt.org/common">
 		      </td>
 		    </tr>
         <tr>
-          <td>Department</td>
-          <td>Company</td>
+          <td>LABELED_DEPARTMENT</td>
+          <td>LABELED_COMPANY</td>
           <td></td>
         </tr>
         <tr>
