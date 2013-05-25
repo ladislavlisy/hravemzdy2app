@@ -7,11 +7,15 @@
 
 
 #import "PdfPaycheckGenerator.h"
-#import "InvoiceItem.h"
 #import "PRKGenerator.h"
 #import "NSArray+Func.h"
 #import "PYGPaycheckItem.h"
 
+@interface PdfPaycheckGenerator ()
+
+    @property (assign, nonatomic) id <PdfPaycheckGeneratorDelegate> delegate;
+
+@end
 
 @implementation PdfPaycheckGenerator {
     NSDictionary * defaultValues;
@@ -22,14 +26,15 @@
     NSArray * resultValues5;
     NSString * reportFileName;
 }
-- (id)initWithFileName:(NSString*)pdfFileName {
+- (id)initWithFileName:(NSString*)pdfFileName andDelegate:(id<PdfPaycheckGeneratorDelegate>)delegate {
     if (!(self = [super init])) return nil;
+    self.delegate = delegate;
     reportFileName = pdfFileName;
     return self;
 }
 
-+ (id)pdfPaycheckGeneratorWithFileName:(NSString*)pdfFileName {
-    return [[self alloc] initWithFileName:pdfFileName];
++ (id)pdfPaycheckGeneratorWithFileName:(NSString*)pdfFileName andDelegate:(id<PdfPaycheckGeneratorDelegate>)delegate {
+    return [[self alloc] initWithFileName:pdfFileName andDelegate:delegate];
 }
 
 - (void)generateReportFor:(NSArray *)results andPeriod:(NSString *)periodName {
@@ -103,6 +108,8 @@
 - (void)reportsGenerator:(PRKGenerator *)generator didFinishRenderingWithData:(NSData *)data
 {
     [data writeToFile:reportFileName atomically:YES];
+
+    [self.delegate generatorFinishedSuccess];
 }
 
 - (void)dealloc {

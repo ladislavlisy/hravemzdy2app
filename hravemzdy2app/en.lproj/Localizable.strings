@@ -49,8 +49,8 @@
 "PLACEHOLDER_EMAIL" = "pyarollee@my-company.com";
 "EMAIL_SUBJECT_PAYCHECK" = "Your Paycheck";
 "EMAIL_BODY_PAYCHECK" = "Hello, there is file with your paycheck.";
-"EMAIL_PDFATTACHMENT_PAYCHECK" = "Paycheck.pdf";
-"EMAIL_XMLATTACHMENT_PAYCHECK" = "Paycheck.xml";
+"EMAIL_PAYCHECK_PDF" = "Paycheck.pdf";
+"EMAIL_PAYCHECK_XML" = "Paycheck.xml";
 
 "TAG_TITLE_HOURS_ABSENCE" = "Absence hours";
 "TAG_DESCRIPT_HOURS_ABSENCE" = "Absence hours";
@@ -112,3 +112,4 @@
 "TAG_DESCRIPT_TIMESHEET_WORK" = "Working Timesheet hours";
 "TAG_TITLE_UNKNOWN" = "Unknown";
 "TAG_DESCRIPT_UNKNOWN" = "Unknown";
+

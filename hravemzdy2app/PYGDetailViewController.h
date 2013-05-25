@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "PYGPeriodPickerViewController.h"
+#import "PdfPaycheckGenerator.h"
 
-@interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate, UiPeriodPopoverControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface PYGDetailViewController : UIViewController <UISplitViewControllerDelegate, UiPeriodPopoverControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, PdfPaycheckGeneratorDelegate>
 
 @property(nonatomic, strong) IBOutlet UITableView * payrollResultView;
 
@@ -18,4 +19,7 @@
 
 - (void)setPayrollTitles:(NSDictionary *)values;
 - (void)setPayrollValues:(NSDictionary *)values;
+
+- (void)generatorFinishedCanceled;
+- (void)generatorFinishedSuccess;
 @end

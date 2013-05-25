@@ -10,13 +10,19 @@
 #import "PRKGeneratorDataSource.h"
 #import "PRKGeneratorDelegate.h"
 
-@class PRKGenerator;
+@protocol PdfPaycheckGeneratorDelegate
 
+- (void)generatorFinishedCanceled;
+- (void)generatorFinishedSuccess;
+
+@end
+
+@class PRKGenerator;
 
 @interface PdfPaycheckGenerator : NSObject<PRKGeneratorDataSource, PRKGeneratorDelegate>
 
-- (id)initWithFileName:(NSString *)pdfFileName;
-+ (id)pdfPaycheckGeneratorWithFileName:(NSString *)pdfFileName;
+- (id)initWithFileName:(NSString *)pdfFileName andDelegate:(id<PdfPaycheckGeneratorDelegate>)delegate;
++ (id)pdfPaycheckGeneratorWithFileName:(NSString *)pdfFileName andDelegate:(id<PdfPaycheckGeneratorDelegate>)delegate;
 
 - (void)generateReportFor:(NSArray *)results andPeriod:(NSString *)periodName;
 - (id)reportsGenerator:(PRKGenerator *)generator dataForReport:(NSString *)reportName withTag:(NSString *)tagName forPage:(NSUInteger)pageNumber;

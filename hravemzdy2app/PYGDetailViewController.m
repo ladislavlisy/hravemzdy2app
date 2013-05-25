@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 ___HRAVEMZDY___. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "PYGDetailViewController.h"
 #import "PdfPaycheckGenerator.h"
 #import "PYGPayrollPeriod.h"
@@ -28,6 +29,7 @@
 @interface PYGDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) UIPopoverController *periodPopoverController;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) NSArray* sections;
 
 @property (strong, nonatomic) NSDateFormatter* dateFormatter;
@@ -45,8 +47,10 @@
 @property (strong, nonatomic) NSArray * resultSection6;
 
 @property (strong, nonatomic) NSString* pdfFileName;
+@property (strong, nonatomic) NSString* bundlePdfName;
 @property (strong, nonatomic) PdfPaycheckGenerator* generator;
 @property (strong, nonatomic) NSString* xmlFileName;
+@property (strong, nonatomic) NSString* bundleXmlName;
 
 @property (strong, nonatomic) UIImage * cellImageI;
 @property (strong, nonatomic) UIImage * cellImageD;
@@ -71,9 +75,11 @@
     // Set-up code here.
     self.model = [PYGPayrollModel payrollModel];
 
-    self.pdfFileName = [self.model getPdfFileName:NSLocalizedString(@"EMAIL_PDFATTACHMENT_PAYCHECK", @"Paycheck.pdf")];
-    self.xmlFileName = [self.model getXmlFileName:NSLocalizedString(@"EMAIL_XMLATTACHMENT_PAYCHECK", @"Paycheck.pdf")];
-    self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:self.pdfFileName];
+    self.bundlePdfName = NSLocalizedString(@"EMAIL_PAYCHECK_PDF", @"PaycheckPdf");
+    self.pdfFileName = [self.model getPdfFileName:self.bundlePdfName];
+    self.bundleXmlName = NSLocalizedString(@"EMAIL_PAYCHECK_XML", @"PaycheckXml");
+    self.xmlFileName = [self.model getXmlFileName:self.bundleXmlName];
+    self.generator = [PdfPaycheckGenerator pdfPaycheckGeneratorWithFileName:self.pdfFileName andDelegate:self];
 
     self.cellImageI = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_INCOME]];
     self.cellImageD = [UIImage imageNamed:[self getImageNameForTypeOfResult:TYPE_RESULT_DEDUCTION]];
@@ -407,6 +413,12 @@ titleForHeaderInSection:(NSInteger)section
 {
     NSString * periodText = [self getPeriodTitle];
 
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = self.view.center;
+    self.spinner.hidesWhenStopped = YES;
+    [self.view addSubview:self.spinner];
+    [self.spinner startAnimating];
+
     [self.generator generateReportFor:@[
             self.resultSection0, self.resultSection3,
             self.resultSection4, self.resultSection5,
@@ -423,20 +435,18 @@ titleForHeaderInSection:(NSInteger)section
     if (buttonIndex == 0) {
         //[self drawPDF:self.pdfFileName];
         [self exportPaycheckPDF:self.pdfFileName];
-        [self sendExportedPaycheck:self.pdfFileName];
-        //[self showPdfFile:self.pdfFileName];
     }
     else if (buttonIndex == 1) {
         [self exportPaycheckXML:self.xmlFileName];
-        [self sendExportedPaycheck:self.xmlFileName];
+        [self sendExportedPaycheck:self.xmlFileName asFileName:self.bundleXmlName asType:@"application/xml"];
     }
 }
 
-- (void)sendExportedPaycheck:(NSString *)fileNameWithPath {
+- (void)sendExportedPaycheck:(NSString *)fileNameWithPath asFileName:(NSString *)fileName asType:(NSString *)typeOfAttachment{
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
 
-        [self composeEmail:fileNameWithPath controller:controller];
+        [self composeEmail:fileNameWithPath  asFileName:fileName asType:typeOfAttachment controller:controller];
 
         if (controller) {
             [self presentViewController:controller animated:YES completion:NULL];
@@ -446,14 +456,15 @@ titleForHeaderInSection:(NSInteger)section
     }
 }
 
-- (void)composeEmail:(NSString *)fileNameWithPath controller:(MFMailComposeViewController *)controller {
+- (void)composeEmail:(NSString *)fileNameWithPath asFileName:(NSString *)fileName asType:(NSString *)typeOfAttachment controller:(MFMailComposeViewController *)controller {
     controller.mailComposeDelegate = self;
 
     [controller setSubject:NSLocalizedString(@"EMAIL_SUBJECT_PAYCHECK", @"Your Paycheck")];
     [controller setMessageBody:NSLocalizedString(@"EMAIL_BODY_PAYCHECK",@"Hello, there is file with your paycheck.") isHTML:NO];
 
+
     NSData *fileData = [NSData dataWithContentsOfFile:fileNameWithPath];
-    [controller addAttachmentData:fileData mimeType:@"application/pdf" fileName:NSLocalizedString(@"EMAIL_PDFATTACHMENT_PAYCHECK", @"Paycheck.pdf")];
+    [controller addAttachmentData:fileData mimeType:typeOfAttachment fileName:fileName];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller
@@ -479,5 +490,16 @@ titleForHeaderInSection:(NSInteger)section
     [self.view addSubview:webView];
 }
 
+- (void)generatorFinishedCanceled {
+    [self.spinner stopAnimating];
+}
 
+- (void)generatorFinishedSuccess {
+    [self.spinner stopAnimating];
+    [self.spinner removeFromSuperview];
+    self.spinner = nil;
+
+    [self sendExportedPaycheck:self.pdfFileName asFileName:self.bundlePdfName asType:@"application/pdf"];
+    //[self showPdfFile:self.pdfFileName];
+}
 @end
