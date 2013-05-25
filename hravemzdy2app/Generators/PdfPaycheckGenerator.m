@@ -80,10 +80,22 @@
 - (id)reportsGenerator:(PRKGenerator *)generator dataForReport:(NSString *)reportName withTag:(NSString *)tagName forPage:(NSUInteger)pageNumber
 {
     if ([tagName isEqualToString:@"result_details_gross"]) {
-        return [resultValues5 subarrayWithRange:NSMakeRange(0, 1)];
+        if ([resultValues5 count] == 2) {
+            return [resultValues5 subarrayWithRange:NSMakeRange(0, 1)];
+        }
+        else
+        {
+            return @[[PYGPaycheckItem paycheckItemWithTitle:@"" andValue:@""]];
+        }
     }
     else if ([tagName isEqualToString:@"result_details_netto"]) {
-        return [resultValues5 subarrayWithRange:NSMakeRange(1, 1)];
+        if ([resultValues5 count] == 2) {
+            return [resultValues5 subarrayWithRange:NSMakeRange(1, 1)];
+        }
+        else
+        {
+            return @[[PYGPaycheckItem paycheckItemWithTitle:@"" andValue:@""]];
+        }
     }
     else if ([tagName isEqualToString:@"result_details_1"]) {
         return resultValues1;

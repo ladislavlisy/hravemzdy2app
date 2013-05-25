@@ -127,8 +127,9 @@ const NSInteger numberOfComponents = 2;
     NSInteger yearCount = [self.years count];
     NSString *year = [self.years objectAtIndex:([self selectedRowInComponent:YEAR] % yearCount)];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init]; [formatter setDateFormat:@"MMMM:yyyy"];
-    NSDate *date = [formatter dateFromString:[NSString stringWithFormat:@"%@:%@", month, year]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init]; [formatter setDateFormat:@"LLLL:yyyy"];
+    NSString *dateString = [NSString stringWithFormat:@"%@:%@", month, year];
+    NSDate *date = [formatter dateFromString:dateString];
     
     return date;
 }

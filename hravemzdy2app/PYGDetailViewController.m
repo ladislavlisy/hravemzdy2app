@@ -107,7 +107,7 @@
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setLocale:[NSLocale currentLocale]];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
-    [formatter setDateFormat:@"MMM yyyy"];
+    [formatter setDateFormat:@"LLLL yyyy"];
     return formatter;
 }
 
